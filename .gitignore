@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+
+# Node (in case anyone clones with a sibling test repo)
+node_modules/
+.npm/
+.pnpm-store/
+.yarn/
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Local QA artifacts (Lighthouse reports, etc.)
+webclaw-lighthouse-*/
+*.lighthouse.json
+.web-claw-cache/
+
+# Generated handoff bundles (don't commit these to the skill repo)
+*-handoff.tar.gz
+*-handoff.json
+*-handoff.md
+
+# User project workspaces accidentally created next to the skill
+/blueprint/
+/research/
+/decisions/
+/qa/phase-*-report.md
+/qa/final-report.md
+/qa/qa-plan.md
+/memory.md
+/site-brief.json
+/sources.json
+/dependencies.json
+/plan.md
+/phase-*.md
+/prompts/

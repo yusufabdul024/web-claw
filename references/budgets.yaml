@@ -1,0 +1,130 @@
+# Web Claw - Canonical Budgets
+#
+# Single source of truth for every numeric threshold the skill enforces.
+# Every doc, script, and QA gate that mentions a threshold reads from here
+# (scripts) or points at this file (docs). Do not hard-code these numbers
+# anywhere else.
+#
+# Schema version: 1
+schema: 1
+
+# --------------------------------------------------------------------------
+# Lighthouse score floors. Mobile is the gate; desktop is the additive case.
+# Scores 0-100. A run is "passing" iff every score is >= floor.
+#
+# Resolves the prior inconsistency between plan-template.md (which said >= 95
+# for all four mobile scores) vs phase-3-gate.md, pre-launch-checklist.md,
+# performance-budgets.md, and generate-phases.py (which collectively said
+# >= 90 for mobile Performance and a mix of 90/95 for the others).
+# Authoritative value: 90 across the board on mobile, 95 on desktop.
+# --------------------------------------------------------------------------
+lighthouse:
+  mobile:
+    performance: 90
+    accessibility: 90
+    best_practices: 90
+    seo: 90
+  desktop:
+    performance: 95
+    accessibility: 95
+    best_practices: 95
+    seo: 95
+  # Note: keep all values as bare integers (no inline maps) so the stdlib
+  # parser in scripts/_budgets.py can read this file without PyYAML.
+
+# --------------------------------------------------------------------------
+# Core Web Vitals (mobile, p75 over 28 days in field; or median of 3 lab runs).
+# --------------------------------------------------------------------------
+core_web_vitals:
+  lcp_seconds_max: 2.5
+  cls_max: 0.1
+  inp_ms_max: 200
+  fcp_seconds_max: 1.8
+  tbt_ms_max: 200
+  ttfb_ms_max: 600
+
+# --------------------------------------------------------------------------
+# Accessibility baseline.
+# --------------------------------------------------------------------------
+accessibility:
+  wcag_level: "2.2 AA"
+  axe_violations_critical_max: 0
+  axe_violations_serious_max: 0
+  contrast_aa_min_normal: 4.5      # >= 4.5:1 for normal-sized text
+  contrast_aa_min_large: 3.0       # >= 3:1 for large text and UI components
+  touch_target_min_px: 44          # WCAG 2.2 SC 2.5.8 / Apple HIG
+
+# --------------------------------------------------------------------------
+# Motion budgets. Enforced during animation; visible in dev tools.
+# --------------------------------------------------------------------------
+motion:
+  entrance_total_seconds_max: 1.5      # above-the-fold entrance choreography
+  signature_total_seconds_max: 3.0     # signature section animation
+  long_task_ms_max: 50                 # main-thread task during animation
+  framerate_min_fps: 58                # acceptable floor on Pixel 6a (target 60)
+  concurrent_animations_max: 5         # active simultaneous animations per frame
+  raf_callbacks_max: 1                 # single ticker, coalesce subscribers
+
+# --------------------------------------------------------------------------
+# Bundle budgets per page. Maximalist sites override with explicit decisions.
+# --------------------------------------------------------------------------
+bundle:
+  html_kb_max: 30
+  css_critical_kb_max: 20
+  initial_js_kb_max: 150
+  total_js_per_page_kb_max: 350
+  fonts_total_kb_max: 200
+  hero_image_kb_max: 200
+  page_total_kb_max_mobile: 1536
+  page_total_kb_max_desktop: 2560
+
+# --------------------------------------------------------------------------
+# Research credibility heuristic. Resolves the prior 200k / 50k / 200_000
+# inconsistency across operating-principles.md, youtube-channels.md, and
+# research-matrix.py. Authoritative: 50,000 subscriber signal floor,
+# applied alongside the four-signal heuristic (recency, library currency,
+# track record, reach) -- not a hard gate.
+# --------------------------------------------------------------------------
+research:
+  youtube_subscriber_signal_minimum: 50000
+  youtube_recency_days_max: 90
+  youtube_track_record_months_min: 18
+  youtube_video_max_age_months: 18
+  awwwards_min_entries: 5
+  awwwards_max_entries: 10
+  youtube_min_entries: 3
+  youtube_max_entries: 6
+
+# --------------------------------------------------------------------------
+# Security baseline. Verified at https://securityheaders.com on production URL.
+# --------------------------------------------------------------------------
+security:
+  required_headers:
+    - Content-Security-Policy
+    - X-Content-Type-Options
+    - Referrer-Policy
+    - Strict-Transport-Security
+    - Permissions-Policy
+  securityheaders_min_grade: A
+  ssllabs_min_grade: A
+
+# --------------------------------------------------------------------------
+# Fast-mode degradation rules. When the skill runs in fast mode (no user
+# sign-off between artifacts) and hits a blocker, behavior is governed here.
+# These rules resolve the reviewer's "missing degradation rules for fast mode"
+# concern.
+# --------------------------------------------------------------------------
+fast_mode:
+  # Hard blocker: blocks advance, surfaces at the end of the run.
+  # Soft blocker: logs to memory.md -> Blockers, proceeds with degraded artifact.
+  blockers:
+    quality_gate_fail: hard           # Lighthouse / axe / contrast / motion failures
+    missing_dependency: hard          # required npm/pip package cannot install
+    auth_required: soft               # external auth gate (e.g., behind login)
+    user_only_decision: soft          # something only the user can decide (legal, payment keys)
+    inspiration_source_unreachable: soft   # cited Awwwards/YouTube URL is dead
+    api_key_missing: soft             # AI asset generation needs a key the user did not provide
+  retry_policy:
+    quality_gate_runs: 2              # if Lighthouse fails, fix-and-rerun this many times before hard-blocking
+    network_dependent_runs: 3         # transient network errors get this many retries
+  surface_at_end: true                # collect all soft blockers; show user as single summary at run end

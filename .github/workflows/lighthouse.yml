@@ -1,0 +1,55 @@
+# Lighthouse CI for Web Claw projects.
+# Drop into your project's .github/workflows/ and adjust PREVIEW_URL_SECRET
+# (or replace with a static URL) to enable on every PR.
+name: Lighthouse
+
+on:
+  pull_request:
+    paths-ignore:
+      - "**/*.md"
+      - "docs/**"
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "URL to audit (overrides PREVIEW_URL secret)"
+        required: false
+        type: string
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Determine URL
+        id: url
+        run: |
+          if [ -n "${{ inputs.url }}" ]; then
+            echo "value=${{ inputs.url }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=${{ secrets.PREVIEW_URL }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Audit performance
+        if: steps.url.outputs.value != ''
+        run: |
+          python web-claw/scripts/audit-perf.py "${{ steps.url.outputs.value }}" --device mobile --out lh-reports/
+
+      - name: Upload Lighthouse JSON
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports
+          path: lh-reports/
+          if-no-files-found: ignore

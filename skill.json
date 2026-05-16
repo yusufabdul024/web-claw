@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schemas.anthropic.com/skill/v1.json",
+  "name": "web-claw",
+  "version": "1.0.0",
+  "description": "Structured methodology for designing and shipping scroll-stopping, award-caliber websites through any AI coding agent. Walks a project from intake through deployment with sign-off gates, automated QA, and a single source of truth for performance, accessibility, and motion budgets.",
+  "entry": "SKILL.md",
+  "license": "MIT",
+  "homepage": "https://github.com/yusufabdul024/web-claw",
+  "requirements": {
+    "python": ">=3.8",
+    "node": ">=18 (optional, for Lighthouse / pa11y / Playwright QA scripts)"
+  },
+  "install": {
+    "command": "install.sh",
+    "windows_command": "install.ps1",
+    "verify": "scripts/verify-install.py"
+  },
+  "host_destinations": {
+    "codex": ".agents/skills/web-claw",
+    "claude": ".claude/skills/web-claw",
+    "claude_user": "~/.claude/skills/web-claw",
+    "cursor": ".cursor/skills/web-claw",
+    "gemini": ".gemini/extensions/web-claw",
+    "opencode": ".opencode/skills/web-claw"
+  },
+  "entry_points": {
+    "pipeline": "SKILL.md",
+    "state_machine": "references/state-machine.md",
+    "memory_format": "references/memory-format.md",
+    "platform_compat": "references/platform-compat.md",
+    "budgets": "references/budgets.yaml"
+  },
+  "triggers": [
+    "build a website",
+    "design a landing page",
+    "scroll-stopping site",
+    "award-winning website",
+    "Awwwards-quality",
+    "premium site",
+    "high-end web design",
+    "animated website",
+    "Relume-style sitemap",
+    "site planning",
+    "wireframes",
+    "style guide",
+    "design system for a site",
+    "motion design for a site"
+  ]
+}

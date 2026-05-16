@@ -1,0 +1,69 @@
+# Playwright + axe-core checks for Web Claw projects.
+# Combines the E2E smoke suite (run-playwright.py), the accessibility scan
+# (check-a11y.py), and the reduced-motion verifier (check-reduced-motion.py).
+name: Playwright
+
+on:
+  pull_request:
+    paths-ignore:
+      - "**/*.md"
+      - "docs/**"
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "URL to test (overrides PREVIEW_URL secret)"
+        required: false
+        type: string
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Playwright browsers
+        run: npx --yes playwright install --with-deps chromium
+
+      - name: Determine URL
+        id: url
+        run: |
+          if [ -n "${{ inputs.url }}" ]; then
+            echo "value=${{ inputs.url }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=${{ secrets.PREVIEW_URL }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: E2E smoke
+        if: steps.url.outputs.value != ''
+        run: |
+          python web-claw/scripts/run-playwright.py "${{ steps.url.outputs.value }}" --browser chromium
+
+      - name: Accessibility scan
+        if: steps.url.outputs.value != ''
+        run: |
+          python web-claw/scripts/check-a11y.py "${{ steps.url.outputs.value }}" --standard WCAG22AA
+
+      - name: Reduced-motion check
+        if: steps.url.outputs.value != ''
+        run: |
+          python web-claw/scripts/check-reduced-motion.py "${{ steps.url.outputs.value }}" --out reduced-motion-out/
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-artifacts
+          path: |
+            reduced-motion-out/
+          if-no-files-found: ignore
