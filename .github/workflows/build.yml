@@ -1,18 +1,32 @@
-# Typecheck + lint + build + bundle-budget gate.
-# Assumes the project under the repo root uses pnpm; swap to npm/yarn/bun
-# by editing the install + script step accordingly.
-name: Build
+# Skill-repo validation CI.
+#
+# This is NOT a frontend application build. Web Claw is a skill package
+# (markdown + Python). CI here validates the package itself:
+#   - source verifier passes 7/7
+#   - installer parses (Bash on POSIX, PowerShell on Windows)
+#   - init-project.py smoke-runs and produces the expected artifacts
+#   - the package installs cleanly into a temp Codex project on both OSes
+#   - a clean clone from this very repo also installs successfully (POSIX)
+#
+# Consumer-project workflow templates (Lighthouse, Playwright) live under
+# assets/ci-templates/ — they ship with the skill so users can copy them
+# into their OWN .github/workflows/, but they must not run as this repo's CI.
+
+name: Skill validation
 
 on:
   pull_request:
+    paths-ignore:
+      - "**/*.md"
+      - "assets/**"
   push:
     branches: [main]
   workflow_dispatch:
 
 jobs:
-  build:
+  posix:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
 
@@ -21,41 +35,90 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
+      - name: Verify source package
+        run: python -B scripts/verify-install.py --skill-root . --json
 
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9
+      - name: Bash installer syntax
+        run: bash -n install.sh
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Typecheck
-        run: pnpm typecheck
-        continue-on-error: false
-
-      - name: Lint
-        run: pnpm lint
-        continue-on-error: false
-
-      - name: Build
-        run: pnpm build
-
-      - name: Bundle budget check
+      - name: init-project.py smoke
         run: |
-          python web-claw/scripts/check-bundle.py --dir .
+          mkdir -p /tmp/wc-init-smoke
+          python -B scripts/init-project.py "CI Smoke" --path /tmp/wc-init-smoke --slug web-claw-ci-smoke --mode fast
+          test -f /tmp/wc-init-smoke/web-claw-ci-smoke/memory.md
+          test -d /tmp/wc-init-smoke/web-claw-ci-smoke/blueprint
+          test -d /tmp/wc-init-smoke/web-claw-ci-smoke/qa
 
-      - name: Upload build output (optional)
-        if: failure()
-        uses: actions/upload-artifact@v4
+      - name: Install into temp Codex project
+        run: |
+          mkdir -p /tmp/wc-codex-install
+          ./install.sh --host codex --project /tmp/wc-codex-install
+          test -f /tmp/wc-codex-install/.agents/skills/web-claw/SKILL.md
+          test -f /tmp/wc-codex-install/AGENTS.md
+          python -B /tmp/wc-codex-install/.agents/skills/web-claw/scripts/verify-install.py \
+            --skill-root /tmp/wc-codex-install/.agents/skills/web-claw --json
+
+      - name: Clean-clone install test
+        run: |
+          git clone "${GITHUB_SERVER_URL:-https://github.com}/${GITHUB_REPOSITORY}" /tmp/wc-clone
+          cd /tmp/wc-clone
+          python -B scripts/verify-install.py --skill-root . --json
+          ./install.sh --host codex --project /tmp/wc-clone-install
+          python -B /tmp/wc-clone-install/.agents/skills/web-claw/scripts/verify-install.py \
+            --skill-root /tmp/wc-clone-install/.agents/skills/web-claw --json
+
+      - name: Idempotent --force re-install
+        run: |
+          ./install.sh --host codex --project /tmp/wc-codex-install --force
+          python -B /tmp/wc-codex-install/.agents/skills/web-claw/scripts/verify-install.py \
+            --skill-root /tmp/wc-codex-install/.agents/skills/web-claw --json
+
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          name: build-output
-          path: |
-            .next/
-            dist/
-            build/
-          if-no-files-found: ignore
+          python-version: "3.11"
+
+      - name: Verify source package
+        run: python -B scripts/verify-install.py --skill-root . --json
+
+      - name: PowerShell installer syntax
+        shell: pwsh
+        run: |
+          $errors = $null
+          $tokens = $null
+          [System.Management.Automation.Language.Parser]::ParseFile(
+              (Resolve-Path .\install.ps1), [ref]$tokens, [ref]$errors
+          ) > $null
+          if ($errors -and $errors.Count -gt 0) {
+              $errors | ForEach-Object { Write-Host $_.Message }
+              exit 1
+          }
+
+      - name: Install into temp Codex project
+        shell: pwsh
+        run: |
+          $TempProject = Join-Path $env:TEMP "wc-codex-install"
+          if (Test-Path $TempProject) { Remove-Item -Recurse -Force $TempProject }
+          .\install.ps1 -HostName codex -Project $TempProject
+          if (-not (Test-Path (Join-Path $TempProject ".agents\skills\web-claw\SKILL.md"))) {
+              Write-Host "FAIL: SKILL.md not found at install destination"; exit 1
+          }
+          if (-not (Test-Path (Join-Path $TempProject "AGENTS.md"))) {
+              Write-Host "FAIL: AGENTS.md not auto-created"; exit 1
+          }
+          python -B (Join-Path $TempProject ".agents\skills\web-claw\scripts\verify-install.py") `
+              --skill-root (Join-Path $TempProject ".agents\skills\web-claw") --json
+
+      - name: Idempotent -Force re-install
+        shell: pwsh
+        run: |
+          $TempProject = Join-Path $env:TEMP "wc-codex-install"
+          .\install.ps1 -HostName codex -Project $TempProject -Force
+          python -B (Join-Path $TempProject ".agents\skills\web-claw\scripts\verify-install.py") `
+              --skill-root (Join-Path $TempProject ".agents\skills\web-claw") --json

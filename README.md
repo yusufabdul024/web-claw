@@ -72,10 +72,10 @@ The installer resolves the correct directory automatically. Reference:
 
 | Host          | Project-local destination                | User/global destination                  |
 |---------------|------------------------------------------|------------------------------------------|
-| Codex         | `<project>/.agents/skills/web-claw/`     | — (use project-local)                    |
+| Codex         | `<project>/.agents/skills/web-claw/` *(plus `AGENTS.md` auto-created with the activation pointer)* | — (use project-local) |
 | Claude Code   | `<project>/.claude/skills/web-claw/`     | `~/.claude/skills/web-claw/` (use `--user`) |
-| Cursor        | `<project>/.cursor/skills/web-claw/` *(plus a `.cursor/rules/web-claw.mdc` pointer is created automatically)* | — |
-| Gemini CLI    | `<project>/.gemini/extensions/web-claw/` | — |
+| Cursor        | `<project>/.cursor/skills/web-claw/` *(plus a `.cursor/rules/web-claw.mdc` pointer is auto-created)* | — |
+| Gemini CLI    | Managed by Gemini CLI itself. Install via `gemini extensions install https://github.com/yusufabdul024/web-claw --ref v1.0.1`. `--host gemini` in the installer prints this command — it does not copy files. | — |
 | OpenCode      | `<project>/.opencode/skills/web-claw/`   | — |
 | Anything else | Manual fallback: copy the repo root to any folder named `web-claw/` in your project and tell the agent to read `web-claw/SKILL.md`. | — |
 
@@ -125,15 +125,26 @@ Want your agent to install Web Claw for you? Copy this prompt into a fresh agent
 ```
 Install Web Claw from https://github.com/yusufabdul024/web-claw as a
 host-native skill for my current agent. Detect whether I'm using Codex,
-Claude Code, Cursor, Gemini, or another supported host by inspecting which
-of these directories exist or are referenced: .agents/, .claude/, .cursor/,
-.gemini/, .opencode/. Clone the repo, run install.sh (or install.ps1 on
-Windows) with the right --host flag pointing at the current project, then
-run scripts/verify-install.py on the destination. If the host requires a
-project instruction file (AGENTS.md for Codex, .cursor/rules/*.mdc for
-Cursor), create the minimal one that says: "Read web-claw/SKILL.md and
-follow the Web Claw pipeline for any web design task." Confirm the
-install succeeded by printing the verifier output.
+Claude Code, Cursor, or OpenCode by inspecting which of these directories
+exist or are referenced: .agents/, .claude/, .cursor/, .opencode/. Then:
+
+1. git clone https://github.com/yusufabdul024/web-claw.git --branch v1.0.1
+2. cd web-claw
+3. Run install.sh (or install.ps1 on Windows) with the right --host flag
+   pointing at the current project.
+4. Run scripts/verify-install.py on the destination and confirm 7/7 passes.
+
+The installer auto-creates the activation pointer for hosts that need one
+(AGENTS.md for Codex, .cursor/rules/web-claw.mdc for Cursor). Do not write
+those files yourself.
+
+For Gemini CLI, do not run our installer. Run instead:
+  gemini extensions install https://github.com/yusufabdul024/web-claw --ref v1.0.1
+
+After install, tell me the host-specific read path the installer printed
+(e.g. ".agents/skills/web-claw/SKILL.md" for Codex,
+".claude/skills/web-claw/SKILL.md" for Claude Code) so I can verify
+activation works.
 ```
 
 ---
@@ -154,6 +165,17 @@ Goal: <one-sentence outcome>. Audience: <visitor>. Stack: <preference>.
 ```
 Resume this Web Claw project by reading memory.md first.
 ```
+
+If your agent does not auto-discover the skill, tell it where to read SKILL.md from. The path depends on which host you installed for:
+
+| Host        | Tell the agent                                                   |
+|-------------|------------------------------------------------------------------|
+| Codex       | `Read .agents/skills/web-claw/SKILL.md and follow it.` *(also auto-recorded in AGENTS.md)* |
+| Claude Code (project) | `Read .claude/skills/web-claw/SKILL.md and follow it.` |
+| Claude Code (--user) | `Read ~/.claude/skills/web-claw/SKILL.md and follow it.` |
+| Cursor      | `Read .cursor/skills/web-claw/SKILL.md and follow it.` *(also auto-recorded in .cursor/rules/web-claw.mdc)* |
+| OpenCode    | `Read .opencode/skills/web-claw/SKILL.md and follow it.` |
+| Gemini CLI  | `Use the Web Claw extension to plan and build <site>.` *(the extension's SKILL.md is loaded automatically)* |
 
 The skill will:
 1. Read `SKILL.md`.
@@ -228,8 +250,10 @@ web-claw/
 |   |-- scrape-awwwards.py, install-deps.py, install-packages.py
 |-- assets/
 |   |-- templates/                        Markdown templates for every artifact.
+|   |-- ci-templates/                     Consumer-project CI templates (lighthouse.yml, playwright.yml). Copy into your project's .github/workflows/.
 |   `-- svg/                              Static SVG assets.
-|-- .github/workflows/                    Optional CI templates (Lighthouse, Playwright, Build).
+|-- .github/workflows/                    Skill repo CI only (skill-validation build.yml).
+|-- gemini-extension.json                 Gemini CLI extension manifest.
 |-- install.sh                            POSIX installer.
 |-- install.ps1                           PowerShell installer.
 |-- LICENSE

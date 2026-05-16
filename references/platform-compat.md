@@ -29,13 +29,13 @@ Web Claw is designed to run on any AI coding agent platform. This reference cove
 
 OpenAI Codex — both the open-source CLI and the ChatGPT cloud environment — does not auto-discover skills via `agents/openai.yaml`. Its actual repo-instruction convention is **`AGENTS.md`**. Use one of these invocation paths instead:
 
-**Option A — Point Codex at SKILL.md via `AGENTS.md`:**
-- Drop an `AGENTS.md` at your project root that says: `When this project is opened, read web-claw/SKILL.md and follow the Web Claw pipeline. Begin by reading <project>/memory.md.`
-- This is the most native path. Codex will load `AGENTS.md` automatically.
+**Option A — Use the installer (recommended).**
+- Run `./install.sh --host codex --project <project>` (or `.\install.ps1 -HostName codex -Project <project>`). The installer copies the skill to `<project>/.agents/skills/web-claw/` and auto-creates `AGENTS.md` with the activation line: `Read .agents/skills/web-claw/SKILL.md and follow the Web Claw pipeline for any web design task.`
+- Codex loads `AGENTS.md` automatically; the skill is now active.
 
-**Option B — Invoke explicitly per session:**
-- `Read web-claw/SKILL.md and run Web Claw for this project.`
-- Works on any Codex session regardless of `AGENTS.md` presence.
+**Option B — Invoke explicitly per session (if AGENTS.md was clobbered):**
+- `Read .agents/skills/web-claw/SKILL.md and run Web Claw for this project.`
+- Works on any Codex session that has the host-native install present.
 
 **Option C — Manual Mode (any Codex tier, any plan):**
 - See the "Any Other Agent / Manual Mode" section below. Paste `memory.md` + the current agent file + the inputs that agent requires into a fresh chat. Quality depends on the model; in particular, Manual Mode cannot run the QA scripts (Lighthouse, axe-core, contrast, Playwright) — those checks must be run locally and pasted back. See the bottom of this doc for the full caveats.
@@ -74,8 +74,8 @@ OpenAI Codex — both the open-source CLI and the ChatGPT cloud environment — 
 ## Cursor
 
 **Invoking the skill:**
-- Drop a `.cursor/rules/web-claw.mdc` file pointing at the skill: `When this project is opened, read web-claw/SKILL.md and follow the Web Claw pipeline. Begin by reading <project>/memory.md.` The `alwaysApply: true` frontmatter makes it durable across chats.
-- Or explicitly: "Read web-claw/SKILL.md and run Web Claw for this project."
+- Run `./install.sh --host cursor --project <project>` (or `.\install.ps1 -HostName cursor -Project <project>`). The installer copies the skill to `<project>/.cursor/skills/web-claw/` and auto-creates `.cursor/rules/web-claw.mdc` with `alwaysApply: true` pointing at `.cursor/skills/web-claw/SKILL.md`. Cursor reads the rule durably across chats.
+- Or explicitly: "Read .cursor/skills/web-claw/SKILL.md and run Web Claw for this project."
 
 **Subagent spawning:**
 - Cursor does not expose a public subagent primitive equivalent to Claude Code's Task tool. Treat delegation as serial: complete one agent's artifact, persist `memory.md`, then start the next. Manual Mode is the canonical pattern.

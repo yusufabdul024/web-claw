@@ -53,8 +53,11 @@ done
 
 [[ -z "$HOST" ]] && die "--host is required. One of: codex, claude, cursor, gemini, opencode, all."
 
+# Auto-create the project directory if missing. This matches what users and CI
+# typically expect: --project may name a path that does not yet exist.
+mkdir -p "$PROJECT" 2>/dev/null
 PROJECT="$(cd "$PROJECT" 2>/dev/null && pwd || true)"
-[[ -z "$PROJECT" ]] && die "--project must be a path that exists."
+[[ -z "$PROJECT" ]] && die "--project must be a path that exists or be creatable."
 
 # ---- preflight: source repo must look like the Web Claw skill ----------
 [[ -f "$SCRIPT_DIR/SKILL.md" ]] || die "Run this from the Web Claw repo root (SKILL.md not found at $SCRIPT_DIR)."
@@ -82,17 +85,39 @@ resolve_dest() {
             [[ "$mode" == "user" ]] && return 1
             printf '%s\n' "$PROJECT/.cursor/skills/web-claw"
             ;;
-        gemini)
-            [[ "$mode" == "user" ]] && return 1
-            printf '%s\n' "$PROJECT/.gemini/extensions/web-claw"
-            ;;
         opencode)
             [[ "$mode" == "user" ]] && return 1
             printf '%s\n' "$PROJECT/.opencode/skills/web-claw"
             ;;
+        gemini)
+            # Gemini extensions are managed by the Gemini CLI. We do not copy
+            # files for Gemini; the caller short-circuits and prints the
+            # gemini-native install command instead.
+            return 1
+            ;;
         *)
             return 1
             ;;
+    esac
+}
+
+# Per-host agent-facing path. The agent should be told to read this exact
+# string (relative to the project root, or absolute for user-global installs).
+agent_read_path_for() {
+    local host="$1"
+    local dest="$2"
+    case "$host" in
+        codex)    printf '%s\n' ".agents/skills/web-claw/SKILL.md" ;;
+        claude)
+            if (( USER_INSTALL )); then
+                printf '%s\n' "$dest/SKILL.md"
+            else
+                printf '%s\n' ".claude/skills/web-claw/SKILL.md"
+            fi
+            ;;
+        cursor)   printf '%s\n' ".cursor/skills/web-claw/SKILL.md" ;;
+        opencode) printf '%s\n' ".opencode/skills/web-claw/SKILL.md" ;;
+        *)        printf '%s\n' "SKILL.md" ;;
     esac
 }
 
@@ -165,6 +190,31 @@ copy_one() {
 
 install_one_host() {
     local host="$1"
+
+    # Gemini extensions are installed by the Gemini CLI itself. We do not
+    # copy files into a project-local path; that would be a fake destination.
+    # Print the canonical install command and exit successfully.
+    if [[ "$host" == "gemini" ]]; then
+        say "Host: gemini"
+        cat <<EOF
+[web-claw] Gemini CLI manages its own extensions. Install Web Claw with:
+
+  gemini extensions install https://github.com/yusufabdul024/web-claw --ref v1.0.1
+
+Or for the latest development version on main:
+
+  gemini extensions install https://github.com/yusufabdul024/web-claw
+
+The repository ships gemini-extension.json at its root, so the Gemini CLI
+will load SKILL.md as the extension's context file automatically. After
+install, in any Gemini CLI session, ask:
+
+  Use the Web Claw extension to plan and build a [landing page | portfolio | site] for <project>.
+
+EOF
+        return 0
+    fi
+
     local mode
     if (( USER_INSTALL )); then mode="user"; else mode="project"; fi
     local dest
@@ -266,13 +316,15 @@ EOF
     fi
 
     # ---- next instruction -----------------------------------------------
+    local read_path
+    read_path="$(agent_read_path_for "$host" "$dest")"
     cat <<EOF
 
 [web-claw] Installed for $host at: $dest
 
 Next: open $PROJECT in your $host agent and tell it:
 
-  Read web-claw/SKILL.md and run Web Claw for this project.
+  Read $read_path and run Web Claw for this project.
 
 Or for an end-to-end build:
 

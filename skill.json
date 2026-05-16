@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.anthropic.com/skill/v1.json",
   "name": "web-claw",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Structured methodology for designing and shipping scroll-stopping, award-caliber websites through any AI coding agent. Walks a project from intake through deployment with sign-off gates, automated QA, and a single source of truth for performance, accessibility, and motion budgets.",
   "entry": "SKILL.md",
   "license": "MIT",
@@ -20,8 +20,15 @@
     "claude": ".claude/skills/web-claw",
     "claude_user": "~/.claude/skills/web-claw",
     "cursor": ".cursor/skills/web-claw",
-    "gemini": ".gemini/extensions/web-claw",
     "opencode": ".opencode/skills/web-claw"
+  },
+  "host_native": {
+    "gemini": {
+      "kind": "gemini-cli-extension",
+      "install_command": "gemini extensions install https://github.com/yusufabdul024/web-claw --ref v1.0.1",
+      "manifest_file": "gemini-extension.json",
+      "managed_by": "Gemini CLI"
+    }
   },
   "entry_points": {
     "pipeline": "SKILL.md",

@@ -44,8 +44,17 @@ if (-not (Test-Path -LiteralPath (Join-Path $ScriptDir "SKILL.md"))) {
 if (-not (Test-Path -LiteralPath (Join-Path $ScriptDir "agents") -PathType Container)) {
     Die "agents/ missing in source ($ScriptDir). Is this a complete Web Claw checkout?"
 }
+# Auto-create the project directory if missing. -Project may name a path
+# that does not yet exist; CI and one-shot installs commonly hit this case.
+if (-not (Test-Path -LiteralPath $Project)) {
+    try {
+        New-Item -ItemType Directory -Path $Project -Force | Out-Null
+    } catch {
+        Die "-Project must be a path that exists or be creatable. Got: $Project"
+    }
+}
 if (-not (Test-Path -LiteralPath $Project -PathType Container)) {
-    Die "-Project must be a directory that exists. Got: $Project"
+    Die "-Project exists but is not a directory. Got: $Project"
 }
 $Project = (Resolve-Path -LiteralPath $Project).Path
 
@@ -70,15 +79,37 @@ function Resolve-Destination {
             if ($Mode -eq "user") { return $null }
             return (Join-Path $Project ".cursor\skills\web-claw")
         }
-        "gemini" {
-            if ($Mode -eq "user") { return $null }
-            return (Join-Path $Project ".gemini\extensions\web-claw")
-        }
         "opencode" {
             if ($Mode -eq "user") { return $null }
             return (Join-Path $Project ".opencode\skills\web-claw")
         }
+        "gemini" {
+            # Gemini extensions are managed by the Gemini CLI. We do not copy
+            # files for Gemini; the caller short-circuits and prints the
+            # gemini-native install command instead.
+            return $null
+        }
         default { return $null }
+    }
+}
+
+function Get-AgentReadPath {
+    param(
+        [string]$HostName,
+        [string]$Destination
+    )
+    switch ($HostName) {
+        "codex"    { return ".agents/skills/web-claw/SKILL.md" }
+        "claude" {
+            if ($User.IsPresent) {
+                # User-global install — return absolute path.
+                return (Join-Path $Destination "SKILL.md").Replace('\','/')
+            }
+            return ".claude/skills/web-claw/SKILL.md"
+        }
+        "cursor"   { return ".cursor/skills/web-claw/SKILL.md" }
+        "opencode" { return ".opencode/skills/web-claw/SKILL.md" }
+        default    { return "SKILL.md" }
     }
 }
 
@@ -141,6 +172,28 @@ function Copy-One {
 
 function Install-OneHost {
     param([string]$HostName)
+
+    # Gemini extensions are installed by the Gemini CLI itself. We do not copy
+    # files into a project-local path; that would be a fake destination. Print
+    # the canonical install command and exit.
+    if ($HostName -eq "gemini") {
+        Say "Host: gemini"
+        Write-Host "[web-claw] Gemini CLI manages its own extensions. Install Web Claw with:"
+        Write-Host ""
+        Write-Host "  gemini extensions install https://github.com/yusufabdul024/web-claw --ref v1.0.1"
+        Write-Host ""
+        Write-Host "Or for the latest development version on main:"
+        Write-Host ""
+        Write-Host "  gemini extensions install https://github.com/yusufabdul024/web-claw"
+        Write-Host ""
+        Write-Host "The repository ships gemini-extension.json at its root, so the Gemini CLI"
+        Write-Host "will load SKILL.md as the extension's context file automatically. After"
+        Write-Host "install, in any Gemini CLI session, ask:"
+        Write-Host ""
+        Write-Host "  Use the Web Claw extension to plan and build a [landing page | portfolio | site] for <project>."
+        Write-Host ""
+        return
+    }
 
     $mode = if ($User.IsPresent) { "user" } else { "project" }
     $dest = Resolve-Destination -HostName $HostName -Mode $mode
@@ -244,12 +297,13 @@ $pointerLine
     }
 
     # ---- next instruction -----------------------------------------------
+    $readPath = Get-AgentReadPath -HostName $HostName -Destination $dest
     Write-Host ""
     Write-Host "[web-claw] Installed for $HostName at: $dest"
     Write-Host ""
     Write-Host "Next: open $Project in your $HostName agent and tell it:"
     Write-Host ""
-    Write-Host "  Read web-claw/SKILL.md and run Web Claw for this project."
+    Write-Host "  Read $readPath and run Web Claw for this project."
     Write-Host ""
     Write-Host "Or for an end-to-end build:"
     Write-Host ""
