@@ -40,7 +40,7 @@ git clone https://github.com/yusufabdul024/web-claw.git
 cd web-claw
 ```
 
-Pin to a tagged release if you want a stable version: `git clone --branch v1.0.0 https://github.com/yusufabdul024/web-claw.git`.
+Pin to a tagged release if you want a stable version: `git clone --branch v1.0.1 https://github.com/yusufabdul024/web-claw.git`.
 
 ### Step 2 — Run the installer for your host
 
