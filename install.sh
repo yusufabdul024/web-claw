@@ -199,9 +199,9 @@ install_one_host() {
         cat <<EOF
 [web-claw] Gemini CLI manages its own extensions. Install Web Claw with:
 
-  gemini extensions install https://github.com/yusufabdul024/web-claw --ref v1.0.1
+  gemini extensions install https://github.com/yusufabdul024/web-claw --ref v2
 
-Or for the latest development version on main:
+Or for the mainline version:
 
   gemini extensions install https://github.com/yusufabdul024/web-claw
 

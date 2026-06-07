@@ -12,7 +12,7 @@ Pre-fill any answers already in the user's initial request. Do not re-ask.
 
 ## Greeting (read to user, lightly adapted)
 
-> I'm running **Web Claw** — a two-phase pipeline that turns a website idea into a designed, animated, shippable site. Phase 1 is the blueprint (sitemap → style guide → wireframes → motion spec, Relume-style). Phase 2 is execution (Awwwards-grade research → master plan → three shippable slices).
+> I'm running **Web Claw v2** — a research-first pipeline that turns a website idea into a designed, animated, shippable site. We start with inspiration intake, open-web research, a moodboard, and taste calibration before sitemap, style guide, wireframes, motion spec, plan, and build phases.
 >
 > Before I start, I need to ask ~15 questions. Some you'll answer in one word; some need a sentence. Skip anything you don't know — I'll fill it in with a defensible default and flag it for you to override.
 >
@@ -60,7 +60,7 @@ Pre-fill any answers already in the user's initial request. Do not re-ask.
 - [ ] Product screenshots / mockups
 - [ ] None of the above — generate from scratch
 
-**9. Reference sites you love.** Drop 3–5 URLs and one line per URL on *what specifically* you love (motion, layout, typography, copy, etc.). Awwwards SOTD picks are fair game.
+**9. Inspiration sources you love.** Drop 3–5 URLs, screenshots, boards, posts, reels, or designers and one line per source on what specifically you love (motion, layout, typography, copy, mood, etc.) and what we should not copy.
 
 ---
 
@@ -88,7 +88,7 @@ Pre-fill any answers already in the user's initial request. Do not re-ask.
 **15. Motion intensity.** Pick one:
 - *Restrained* — fades, slight y-shifts, no scroll-jacking. Editorial sites, B2B SaaS.
 - *Active* — scroll-triggered reveals, pinned sections, parallax. Most agency and product sites.
-- *Maximalist* — scroll-jacking, WebGL, custom cursors, sound. Awwwards SOTD territory.
+- *Maximalist* — pinned narratives, WebGL, custom cursors, opt-in sound, or other high-craft moments.
 
 ---
 

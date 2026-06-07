@@ -39,6 +39,7 @@ from pathlib import Path
 # start with one of these tokens, so prose accidentally inside a code block
 # does not get executed.
 ALLOWED_PREFIXES = (
+    "cd ",
     "npm ", "pnpm ", "yarn ", "bun ",
     "npx ",
     "pnpm dlx ", "yarn dlx ", "bunx ",
@@ -104,13 +105,27 @@ def run_command(cmd: str, cwd: Path, dry_run: bool) -> int:
     if dry_run:
         return 0
 
-    head = cmd.split()[0]
+    parts = cmd.split()
+    if parts and parts[0].lower() == "cd":
+        target = cmd[3:].strip().strip('"').strip("'")
+        new_cwd = (cwd / target).resolve()
+        if not new_cwd.is_dir():
+            print(f"  ERROR: cd target not found: {new_cwd}")
+            return 127
+        os.environ["WEBCLAW_INSTALL_DEPS_CWD"] = str(new_cwd)
+        print(f"  -> cwd now {new_cwd}")
+        return 0
+
+    cwd_override = os.environ.get("WEBCLAW_INSTALL_DEPS_CWD")
+    if cwd_override:
+        cwd = Path(cwd_override).resolve()
+
+    head = parts[0]
     resolved = shutil.which(head) or shutil.which(head + ".cmd")
     if not resolved:
         print(f"  ERROR: {head} not found on PATH.")
         return 127
 
-    parts = cmd.split()
     parts[0] = resolved
     try:
         result = subprocess.run(parts, cwd=cwd, check=False)

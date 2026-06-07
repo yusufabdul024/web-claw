@@ -79,21 +79,19 @@ bundle:
   page_total_kb_max_desktop: 2560
 
 # --------------------------------------------------------------------------
-# Research credibility heuristic. Resolves the prior 200k / 50k / 200_000
-# inconsistency across operating-principles.md, youtube-channels.md, and
-# research-matrix.py. Authoritative: 50,000 subscriber signal floor,
-# applied alongside the four-signal heuristic (recency, library currency,
-# track record, reach) -- not a hard gate.
+# Source-agnostic inspiration research minimums.
+# Web Claw v2 does not require Awwwards, YouTube, Dribbble, Pinterest, or any
+# other fixed source. These numbers describe the minimum evidence needed before
+# taste calibration, regardless of where the evidence comes from.
 # --------------------------------------------------------------------------
 research:
-  youtube_subscriber_signal_minimum: 50000
-  youtube_recency_days_max: 90
-  youtube_track_record_months_min: 18
-  youtube_video_max_age_months: 18
-  awwwards_min_entries: 5
-  awwwards_max_entries: 10
-  youtube_min_entries: 3
-  youtube_max_entries: 6
+  user_sources_preferred_min: 3
+  total_sources_min: 6
+  total_sources_max: 18
+  design_axes_min: 3
+  shipped_references_min_for_motion: 2
+  moodboard_directions_min: 1
+  moodboard_directions_max: 4
 
 # --------------------------------------------------------------------------
 # Security baseline. Verified at https://securityheaders.com on production URL.
@@ -122,7 +120,7 @@ fast_mode:
     missing_dependency: hard          # required npm/pip package cannot install
     auth_required: soft               # external auth gate (e.g., behind login)
     user_only_decision: soft          # something only the user can decide (legal, payment keys)
-    inspiration_source_unreachable: soft   # cited Awwwards/YouTube URL is dead
+    inspiration_source_unreachable: soft   # cited inspiration URL is dead/auth-gated
     api_key_missing: soft             # AI asset generation needs a key the user did not provide
   retry_policy:
     quality_gate_runs: 2              # if Lighthouse fails, fix-and-rerun this many times before hard-blocking

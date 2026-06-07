@@ -4,7 +4,7 @@ The Designer Agent's working knowledge of color: how to pick a palette that fits
 
 ## The constraint
 
-A great site uses fewer colors than a designer thinks. The Awwwards SOTD index, sampled across a year, averages ~4 unique colors per site (excluding semantic ones). Most published projects have:
+A great site uses fewer colors than a designer thinks. Strong launch, portfolio, editorial, and product sites usually keep the visible palette to a small number of deliberate decisions:
 
 - 1 neutral system (10–11 steps)
 - 1 accent

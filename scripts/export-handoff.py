@@ -149,8 +149,10 @@ MANIFEST_TIERS: list[tuple[int, str, list[str]]] = [
         "blueprint/animations.md",
     ]),
     (3, "Research", [
-        "research/awwwards-references.md",
-        "research/youtube-techniques.md",
+        "research/skill-discovery.md",
+        "research/inspiration-sources.md",
+        "research/moodboard.md",
+        "research/taste-calibration.md",
         "research/tech-stack.md",
     ]),
     (4, "Execution", [
@@ -309,8 +311,8 @@ def build_manifest(workspace: Path, files: dict[str, Path], shape: str) -> dict:
             "Open this folder in any AI coding agent. Read web-claw/SKILL.md "
             "first, then memory.md, then resume from `project.next_action`. "
             "All numeric budgets are in web-claw/references/budgets.yaml. The "
-            "four-signal YouTube credibility heuristic lives in "
-            "web-claw/references/youtube-channels.md."
+            "inspiration research, moodboarding, and companion-skill routing live in "
+            "web-claw/references/."
         ),
     }
 

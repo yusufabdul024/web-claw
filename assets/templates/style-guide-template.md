@@ -2,7 +2,7 @@
 
 **Phase:** 1.3 (Web Claw)
 **Authored by:** Designer Agent
-**Based on:** `blueprint/discovery.md`, `blueprint/sitemap.md`
+**Based on:** `blueprint/discovery.md`, `research/moodboard.md`, `research/taste-calibration.md`, `blueprint/sitemap.md`
 **Date:** <YYYY-MM-DD>
 
 ---
@@ -14,8 +14,8 @@
 **Three-line description:**
 > <Paragraph that paints the experience. What does this site feel like at a glance? What's the emotional register? What's it deliberately NOT?>
 
-**Closest inspiration (verified live):** <URL>
-**What we're taking from it:** <one line>
+**Moodboard evidence:** <source titles / links from research/moodboard.md>
+**What we're taking:** <one line>
 **What we're explicitly NOT taking:** <one line>
 
 ---

@@ -1,138 +1,141 @@
-# Extension Orchestration
-
-How Web Claw consults companion skills as **optional, advisory** capability modules without becoming dependent on them.
-
----
+# Extension Orchestration - Web Claw v2
 
 ## Purpose
 
-Web Claw is the orchestrator. Memory, decisions, state machine, artifacts, QA gates, and budgets are authoritative and stay inside Web Claw. Companion skills (Taste, Impeccable, UI-UX Pro Max, Stitch, motion tooling) extend Web Claw's reach when they are present in the environment, but they never replace a Web Claw phase, override a QA gate, or own an artifact.
+Web Claw v2 treats companion skills as teammates. It proactively discovers local design/UX/frontend skills, consults them when they can improve taste or craft, and distills their advice into Web Claw artifacts.
 
-If no companion skills are available, **Web Claw still works**. Extensions add quality, breadth, and ambition. They do not add gates.
-
----
+Companion skills are advisory. Web Claw memory, decisions, signed-off artifacts, budgets, and QA gates stay authoritative.
 
 ## Precedence Order
 
-When two sources disagree, the higher item wins. Always.
+1. User hard constraints.
+2. Web Claw memory, decisions, state, and budgets.
+3. Signed-off research and blueprint artifacts.
+4. Project code and pinned package versions.
+5. Companion skill advice.
+6. Web Claw built-in preferences.
 
-1. **User hard constraints** — anything the user explicitly forbids or requires (stack pin, deadline, copy lock, motion intensity cap, accessibility floor above default).
-2. **Web Claw memory / decisions / state / budgets** — `memory.md`, every signed-off `decisions/NNN-*.md`, the current state's exit condition, and `references/budgets.yaml`.
-3. **Approved artifacts** — anything in `blueprint/`, `research/`, or `<project>/plan.md` that already carries `User sign-off: YES` (or `AUTO` in fast mode).
-4. **Project code and pinned package versions** — what's on disk in the active build; what `package.json` (or equivalent) pins.
-5. **Extension advice** — anything returned by a companion skill consultation.
-6. **Taste preferences** — subjective leanings of any agent or extension when no objective constraint applies.
+## Discovery Algorithm
 
-Extension advice is below project code: a companion skill cannot demand a library change that breaks the pinned stack. Extension advice is above taste preferences: if no constraint applies, prefer the extension's informed recommendation over an unsupported leaning.
+Run this during `RESEARCH:SKILL-DISCOVERY`.
 
----
+1. Determine Web Claw's own skill directory: folder containing `SKILL.md`.
+2. Determine the skills root: parent folder of Web Claw's directory.
+3. Scan sibling directories.
+4. For each sibling, inspect lightweight metadata only:
+   - `SKILL.md`
+   - `skill.json`
+   - `.codex-plugin/plugin.json`
+   - `README.md`
+   - obvious manifest files
+5. Detect known companion skill names:
+   - `taste-skill`
+   - `impeccable`
+   - `ui-ux-pro-max-skill`
+   - `ui-ux-pro-max`
+   - `stitch`
+   - motion/framer/animation skills
+6. Also detect adjacent design capabilities by keywords:
+   - taste, critique, polish, impeccable, UI, UX, design system, brand, motion, animation, accessibility, frontend, component, stitch, image-to-code.
+7. If tools allow web/GitHub search, search for missing but useful public skills or docs. Do not install automatically.
+8. Write `research/skill-discovery.md`.
 
-## Sibling Discovery
+## Output Format
 
-Web Claw discovers companion skills by inspecting the filesystem around its own skill directory. Web Claw never sets up companion skills itself; it only reads what is already present in the skills root.
+```markdown
+# Skill Discovery
 
-**Algorithm:**
+## Available Local Skills
 
-1. Determine Web Claw's own skill directory (the folder containing this `SKILL.md`).
-2. The parent of that directory is the skills root.
-3. Probe the skills root for sibling folders by canonical name:
-   - `taste-skill/` (and its nested sub-skills like `taste-skill`, `brutalist-skill`, `minimalist-skill`, `brandkit`, `image-to-code-skill`, etc.)
-   - `impeccable/`
-   - `ui-ux-pro-max-skill/` (or `ui-ux-pro-max/`)
-4. For each probed name: present → mark available; absent → mark unavailable.
-5. If an extension is unavailable AND that absence will affect the current artifact, record it once in `decisions/NNN-extension-unavailable-<name>.md` with the affected artifact and the chosen fallback. Do not log absences that did not change anything.
+| Skill | Path | Use for | When consulted |
+|-------|------|---------|----------------|
 
-For tooling that may not appear as a sibling folder (Stitch, motion tooling), availability is determined by whether the host environment exposes the relevant tools. If the consultation cannot be performed, treat it as unavailable and follow the same decision-logging rule.
+## Useful But Unavailable
 
----
+| Skill | Source / search result | Why useful | User action |
+|-------|------------------------|------------|-------------|
 
-## Extension Roles
+## Routing Plan
 
-Each role describes what the extension contributes. The wording in each role is descriptive, not prescriptive: extensions are advisory.
+- RESEARCH:MOODBOARD -> <skill> for <purpose>
+- TASTE:CALIBRATION -> <skill> for <purpose>
+- BLUEPRINT:STYLE-GUIDE -> <skill> for <purpose>
+- EXECUTION:PHASE-N -> <skill> for <purpose>
+
+## Fallbacks
+
+- If <skill> unavailable, use <fallback>.
+```
+
+## Companion Roles
 
 ### Taste Skill
 
-A taste lens. Provides taste calibration, anti-generic critique, and ambition pressure on hero, layout, material, and motion choices. Supports Stitch consultations by contributing `DESIGN.md`-style direction. **Taste Skill is not a pipeline; it does not own artifacts.** Use it to test whether a Web Claw artifact has settled into a generic resolution and needs a push.
+Use for taste pressure, anti-generic critique, moodboard sharpness, visual ambition, and "does this feel like a real creative direction?"
 
 ### Impeccable
 
-A critique and polish lens. Handles critique, polish, harden, adapt, clarify, optimize, and (when the host supports it) live browser iteration on UI elements. Impeccable can identify blockers and weaknesses, but **Web Claw's QA gates decide whether a finding blocks advance.** Impeccable findings inform `qa/phase-N-report.md`; gate severity stays with Web Claw.
+Use for critique, polish, UI hardening, browser iteration, layout correction, responsive/a11y polish, and final visual refinement. Its findings inform QA reports, but Web Claw gates decide severity.
 
 ### UI-UX Pro Max
 
-Searchable design intelligence: product type catalog, style catalog, color palettes, typography pairings, landing-page structures, UX guidelines, and stack-specific guidance (React, Next.js, Vue, Svelte, SwiftUI, React Native, Flutter, Tailwind, shadcn/ui, HTML/CSS). **Results are raw reference material, not orders.** Web Claw decides which candidates to adopt and records the choice in the relevant artifact or decision.
+Use for product-type patterns, UX guidelines, design-system references, style catalogs, color/type candidates, and stack-specific UI guidance. Treat results as raw material, not orders.
 
 ### Stitch
 
-Visual ideation and screen / design-system exploration when host tooling exposes Stitch. **Stitch output is not production code.** Any Stitch-generated UI must be translated through Web Claw implementation (tokens, motion budgets, accessibility rules) and validated through Web Claw QA before it is treated as a deliverable.
+Use for visual ideation and screen/design-system exploration when available. Stitch output is not production code. Translate it through Web Claw tokens, accessibility, motion, and QA.
 
-### Motion / framer tooling
+### Motion / Framer / Animation Tooling
 
-Implementation reference for animation APIs only. Provides idiomatic patterns for the chosen animation cluster. **Motion/framer tooling does not relax Web Claw motion budgets, reduced-motion rules, or bundle constraints** in `references/budgets.yaml`. If a pattern requires breaking a budget, the budget wins.
+Use for API feasibility and implementation idioms. Tooling never relaxes motion budgets or reduced-motion rules.
 
----
+### Other Design Skills
+
+If a sibling skill clearly helps with brand, visual critique, accessibility, motion, frontend implementation, or image-to-code, record it and route to it. Do not ignore useful capabilities because they are not in the original named list.
 
 ## Phase Routing
 
-When and how each extension may be consulted, by state.
+| Web Claw state | Companion use |
+|----------------|---------------|
+| RESEARCH:SKILL-DISCOVERY | Detect and document available skills. |
+| RESEARCH:OPEN-WEB | Use UI-UX/design research skills to broaden source discovery. |
+| RESEARCH:MOODBOARD | Use Taste/UI-UX/design skills to sharpen directions and anti-style. |
+| TASTE:CALIBRATION | Use Taste/Impeccable/UI-UX Pro Max for critique before user sign-off. |
+| BLUEPRINT:STYLE-GUIDE | Use palette/type/design-system skills for candidate systems. |
+| BLUEPRINT:WIREFRAMES | Use UX/UI skills for structure and originality critique. |
+| BLUEPRINT:ANIMATIONS | Use motion skills for feasibility and API patterns. |
+| EXECUTION:PHASE-1 | Use Impeccable/frontend skills for static UI polish. |
+| EXECUTION:PHASE-2 | Use Impeccable/motion skills for animation polish and reduced-motion checks. |
+| EXECUTION:PHASE-3 | Use Impeccable/accessibility/perf skills for launch hardening. |
+| QA:FINAL | Companion skills may critique, but QA scripts and checklists decide pass/fail. |
 
-| Web Claw state         | Extensions that may be consulted                                                                                              | Web Claw retains                                |
-|------------------------|-------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|
-| IGNITION               | UI-UX Pro Max — optional product-type and style calibration to inform discovery.                                              | Discovery questions, `memory.md`, sign-off      |
-| BLUEPRINT:STYLE-GUIDE  | UI-UX Pro Max for palette / type / style candidates; Taste Skill for anti-generic pressure; optional Stitch `DESIGN.md`.      | The signed-off `blueprint/style-guide.md` + tokens contract |
-| BLUEPRINT:WIREFRAMES   | UI-UX Pro Max for structure and pattern options; Taste Skill for layout originality.                                          | The signed-off `blueprint/wireframes.md`        |
-| BLUEPRINT:ANIMATIONS   | Taste Skill for ambition check; motion tooling for API feasibility. Web Claw budgets in `budgets.yaml` are the hard ceiling. | The signed-off `blueprint/animations.md`, motion budgets |
-| EXECUTION:STACK        | UI-UX Pro Max stack guidance alongside `references/tech-stack.md`.                                                            | The signed-off `research/tech-stack.md`         |
-| EXECUTION:PHASE-1      | Impeccable — critique, layout, typeset, audit on the static build.                                                            | `qa/phase-1-gate.md`, the Phase 1 report        |
-| EXECUTION:PHASE-2      | Impeccable — animate, optimize, polish on the motion build.                                                                   | `qa/phase-2-gate.md`, the Phase 2 report        |
-| EXECUTION:PHASE-3      | Impeccable — harden, adapt, clarify, polish before final QA.                                                                  | `qa/phase-3-gate.md`, the Phase 3 report        |
-| QA:FINAL               | None of the above own the final gate.                                                                                         | `qa/pre-launch-checklist.md`, final pass / fail |
+## Distillation Rule
 
-States not listed (BLUEPRINT:SITEMAP, RESEARCH:AWWWARDS, RESEARCH:YOUTUBE, EXECUTION:PLAN, DONE) do not currently route to extensions; if a future need arises, add a row here.
+Raw companion output is never canonical. Every useful finding must be distilled into one of:
 
----
+- `research/skill-discovery.md`
+- `research/moodboard.md`
+- `research/taste-calibration.md`
+- a blueprint artifact
+- a decision file
+- `qa/phase-N-report.md`
 
-## Extension Output Contract
-
-Every consultation must be **distilled into a Web Claw artifact** before the consultation is considered closed. Raw extension dumps are never canonical.
-
-Distillation targets, by consultation context:
-
-| Consultation context                               | Required distillation target                          |
-|----------------------------------------------------|-------------------------------------------------------|
-| During a BLUEPRINT or RESEARCH state               | The active state's artifact (`sitemap.md`, `style-guide.md`, `wireframes.md`, `animations.md`, `awwwards-references.md`, etc.) |
-| When the consultation changes a pinned decision    | `decisions/NNN-<topic>.md` with the rationale         |
-| Any Stitch consultation                            | `blueprint/stitch-notes.md` (the standing companion file for Stitch artefacts) |
-| During QA (any phase)                              | `qa/phase-N-report.md` (or `qa/final-report.md` at QA:FINAL) |
-
-Rules:
-
-- An extension finding that is not distilled into one of the above is **not part of the project**. It does not influence sign-off, downstream artifacts, or QA.
-- A distillation references the source (extension name, prompt or query, date) so the trail is auditable.
-- Distillation is the agent's job, not the user's. The agent translates extension output into Web Claw's voice and structure.
-
----
+If it is not distilled, it is not part of the project.
 
 ## Conflict Rules
 
-When extensions disagree with each other, with prior Web Claw decisions, or with the user, follow the precedence order above and these conflict resolution rules.
-
-1. **Do not average conflicting advice.** Averaging design or motion advice produces generic results.
-2. **Pick one direction.** A single coherent direction beats a hybrid of two halves.
-3. **Record the rationale** in a `decisions/NNN-*.md` file when the choice changes design language, stack, motion intensity, information architecture, or QA posture.
-4. **Web Claw budgets always beat visual ambition.** If two directions both fit budget, pick on taste; if only one fits budget, the budget choice wins; if neither fits budget, simplify until one does.
-5. **Extension advice never relaxes a QA gate.** If Impeccable says "this is fine," and `scripts/audit-perf.py` or `scripts/check-a11y.py` says it is not, the script wins.
-6. **The user's hard constraints always win.** If an extension recommends a stack the user vetoed, do not adopt it; record the rejection.
-
----
+- Do not average conflicting design advice.
+- Pick one coherent direction and record why.
+- User hard constraints always win.
+- Budgets always beat ambition.
+- Signed-off decisions are not re-litigated unless the user reopens them.
+- Companion advice cannot demand a stack change after stack sign-off unless it identifies a blocker.
 
 ## Failure Mode
 
-If an extension consultation fails (extension unavailable, returns an error, times out, exceeds an available quota, or returns output that contradicts a hard constraint):
+If a companion skill is unavailable, errors, times out, or contradicts hard constraints:
 
-1. Continue the state without the extension.
-2. Use the built-in Web Claw reference (`references/pattern-library.md`, `references/color-theory.md`, `references/animation-libraries.md`, etc.) as the fallback source.
-3. Record the absence in `decisions/NNN-extension-unavailable-<name>.md` only if the absence affected the artifact.
-4. Do not stall, retry indefinitely, or escalate to the user unless the user previously asked to be told.
-
-Web Claw's pipeline is always completable without any extension.
+1. Continue with Web Claw's built-in references.
+2. Record the absence only if it affects the artifact.
+3. In interactive mode, ask the user only if the missing skill was central to their request.
+4. In fast mode, log the degraded consultation in `memory.md -> Blockers`.

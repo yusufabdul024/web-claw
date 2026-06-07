@@ -147,7 +147,7 @@ OpenAI Codex — both the open-source CLI and the ChatGPT cloud environment — 
 **Manual Mode trades parallelism and tool-driven QA automation for portability.** It is **not** equivalent to a tool-using agent run:
 
 - The agent cannot run `scripts/audit-perf.py` (Lighthouse), `scripts/check-a11y.py` (pa11y), or any of the `scripts/check-*.py` validators. You must run those locally and paste results back.
-- The agent cannot browse Awwwards, YouTube, or the wider research sources at runtime — research entries must be assembled by hand or pasted from your own browsing.
+- The agent cannot browse open-web inspiration sources at runtime — research entries must be assembled by hand or pasted from your own browsing.
 - The agent cannot deploy to Vercel or call `git`. You drive those steps; the agent only produces the artifacts.
 - Output **quality is model-dependent**. Expect meaningful variance: a frontier model with strong instruction-following will produce most of what a tool-using Claude Code run produces; a smaller or older model will skip nuance, miss accessibility detail, and lean on generic copy.
 

@@ -73,14 +73,17 @@ A rough token budget guide for each phase. Stay within it. If you're over, remov
 | Phase | Load in context |
 |-------|----------------|
 | IGNITION | SKILL.md + ignition-quick.md or ignition-full.md |
-| BLUEPRINT:SITEMAP | ux-strategy-agent.md + discovery.md + relume-methodology.md |
-| BLUEPRINT:STYLE-GUIDE | designer-agent.md + discovery.md + sitemap.md + color-theory.md + typography-systems.md |
-| BLUEPRINT:WIREFRAMES | ui-strategy-agent.md + discovery.md + sitemap.md + style-guide.md + pattern-library.md (Layer 2) |
-| BLUEPRINT:ANIMATIONS | animator-agent.md + discovery.md + wireframes.md + style-guide.md + animation-libraries.md + pattern-library.md (all layers) |
-| RESEARCH:AWWWARDS | researcher-agent.md + animations.md + pattern-library.md (Layer 2 + Layer 4 matrix) |
-| RESEARCH:YOUTUBE | researcher-agent.md + animations.md + youtube-channels.md |
+| RESEARCH:SKILL-DISCOVERY | researcher-agent.md + extension-orchestration.md |
+| RESEARCH:INSPIRATION-INTAKE | researcher-agent.md + discovery.md + inspiration-research.md |
+| RESEARCH:OPEN-WEB | researcher-agent.md + discovery.md + sources.json + inspiration-research.md |
+| RESEARCH:MOODBOARD | researcher-agent.md + inspiration-sources.md + research-matrix.md + moodboard-library.md |
+| TASTE:CALIBRATION | designer-agent.md + moodboard.md + skill-discovery.md + extension-orchestration.md |
+| BLUEPRINT:SITEMAP | ux-strategy-agent.md + discovery.md + taste-calibration.md + relume-methodology.md |
+| BLUEPRINT:STYLE-GUIDE | designer-agent.md + discovery.md + moodboard.md + taste-calibration.md + sitemap.md + color-theory.md + typography-systems.md |
+| BLUEPRINT:WIREFRAMES | ui-strategy-agent.md + discovery.md + sitemap.md + style-guide.md + taste-calibration.md + pattern-library.md (Layer 2) |
+| BLUEPRINT:ANIMATIONS | animator-agent.md + discovery.md + wireframes.md + style-guide.md + inspiration-sources.md + taste-calibration.md + animation-libraries.md + pattern-library.md (all layers) |
 | EXECUTION:STACK | implementer-agent.md + tech-stack.md + animations.md + discovery.md + performance-budgets.md |
-| EXECUTION:PLAN | implementer-agent.md + all blueprint + both research + tech-stack.md |
+| EXECUTION:PLAN | implementer-agent.md + all blueprint + research moodboard/taste/tech-stack |
 | EXECUTION:PHASE-N | implementer-agent.md + phase-N.md + memory.md |
 | QA:GATE | qa-agent.md + phase-N-gate.md + preview URL |
 | QA:FINAL | qa-agent.md + pre-launch-checklist.md + all qa reports |
@@ -100,7 +103,7 @@ Standard output contract (all agents):
 
 - [ ] Every section of the template is filled. No placeholder text remains.
 - [ ] No lorem ipsum exists anywhere in the artifact.
-- [ ] All cited URLs, channel names, or library versions were verified at runtime (not from memory).
+- [ ] All cited URLs, social sources, screenshots, boards, or library versions include a verification method.
 - [ ] memory.md updated:
       - Last artifact: <path>
       - User sign-off: PENDING

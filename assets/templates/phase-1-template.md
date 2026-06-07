@@ -15,7 +15,7 @@ Before starting:
 
 - [ ] `plan.md` signed off by user.
 - [ ] `research/tech-stack.md` signed off.
-- [ ] Repo exists; Vercel (or chosen host) project linked.
+- [ ] Repo exists; chosen deployment target is linked.
 - [ ] You have write access to the working directory.
 
 ---
@@ -26,10 +26,13 @@ Each step is an executable instruction. Run them in order. Verify the success co
 
 ### Step 1 — Scaffold the framework
 
-1.1  Run: `pnpm create next-app@latest <project-name> --typescript --tailwind --app --import-alias "@/*" --src-dir`
+1.1  Read `research/tech-stack.md` and use the selected framework command exactly. Examples:
+     - Next.js: `pnpm create next-app@<pinned> <project-name> --typescript --tailwind --app --import-alias "@/*" --src-dir`
+     - Astro: `pnpm create astro@<pinned> <project-name>`
+     - Vite: `pnpm create vite@<pinned> <project-name> -- --template vanilla-ts`
 1.2  Open the project in your editor.
-1.3  Run `pnpm dev`. Verify the default Next.js page loads at http://localhost:3000.
-1.4  Commit: `chore: scaffold Next.js app`.
+1.3  Run the selected dev command. Verify the default page loads.
+1.4  Commit: `chore: scaffold web app`.
 
 **Success:** Default page renders; no errors in console.
 
@@ -39,7 +42,7 @@ Each step is an executable instruction. Run them in order. Verify the success co
 
 2.1  Open `blueprint/style-guide.md`. Extract color, type, spacing, radius, motion tokens.
 
-2.2  Create `tailwind.config.ts` extensions in `theme.extend`:
+2.2  Create design token wiring for the chosen stack. If Tailwind is selected, extend `theme.extend`:
 
 ```ts
 theme: {
@@ -75,7 +78,7 @@ theme: {
 }
 ```
 
-2.4  Add fonts via `next/font`. In `src/app/layout.tsx`:
+2.4  Add fonts using the chosen stack's best path. For Next.js, use `next/font`. For Astro/Vite/static, self-host WOFF2 and preload in the document head. Next.js example:
 
 ```ts
 import { Inter, /* display font import */ } from 'next/font/google';
@@ -126,7 +129,7 @@ Order to build (least dependent → most dependent):
 
 For each page in `blueprint/sitemap.md`:
 
-4.1  Create the page file (`src/app/<route>/page.tsx` for App Router; `src/pages/<route>.astro` for Astro).
+4.1  Create the page file using the selected framework (`src/app/<route>/page.tsx` for Next App Router, `src/pages/<route>.astro` for Astro, router entry for Vite/SvelteKit).
 4.2  Import and compose the components per the sitemap's section order.
 4.3  Wire the real copy from `sitemap.md` (H1, sub, CTAs).
 4.4  Wire SEO metadata (per page `metadata` export in Next.js, or `<head>` in Astro):
@@ -186,7 +189,7 @@ export const metadata: Metadata = {
 ### Step 7 — Deploy preview
 
 7.1  Push the branch to GitHub.
-7.2  Verify Vercel deployment kicks off automatically.
+7.2  Verify the chosen deployment provider build kicks off automatically.
 7.3  Wait for build. Get the preview URL.
 7.4  Open the preview URL on mobile (real device or DevTools mobile mode).
 7.5  Click through every page. Verify.

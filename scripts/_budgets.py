@@ -11,7 +11,7 @@ Usage:
 
     b = load_budgets()
     floor = b["lighthouse"]["mobile"]["performance"]      # 90
-    yt_min = b["research"]["youtube_subscriber_signal_minimum"]  # 50000
+    source_min = b["research"]["total_sources_min"]  # 6
 """
 
 from __future__ import annotations

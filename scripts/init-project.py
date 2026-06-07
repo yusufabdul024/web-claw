@@ -81,9 +81,9 @@ def main() -> int:
 
     # -- memory.md ----------------------------------------------------------
     next_action_initial = (
-        "Pick defaults per operating principles; write blueprint/discovery.md without user prompts. Then advance Phase to BLUEPRINT:SITEMAP. Log any judgment calls to decisions/NNN-auto-*.md."
+        "Pick defensible discovery defaults; write blueprint/discovery.md without user prompts. Then advance Phase to RESEARCH:SKILL-DISCOVERY and begin companion skill discovery. Log judgment calls to decisions/NNN-auto-*.md."
         if args.mode == "fast"
-        else "Load references/ignition-quick.md (or ignition-full.md for complex projects). Ask discovery questions. Write blueprint/discovery.md. Then advance Phase to BLUEPRINT:SITEMAP."
+        else "Load references/ignition-quick.md (or ignition-full.md for complex projects). Ask discovery and inspiration-intake questions. Write blueprint/discovery.md. Then advance Phase to RESEARCH:SKILL-DISCOVERY."
     )
     memory_content = dedent(f"""\
         # Project Memory -- {args.project_name}
@@ -145,7 +145,7 @@ def main() -> int:
         ## Q8 — Existing assets
         [PENDING]
 
-        ## Q9 — Reference sites
+        ## Q9 — Inspiration sources
         [PENDING]
 
         ## Q10 — Tech stack preference
@@ -169,7 +169,7 @@ def main() -> int:
         ## Q16 — Signature moment ("holy shit" moment)
         [PENDING]
 
-        ## Q17 — Off-limits
+        ## Q17 — Off-limits / what not to copy
         [PENDING]
     """)
 
@@ -273,8 +273,8 @@ def main() -> int:
     print("Next steps:")
     print("  1. Load SKILL.md -> read memory.md (just initialized)")
     print("  2. Load references/ignition-quick.md or ignition-full.md")
-    print("  3. Ask discovery questions. Write blueprint/discovery.md.")
-    print("  4. Update memory.md: fill Identity fields, advance Phase to BLUEPRINT:SITEMAP.")
+    print("  3. Ask discovery and inspiration-intake questions. Write blueprint/discovery.md.")
+    print("  4. Update memory.md: fill Identity fields, advance Phase to RESEARCH:SKILL-DISCOVERY.")
 
     return 0
 

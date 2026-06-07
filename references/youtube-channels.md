@@ -1,6 +1,6 @@
-# YouTube Channels — Vetted Seed List
+# Optional Video Research Seed List
 
-This is the **seed list** for the Researcher Agent. None of the data below is guaranteed to be current — channels change. The Researcher Agent **verifies credibility at runtime** before recommending any video.
+This is an optional fallback for projects where video walkthroughs are useful. It is not a required canon, not a taste gate, and not a substitute for user-provided inspiration, moodboard research, or shipped-site references. None of the data below is guaranteed to be current because channels change; verify credibility at runtime before recommending any video.
 
 ---
 
@@ -15,7 +15,7 @@ Web Claw does NOT gate on a single subscriber number. Subscriber count is a stal
 | **Recency**          | Posted at least one video in the last 90 days that's relevant to web design.     | Channel's Videos tab sorted by date.         |
 | **Library currency** | The relevant video demonstrates against a current major-version library.         | Check the runtime references / shown code.   |
 | **Track record**     | Channel has shipped at least 18 months of relevant content.                      | Check the "Joined" date on the About tab.    |
-| **Reach (signal)**   | Subscriber count is high *enough* to suggest the technique was vetted by an audience. Canonical floor lives in [`references/budgets.yaml → research.youtube_subscriber_signal_minimum`](budgets.yaml) (currently 50,000). Not a hard floor; weight against the other three signals. | About tab. |
+| **Reach (signal)**   | Subscriber count is high *enough* to suggest the technique was vetted by an audience. In v2 this is contextual, not a canonical budget. Weight it against the other three signals. | About tab. |
 
 **Picking the *video*, not just the channel.** A great channel is necessary, not sufficient. The video itself must:
 
@@ -37,8 +37,8 @@ Web Claw does NOT gate on a single subscriber number. Subscriber count is a stal
 ### Hyperplexed
 - URL: https://www.youtube.com/@Hyperplexed
 - Founded: 2021
-- Focus: deconstructions of award-winning interaction techniques (magnetic buttons, scroll-driven type, card stack reveals). Codes everything from scratch, ships CodePen + GitHub.
-- Why on this list: he reverse-engineers the *exact* interactions you see on Awwwards. The dossier should usually have one Hyperplexed entry.
+- Focus: deconstructions of high-polish interaction techniques (magnetic buttons, scroll-driven type, card stack reveals). Codes everything from scratch, ships CodePen + GitHub.
+- Why on this list: useful when the selected moodboard needs a reproducible interaction pattern.
 
 ### Olivier Larose
 - URL: https://www.youtube.com/@olivierlarose1
@@ -63,7 +63,7 @@ Web Claw does NOT gate on a single subscriber number. Subscriber count is a stal
 ### Bruno Simon
 - URL: https://www.youtube.com/@BrunoSimon
 - Founded: ~2018
-- Focus: Three.js mastery. Runs `threejs-journey` (a paid course); has shipped landmark Awwwards sites (his portfolio is itself SOTD).
+- Focus: Three.js mastery. Runs `threejs-journey` (a paid course); has shipped landmark interactive portfolio work.
 - Why on this list: the canonical Three.js reference. If the signature moment is 3D, his channel + course is the source.
 
 ---
@@ -126,7 +126,7 @@ Web Claw does NOT gate on a single subscriber number. Subscriber count is a stal
 
 ## Articles + sites (not YouTube, but cite from these)
 
-- **Codrops** — https://tympanus.net/codrops/ — the canonical interaction pattern catalog. Every Awwwards designer reads it.
+- **Codrops** — https://tympanus.net/codrops/ — a strong interaction pattern catalog.
 - **Smashing Magazine** — https://www.smashingmagazine.com/ — long-form articles on perf, a11y, animation.
 - **CSS-Tricks** — https://css-tricks.com/ — useful for specific technique questions.
 - **darkroomengineering blog** — https://darkroom.engineering — the team behind Lenis; their build articles are gold.

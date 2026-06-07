@@ -1,6 +1,6 @@
 {
   "name": "web-claw",
-  "version": "1.0.1",
-  "description": "Structured methodology for designing and shipping scroll-stopping, award-caliber websites. 14-state pipeline, 7 specialist agents, canonical performance/accessibility/motion budgets, automated QA scripts.",
+  "version": "2.0.0",
+  "description": "Research-first methodology for scroll-stopping websites. Gathers user inspiration, creates moodboards, consults companion design skills, calibrates taste, then builds through QA-gated phases.",
   "contextFileName": "SKILL.md"
 }

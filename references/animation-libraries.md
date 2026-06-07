@@ -64,7 +64,7 @@ A capability matrix for choosing the right motion library cluster for a given mo
 - Complex orchestrated multi-section narratives.
 
 **When this is the right pick:**
-- Site of the Day candidates.
+- High-polish showcase sites.
 - Agency portfolio / brand showcase.
 - Product launches where the launch IS the marketing.
 
@@ -85,7 +85,7 @@ A capability matrix for choosing the right motion library cluster for a given mo
 - Weakness: scroll-scrub is awkward compared to GSAP ScrollTrigger.
 
 ### Lenis
-- Tiny smooth-scroll library by darkroomengineering (the team behind many Awwwards SOTD sites).
+- Tiny smooth-scroll library by darkroomengineering, a team known for refined interactive production work.
 - Wheel + touch + keyboard interpolation.
 - Pairs with GSAP ScrollTrigger via `lenis.on('scroll', ScrollTrigger.update)`.
 - Best for: any project that wants buttery inertial scroll without locomotive-scroll's weight.

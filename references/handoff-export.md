@@ -70,8 +70,10 @@ blueprint/animations.md
 ### Tier 3 — Research (required if Phase 2 was started)
 
 ```
-research/awwwards-references.md
-research/youtube-techniques.md
+research/skill-discovery.md
+research/inspiration-sources.md
+research/moodboard.md
+research/taste-calibration.md
 research/tech-stack.md
 ```
 
@@ -133,7 +135,7 @@ Every export carries a top-level `handoff-manifest.json` that names every includ
     { "path": "memory.md", "tier": 1, "status": "present", "size_bytes": 1842 },
     { "path": "blueprint/discovery.md", "tier": 2, "status": "present", "size_bytes": 4123 },
     { "path": "blueprint/sitemap.md", "tier": 2, "status": "present", "size_bytes": 2980 },
-    { "path": "research/youtube-techniques.md", "tier": 3, "status": "n/a", "reason": "Phase 2 research deferred to receiver" }
+    { "path": "research/moodboard.md", "tier": 2, "status": "n/a", "reason": "Moodboard research deferred to receiver" }
   ],
   "decisions": [
     { "id": "DECISION-001", "topic": "motion intensity", "path": "decisions/001-motion-intensity.md" },
@@ -144,7 +146,7 @@ Every export carries a top-level `handoff-manifest.json` that names every includ
     "phase_2": { "passed": false, "report": "qa/phase-2-report.md", "blockers": ["LCP 3.4s on mobile (budget 2.5s)"] },
     "phase_3": { "passed": null, "report": null }
   },
-  "receiver_instructions": "Open this folder in any AI coding agent. Read web-claw/SKILL.md, then memory.md, then resume from `next_action`. The four-signal YouTube credibility heuristic and the recency-weighted research method live in web-claw/references/."
+  "receiver_instructions": "Open this folder in any AI coding agent. Read web-claw/SKILL.md, then memory.md, then resume from `next_action`. Inspiration research, moodboarding, and companion-skill routing live in web-claw/references/."
 }
 ```
 

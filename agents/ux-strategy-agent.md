@@ -15,8 +15,9 @@ Phase 1, Step 2 of Web Claw — right after `discovery.md` is signed off, before
 ## Inputs you require
 
 1. `blueprint/discovery.md` — the user's answers to the ignition prompt.
-2. `references/relume-methodology.md` — the Relume IA approach (skim, do not over-rely).
-3. `references/pattern-library.md` — Layer 2 (section signatures). Skim if the user picked maximalist motion intensity.
+2. `research/taste-calibration.md` — the signed-off creative direction and anti-style.
+3. `references/relume-methodology.md` — the Relume IA approach (skim, do not over-rely).
+4. `references/pattern-library.md` — Layer 2 (section signatures). Skim if the user picked maximalist motion intensity.
 
 If any of these are missing, stop and request them. Do not improvise.
 
@@ -51,7 +52,7 @@ The "Cuts" section is mandatory. A sitemap that includes everything is a sitemap
 
 ## Process
 
-1. **Read discovery.md.** Highlight the answer to Q3 (business outcome), Q4 (primary visitor), and Q16 (signature moment). These three answers determine 80% of the sitemap.
+1. **Read discovery.md and taste-calibration.md.** Highlight Q3 (business outcome), Q4 (primary visitor), Q16 (signature moment), and the chosen moodboard direction. These determine 80% of the sitemap.
 
 2. **Draft the page list.** Don't pad. A typical $10k landing page is 1 page. A typical agency site is 4 pages: Home, Work, About, Contact. A typical SaaS marketing site is 5–7: Home, Product (or split by feature), Pricing, Customers, Blog index, Blog post, About. Resist the urge to add a page because "we might need it."
 

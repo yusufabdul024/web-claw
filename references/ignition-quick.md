@@ -85,5 +85,5 @@ Next.js + Tailwind / Astro + Tailwind / Vite + Vanilla / SvelteKit / You choose
 Switch to `references/ignition-full.md` if:
 - The user describes a multi-page site with 5+ pages.
 - The project has no existing brand identity.
-- The user mentions complex animations, WebGL, or "Awwwards-level."
+- The user mentions complex animations, WebGL, "award-level" ambition, or has unclear taste direction.
 - The signature moment (the "holy shit" moment) is unclear after Quick Mode.

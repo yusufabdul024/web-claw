@@ -2,12 +2,12 @@
 """
 scrape-awwwards.py
 
-Fetches Awwwards index pages (SOTD, Honors, etc.) and emits a JSON list of
-candidate site URLs + titles for the Researcher Agent to filter.
+Optional legacy helper for user-requested award-gallery research. Web Claw v2
+does not require Awwwards or any other award source; use this only when the
+user explicitly wants that source included in the inspiration pool.
 
-This is a thin, polite scraper — single-request-per-page, identifies as Web
-Claw, respects robots.txt by default. The Researcher Agent then manually
-verifies and selects 5–10 entries from the candidates.
+The helper is intentionally thin and polite: single-request-per-page,
+identifies as Web Claw, and respects robots.txt by default.
 
 Usage:
   python scrape-awwwards.py [--index SOTD|HONORS|SOTM] [--out candidates.json]
@@ -26,6 +26,7 @@ import json
 import re
 import urllib.request
 import urllib.error
+import urllib.robotparser
 from pathlib import Path
 
 
@@ -35,7 +36,17 @@ INDICES = {
     "SOTM":   "https://www.awwwards.com/awards/sites-of-the-month/",
 }
 
-USER_AGENT = "WebClaw-Researcher/1.0 (+https://example.com/bot)"
+USER_AGENT = "WebClaw-Researcher/2.0 (+https://example.com/bot)"
+
+
+def robots_allows(url: str) -> bool:
+    rp = urllib.robotparser.RobotFileParser()
+    rp.set_url("https://www.awwwards.com/robots.txt")
+    try:
+        rp.read()
+    except Exception:
+        return False
+    return rp.can_fetch(USER_AGENT, url)
 
 
 def fetch(url: str, timeout: int = 20) -> str:
@@ -47,7 +58,7 @@ def fetch(url: str, timeout: int = 20) -> str:
 def extract_candidates(html: str) -> list[dict]:
     """
     Best-effort HTML parsing. Looks for anchor tags whose href starts with
-    /sites/ (the Awwwards site detail page pattern). Returns deduped list of
+    /sites/ (the award-gallery detail page pattern). Returns deduped list of
     { slug, title, awwwards_url } dicts.
     """
     pattern = re.compile(
@@ -79,6 +90,9 @@ def main(argv: list[str]) -> int:
 
     url = INDICES[args.index]
     print(f"fetching: {url}", file=sys.stderr)
+    if not robots_allows(url):
+        print(f"error: robots.txt does not allow fetching {url} for {USER_AGENT}", file=sys.stderr)
+        return 1
     try:
         html = fetch(url)
     except urllib.error.HTTPError as e:

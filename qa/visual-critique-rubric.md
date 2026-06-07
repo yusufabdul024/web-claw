@@ -21,13 +21,13 @@ How quickly does the brand vibe communicate? Read the H1 + hero. Look at the col
 - **3 — Clear but flat**: You can describe what the product does in one sentence. Vibe is recognizable but unmemorable.
 - **5 — Magnetic**: One word lands hard ("editorial," "playful," "premium"). You want to scroll.
 
-## Axis 2 — Signature moment
+## Axis 2 — Signature moment and source fit
 
 There is exactly one "holy shit" moment per page (discovery.md Q16). Does it land?
 
 - **1 — Missing**: No signature device. Every section looks the same weight.
 - **3 — Present but tame**: The signature exists (e.g., a pinned scroll narrative) but reads as derivative or under-tuned.
-- **5 — Earned**: The signature moment is the thing a friend would screenshot. It is *the* device, not *a* device.
+- **5 — Earned**: The signature moment is the thing a friend would screenshot. It is *the* device, not *a* device, and it clearly fits the signed-off moodboard.
 
 ## Axis 3 — Typographic hierarchy
 

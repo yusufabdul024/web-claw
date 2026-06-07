@@ -2,7 +2,7 @@
 
 **Phase:** 1.5 (Web Claw)
 **Authored by:** Animator Agent
-**Based on:** `blueprint/discovery.md`, `blueprint/sitemap.md`, `blueprint/style-guide.md`, `blueprint/wireframes.md`
+**Based on:** `blueprint/discovery.md`, `research/inspiration-sources.md`, `research/moodboard.md`, `research/taste-calibration.md`, `blueprint/sitemap.md`, `blueprint/style-guide.md`, `blueprint/wireframes.md`
 **Date:** <YYYY-MM-DD>
 
 ---
@@ -82,7 +82,7 @@ export const motion = {
 #### Section 4 **[SIGNATURE]** — "The product, in your hand"
 
 **Pattern:** Pinned scroll narrative with canvas image-sequence scrub.
-**Reference:** <e.g., "Adapted from Apple AirPods Pro 2 landing page (Awwwards SOTD 2022-09-21) — see research/awwwards-references.md §3.">
+**Reference evidence:** <e.g., "Adapted from Source 3 in research/inspiration-sources.md; borrowing scroll-paced product reveal, not exact layout/assets/copy.">
 **Library:** GSAP + ScrollTrigger. Lenis as global smoother.
 
 **Behavior:**
@@ -216,4 +216,4 @@ Test in Chrome DevTools Rendering → "Emulate CSS media feature prefers-reduced
 - [ ] Page transitions decided.
 - [ ] Reduced-motion alternative exists for every signature.
 - [ ] Performance budget per page is recorded.
-- [ ] Ready to begin Phase 2: Research.
+- [ ] Ready to begin Execution planning.

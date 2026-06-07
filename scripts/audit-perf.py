@@ -180,9 +180,15 @@ def main(argv: list[str]) -> int:
             pass_fail[cat_key] = {"floor": floor, "actual": actual, "pass": ok}
             if not ok:
                 exit_code = 3
-        # CWV checks
+        # Lab metric checks. Lighthouse lab runs cannot fully measure field
+        # INP, but they do expose LCP, CLS, FCP, TBT, and TTFB. Gate every
+        # metric that Lighthouse can report here; INP remains a manual/RUM
+        # verification item in QA docs.
         lcp = summary["metrics"].get("LCP_ms")
         cls = summary["metrics"].get("CLS")
+        fcp = summary["metrics"].get("FCP_ms")
+        tbt = summary["metrics"].get("TBT_ms")
+        ttfb = summary["metrics"].get("TTFB_ms")
         cwv_pass: dict[str, dict] = {}
         if lcp == lcp and lcp is not None:
             lcp_max_ms = float(cwv["lcp_seconds_max"]) * 1000.0
@@ -194,6 +200,27 @@ def main(argv: list[str]) -> int:
             cwv_pass["CLS"] = {"max": cls_max, "actual": cls, "pass": cls <= cls_max}
             if cls > cls_max:
                 exit_code = 3
+        if fcp == fcp and fcp is not None:
+            fcp_max_ms = float(cwv["fcp_seconds_max"]) * 1000.0
+            cwv_pass["FCP"] = {"max_ms": fcp_max_ms, "actual_ms": fcp, "pass": fcp <= fcp_max_ms}
+            if fcp > fcp_max_ms:
+                exit_code = 3
+        if tbt == tbt and tbt is not None:
+            tbt_max_ms = float(cwv["tbt_ms_max"])
+            cwv_pass["TBT"] = {"max_ms": tbt_max_ms, "actual_ms": tbt, "pass": tbt <= tbt_max_ms}
+            if tbt > tbt_max_ms:
+                exit_code = 3
+        if ttfb == ttfb and ttfb is not None:
+            ttfb_max_ms = float(cwv["ttfb_ms_max"])
+            cwv_pass["TTFB"] = {"max_ms": ttfb_max_ms, "actual_ms": ttfb, "pass": ttfb <= ttfb_max_ms}
+            if ttfb > ttfb_max_ms:
+                exit_code = 3
+        cwv_pass["INP"] = {
+            "max_ms": float(cwv["inp_ms_max"]),
+            "actual_ms": None,
+            "pass": None,
+            "note": "INP is a field/RUM metric; Lighthouse lab run does not provide a reliable INP value.",
+        }
         summary["budget_check"] = {
             "device": args.device,
             "source": "references/budgets.yaml",

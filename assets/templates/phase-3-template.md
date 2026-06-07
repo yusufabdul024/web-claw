@@ -36,7 +36,7 @@
 ### Step 2 — SEO finalization
 
 2.1  Verify `<title>` and `<meta name="description">` per page; max 60 chars / 155 chars.
-2.2  Generate `app/og/<page>/route.ts` (Next.js) or static og images for every page.
+2.2  Generate OG images through the chosen stack (`app/og/<page>/route.ts` for Next.js, static generated images for Astro/Vite/static).
 2.3  Add `<meta property="og:*">` and `<meta name="twitter:*">` per page.
 2.4  Add JSON-LD structured data (Organization, WebSite at minimum; Product or BlogPosting where applicable).
 2.5  Generate `sitemap.xml`:
@@ -74,10 +74,11 @@ export default function robots(): MetadataRoute.Robots {
 ### Step 3 — Wire forms
 
 3.1  Identify every form in the site (contact, newsletter, lead capture).
-3.2  Implement server-side handlers:
-     - For contact: `app/api/contact/route.ts` → validate with zod → send via Resend → confirm to user.
-     - For newsletter: `app/api/subscribe/route.ts` → validate → POST to provider API.
-3.3  Add rate limiting (Upstash Redis + `@upstash/ratelimit`, or Vercel KV).
+3.2  Implement form handlers through the chosen stack or provider:
+     - Next.js: `app/api/contact/route.ts`
+     - Astro/SvelteKit: server endpoint/action
+     - Static: Formspree/Web3Forms/Formspark or another approved provider
+3.3  Add rate limiting where the selected stack/provider supports it (Upstash Redis, Vercel KV, Cloudflare Turnstile/rules, provider dashboard controls, or equivalent).
 3.4  Add honeypot field (hidden, must be empty).
 3.5  Add a simple captcha if PII or high-value forms (Cloudflare Turnstile is free and lightweight).
 3.6  Test each form end-to-end: success path, validation error, server error.
@@ -198,7 +199,7 @@ form-action 'self';
 ### Step 10 — Production deploy
 
 10.1  Merge the Phase 3 branch into `main`.
-10.2  Verify Vercel auto-deploys main to production.
+10.2  Verify the selected deployment provider auto-deploys main to production.
 10.3  Smoke test the live site immediately:
      - Home loads.
      - Primary CTA works.
@@ -236,7 +237,7 @@ form-action 'self';
 Provide the user:
 
 - Repo URL.
-- Vercel project URL.
+- Deployment project URL.
 - DNS provider note.
 - Analytics dashboard URL.
 - Forms backend (Resend dashboard, etc.).

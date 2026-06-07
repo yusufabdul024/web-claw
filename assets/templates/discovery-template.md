@@ -45,10 +45,12 @@
 
 Notes: <what's available now vs. what needs generating>
 
-**9. Reference sites:**
-1. <URL> — <one line on what to learn from this>
-2. <URL> — <…>
-3. <URL> — <…>
+**9. Inspiration sources:**
+1. <URL / screenshot / board / post> — <what to borrow; what not to copy>
+2. <URL / screenshot / board / post> — <...>
+3. <URL / screenshot / board / post> — <...>
+
+Accept websites, product pages, Dribbble, Pinterest, Behance, Instagram posts/reels/carousels, TikTok, screenshots, portfolios, brand guidelines, or designers/brands the user admires.
 
 ---
 
@@ -81,7 +83,7 @@ Notes: <what's available now vs. what needs generating>
 **16. Signature "holy shit" moment (one sentence):**
 > <e.g., "When they scroll, the product rotates in their hand and the captions tell its three superpowers, one at a time.">
 
-**17. Off-limits / forbidden:**
+**17. Off-limits / forbidden / what not to copy:**
 - Brands not to copy: <list or "none specified">
 - Motion patterns to avoid: <list or "none specified">
 - Colors / words / claims forbidden: <list or "none specified">

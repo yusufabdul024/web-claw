@@ -34,9 +34,9 @@ Per page on mobile:
 - [ ] HTML ≤ 30 kb.
 - [ ] CSS (critical) ≤ 20 kb.
 - [ ] JS initial ≤ 80 kb.
-- [ ] JS total per page ≤ 200 kb (or ≤ 600 kb if maximalist 3D is justified).
+- [ ] JS total per page meets `references/budgets.yaml -> bundle.total_js_per_page_kb_max` (or a documented maximalist override).
 - [ ] Fonts total ≤ 200 kb.
-- [ ] Hero / LCP image ≤ 100 kb (mobile) / ≤ 200 kb (desktop).
+- [ ] Hero / LCP image meets `references/budgets.yaml -> bundle.hero_image_kb_max`.
 - [ ] Total transfer per page ≤ 1.5 MB (mobile) / 2.5 MB (desktop).
 
 ## Images

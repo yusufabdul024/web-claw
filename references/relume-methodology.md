@@ -32,7 +32,7 @@ The signature insight of the methodology is **lock the IA before you design anyt
 
 **The signature moment is undefined.** Relume can give you 14 hero variants. None of them ask "what's the one moment on this site that makes a visitor stop?" Web Claw's discovery Q16 forces that question.
 
-**Research is implicit.** Relume's library encodes thousands of design decisions, but it doesn't ask you to do site-specific research. Web Claw adds the Researcher Agent so each project draws on Awwwards-tier reference rather than only library patterns.
+**Research is explicit.** Relume's library encodes thousands of design decisions, but it doesn't ask you to do site-specific taste research. Web Claw v2 adds inspiration intake, open-web research, moodboarding, and taste calibration before the sitemap so each project draws on user-specific evidence rather than only library patterns.
 
 **Implementation is downstream.** Relume produces the design; the developer builds. Web Claw collapses that gap — the Implementer Agent reads the spec and writes the code in the same pipeline.
 

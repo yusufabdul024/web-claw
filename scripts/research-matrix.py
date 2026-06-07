@@ -2,16 +2,16 @@
 """
 Web Claw Research Matrix Generator
 
-Converts the project's sources.json into a structured markdown matrix
-suitable for agent review. Validates YouTube channels meet the subscriber
-threshold defined in references/budgets.yaml (research.youtube_subscriber_signal_minimum,
-currently 50000 -- a signal, not a hard floor; weight against the four-signal
-heuristic in references/youtube-channels.md).
+Converts the project's sources.json into a structured, source-agnostic
+markdown matrix suitable for agent review. Web Claw v2 accepts user-provided
+links, screenshots, moodboard boards, social posts, shipped websites, product
+pages, articles, videos, and galleries. No source type is mandatory and no
+single popularity metric is a hard gate.
 
 Usage:
     python research-matrix.py --sources <project>/sources.json --output <project>/research/research-matrix.md
     python research-matrix.py --sources ./meridian/sources.json --output ./meridian/research/research-matrix.md
-    python research-matrix.py --sources ./meridian/sources.json --output ./meridian/research/research-matrix.md --allow-under-threshold
+    python research-matrix.py --sources ./meridian/sources.json --output ./meridian/research/research-matrix.md --allow-warnings
 """
 
 from __future__ import annotations
@@ -27,20 +27,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from _budgets import load_budgets
-
-
-def _default_youtube_subscriber_min() -> int:
-    """Default subscriber signal floor read from references/budgets.yaml.
-    Falls back to a conservative 50000 if budgets.yaml is unreadable.
-    """
-    try:
-        return int(load_budgets()["research"]["youtube_subscriber_signal_minimum"])
-    except Exception:
-        return 50_000
-
-
-REQUIRED = {"kind", "title", "url", "date_accessed", "why_relevant"}
+REQUIRED = {"kind", "title", "date_accessed", "why_relevant"}
 
 
 def as_list(value: Any) -> list[str]:
@@ -71,24 +58,18 @@ def load_sources(path: Path) -> list[dict[str, Any]]:
     return list(data)
 
 
-def validate_sources(sources: list[dict[str, Any]], min_subs: int) -> list[str]:
+def validate_sources(sources: list[dict[str, Any]]) -> list[str]:
     errors: list[str] = []
     for i, source in enumerate(sources, 1):
         missing = sorted(f for f in REQUIRED if not str(source.get(f, "")).strip())
         if missing:
             errors.append(f"Source {i} missing required fields: {', '.join(missing)}")
-        if source.get("kind") == "youtube":
-            subs = source.get("subscriber_count", 0)
-            try:
-                subs_int = int(subs)
-            except (TypeError, ValueError):
-                errors.append(f"Source {i}: subscriber_count is not a number.")
-                continue
-            if subs_int < min_subs:
-                errors.append(
-                    f"Source {i} ({source.get('channel', 'unknown channel')}): "
-                    f"{subs_int:,} subscribers is below the {min_subs:,} threshold."
-                )
+        if not str(source.get("url", "")).strip() and not str(source.get("local_artifact", "")).strip():
+            errors.append(f"Source {i} must include either url or local_artifact.")
+        if not str(source.get("what_taking") or source.get("taking") or "").strip():
+            errors.append(f"Source {i} missing what_taking.")
+        if not str(source.get("what_not_taking") or source.get("not_taking") or "").strip():
+            errors.append(f"Source {i} missing what_not_taking.")
         # Copying-risk schema validation. Medium/high risk REQUIRES the agent
         # to have written `what_not_taking` -- the explicit "what we are not
         # copying" line is the mitigation. Without it, surface as an error.
@@ -120,7 +101,9 @@ def render_source(source: dict[str, Any], index: int) -> str:
         "",
         f"- Kind: {kind}",
         f"- URL: {source.get('url', '')}",
+        f"- Local artifact: {source.get('local_artifact', '')}",
         f"- Date accessed: {source.get('date_accessed', '')}",
+        f"- Provided by: {source.get('provided_by', '')}",
         f"- Why relevant: {source.get('why_relevant', '')}",
     ]
     # Provenance / copying-risk schema (Web Claw v1.1):
@@ -172,6 +155,13 @@ def render_source(source: dict[str, Any], index: int) -> str:
         ]
     lines += [
         "",
+        "### Application",
+        "",
+        f"- Axis: {', '.join(as_list(source.get('axis')))}",
+        f"- Applicable to: {source.get('applicable_to', '')}",
+        f"- Implementation notes: {source.get('implementation_notes', '')}",
+        f"- Verification method: {source.get('verification_method', '')}",
+        "",
         "### Patterns",
         "",
         bullet_list(as_list(source.get("patterns"))),
@@ -219,12 +209,8 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--sources", required=True, help="Path to sources.json")
     parser.add_argument("--output", required=True, help="Markdown output path")
-    parser.add_argument("--min-youtube-subs", type=int, default=_default_youtube_subscriber_min(),
-                        help="Minimum YouTube subscriber count (default: read from "
-                             "references/budgets.yaml -> research.youtube_subscriber_signal_minimum, "
-                             "currently 50000)")
-    parser.add_argument("--allow-under-threshold", action="store_true",
-                        help="Write the matrix even if YouTube channels are below threshold (with warnings)")
+    parser.add_argument("--allow-warnings", action="store_true",
+                        help="Write the matrix even if source records are incomplete (with warnings)")
     args = parser.parse_args()
 
     source_path = Path(args.sources).expanduser().resolve()
@@ -235,13 +221,13 @@ def main() -> int:
         return 1
 
     sources = load_sources(source_path)
-    errors = validate_sources(sources, args.min_youtube_subs)
+    errors = validate_sources(sources)
 
-    if errors and not args.allow_under_threshold:
+    if errors and not args.allow_warnings:
         print("Validation failed. Fix these issues in sources.json:")
         for error in errors:
             print(f"  ERROR: {error}")
-        print("\nRe-run with --allow-under-threshold to write anyway.")
+        print("\nRe-run with --allow-warnings to write anyway.")
         return 1
 
     output_path.parent.mkdir(parents=True, exist_ok=True)

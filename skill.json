@@ -1,8 +1,8 @@
 {
   "$schema": "https://schemas.anthropic.com/skill/v1.json",
   "name": "web-claw",
-  "version": "1.0.1",
-  "description": "Structured methodology for designing and shipping scroll-stopping, award-caliber websites through any AI coding agent. Walks a project from intake through deployment with sign-off gates, automated QA, and a single source of truth for performance, accessibility, and motion budgets.",
+  "version": "2.0.0",
+  "description": "Research-first methodology for designing and shipping scroll-stopping websites through AI coding agents. Web Claw v2 gathers user inspiration, performs open-web moodboarding, consults companion design skills, calibrates taste, then builds through blueprint, implementation, and QA gates.",
   "entry": "SKILL.md",
   "license": "MIT",
   "homepage": "https://github.com/yusufabdul024/web-claw",
@@ -25,7 +25,7 @@
   "host_native": {
     "gemini": {
       "kind": "gemini-cli-extension",
-      "install_command": "gemini extensions install https://github.com/yusufabdul024/web-claw --ref v1.0.1",
+      "install_command": "gemini extensions install https://github.com/yusufabdul024/web-claw --ref v2",
       "manifest_file": "gemini-extension.json",
       "managed_by": "Gemini CLI"
     }
@@ -42,6 +42,8 @@
     "design a landing page",
     "scroll-stopping site",
     "award-winning website",
+    "moodboard",
+    "design inspiration",
     "Awwwards-quality",
     "premium site",
     "high-end web design",

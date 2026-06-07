@@ -13,7 +13,7 @@
 
 - [ ] Phase 1 sign-off complete.
 - [ ] `blueprint/animations.md` signed off.
-- [ ] Research dossier (`research/awwwards-references.md`, `research/youtube-techniques.md`) reviewed.
+- [ ] Research dossier (`research/inspiration-sources.md`, `research/moodboard.md`, `research/taste-calibration.md`) reviewed.
 - [ ] Repo on a fresh branch: `phase-2-interactions`.
 
 ---
@@ -38,7 +38,7 @@
 
 2.1  Skip this step if motion intensity = restrained.
 
-2.2  Create `src/components/SmoothScroll.tsx`:
+2.2  Create the smooth-scroll integration in the chosen framework. React example:
 
 ```tsx
 'use client';
@@ -58,7 +58,7 @@ export function SmoothScroll() {
 }
 ```
 
-2.3  Mount `<SmoothScroll />` in `src/app/layout.tsx`.
+2.3  Mount the smooth-scroll component/provider in the chosen app shell.
 
 2.4  Add `html { overscroll-behavior: none; }` to globals.css.
 
@@ -141,7 +141,7 @@ export function Reveal({ children, delay = 0 }: { children: React.ReactNode; del
 For each page's SIGNATURE section in `animations.md`:
 
 5.1  Read the spec verbatim.
-5.2  Check the dossier (`research/awwwards-references.md`, `research/youtube-techniques.md`) for adaptation source.
+5.2  Check the dossier (`research/inspiration-sources.md`, `research/research-matrix.md`, `research/moodboard.md`) for adaptation source.
 5.3  Implement following the spec to the millisecond.
 5.4  Add reduced-motion alternative (described in `animations.md`).
 5.5  Test at the throttled Pixel 6a profile — verify ≥ 58fps and INP ≤ 200ms during pin.
@@ -196,7 +196,7 @@ This step is the longest in Phase 2. Treat each signature section as its own min
 
 ### Step 10 — Deploy preview
 
-10.1  Push branch. Wait for Vercel build.
+10.1  Push branch. Wait for the selected deployment provider build.
 10.2  Open preview on real mobile device.
 10.3  Scroll through every page. Watch for jank.
 10.4  Toggle reduced-motion (iOS: Settings > Accessibility > Motion > Reduce Motion). Re-test.

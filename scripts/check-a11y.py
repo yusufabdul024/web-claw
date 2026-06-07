@@ -8,7 +8,7 @@ returns the violations in a Web-Claw-friendly format.
 Requires Node.js (so `npx` is available). No Python dependencies beyond stdlib.
 
 Usage:
-  python check-a11y.py <url> [--standard WCAG2AA|WCAG22AA] [--out report.json] [--timeout 60]
+  python check-a11y.py <url> [--standard WCAG22AA|WCAG2AA] [--out report.json] [--timeout 60]
 """
 
 from __future__ import annotations
@@ -73,7 +73,7 @@ def summarize(issues: list[dict]) -> dict:
 def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("url")
-    parser.add_argument("--standard", default="WCAG2AA", choices=["WCAG2A", "WCAG2AA", "WCAG2AAA", "WCAG22AA"])
+    parser.add_argument("--standard", default="WCAG22AA", choices=["WCAG2A", "WCAG2AA", "WCAG2AAA", "WCAG22AA"])
     parser.add_argument("--out", default=None, help="Optional path to write the JSON report.")
     parser.add_argument("--timeout", type=int, default=60, help="Per-page timeout in seconds (default 60).")
     args = parser.parse_args(argv[1:])

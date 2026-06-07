@@ -49,10 +49,15 @@ PHASE_REQUIREMENTS: dict[str, list[str]] = {
     ],
     "research": [
         "memory.md",
-        "research/awwwards-references.md",
-        "research/youtube-techniques.md",
-        "research/tech-stack.md",
+        "research/skill-discovery.md",
+        "research/inspiration-sources.md",
+        "research/moodboard.md",
+        "research/taste-calibration.md",
         "sources.json",
+    ],
+    "stack": [
+        "memory.md",
+        "research/tech-stack.md",
         "dependencies.json",
     ],
     "execution": [

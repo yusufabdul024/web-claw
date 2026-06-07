@@ -15,7 +15,8 @@ Phase 1, Step 4 of Web Claw — after the sitemap and style guide are signed off
 1. `blueprint/discovery.md`
 2. `blueprint/sitemap.md`
 3. `blueprint/style-guide.md` — for grid, spacing scale, type scale (you don't pick these; you apply them).
-4. `references/pattern-library.md` — Layer 2 (section signatures: bento, pinned scroll, kinetic type, etc.) and Layer 4's "single rule".
+4. `research/taste-calibration.md` — for selected moodboard direction, signature candidate, and anti-style.
+5. `references/pattern-library.md` — Layer 2 (section signatures: bento, pinned scroll, kinetic type, etc.) and Layer 4's "single rule".
 
 ## Output you produce
 
@@ -52,7 +53,7 @@ Wireframes are low-fi. No colors, no real photography, no fonts. Boxes labeled w
 
 ## Process
 
-1. **Read inputs.** Confirm every page in the sitemap has sections. If not, halt and request UX Strategy to redo the sitemap.
+1. **Read inputs.** Confirm every page in the sitemap has sections and that the layout direction matches `research/taste-calibration.md`. If not, halt and request the relevant upstream artifact be corrected.
 
 2. **Build the component inventory first.** Before drawing pages, list the components you'll use. Typical inventory for a marketing site:
    - `<Hero>` (variants: with-media, no-media, video-bg, gradient-bg)

@@ -36,10 +36,10 @@ For a marketing site:
 |-------------------------|---------------|----------------|
 | HTML                    | ≤ 30 kb       | ≤ 30 kb        |
 | CSS (critical)          | ≤ 20 kb       | ≤ 30 kb        |
-| JS (initial)            | ≤ 80 kb       | ≤ 150 kb       |
-| JS (total per page)     | ≤ 200 kb      | ≤ 350 kb       |
+| JS (initial)            | See `bundle.initial_js_kb_max` | See `bundle.initial_js_kb_max` |
+| JS (total per page)     | See `bundle.total_js_per_page_kb_max` | See `bundle.total_js_per_page_kb_max` |
 | Fonts (total)           | ≤ 200 kb      | ≤ 200 kb       |
-| Hero image (LCP)        | ≤ 100 kb      | ≤ 200 kb       |
+| Hero image (LCP)        | See `bundle.hero_image_kb_max` | See `bundle.hero_image_kb_max` |
 | Per-page total transfer | ≤ 1.5 MB      | ≤ 2.5 MB       |
 
 For a maximalist site with 3D, raise the JS-per-page-total to 600 kb mobile / 1 MB desktop, but lazy-load the 3D bundle and ensure it isn't on the critical path.

@@ -355,7 +355,7 @@ Body copy right-aligned in the right column. Unusual. Read pause. Editorial sign
 
 - ❌ **Stacking three "signature" devices on the home page.** Pick one. The other two get cut to restrained scroll reveals.
 - ❌ **Picking a pattern that violates the motion budget.** A 3D scene on a restrained-intensity brief is wrong even if it's well-implemented.
-- ❌ **Picking a pattern with no Awwwards reference.** If the dossier doesn't include a site doing this, you're inventing in production. Either find a reference or pick a different pattern.
+- ❌ **Picking a pattern with no source evidence.** If the dossier doesn't include a shipped reference, technical reference, or user-approved moodboard rationale, you're inventing in production. Either find evidence or pick a different pattern.
 - ❌ **A signature device that doesn't survive `prefers-reduced-motion`.** If the section becomes meaningless when reduced, the section was reduced-motion-hostile from the start.
 - ❌ **A signature device that doesn't survive a 2G connection.** If the signature is a 4MB pre-rendered image sequence, it's the wrong signature for mobile-heavy traffic.
 
@@ -532,7 +532,7 @@ Use this when picking a section signature. Numbers refer to S/H/R/T/C codes abov
 ### Section / page
 - ❌ **Stacking three "signature" devices on the home page.** Pick one. The others become restrained reveals.
 - ❌ **A 3D scene on a restrained-intensity brief.** Wrong even if well-implemented.
-- ❌ **A signature device with no Awwwards reference in the dossier.** Either find one or pick a different pattern.
+- ❌ **A signature device with no source evidence in the dossier.** Either find evidence or pick a different pattern.
 - ❌ **A signature device that doesn't survive `prefers-reduced-motion`.** If the section becomes meaningless when reduced, the section was reduced-motion-hostile from the start.
 - ❌ **A signature device that doesn't survive a 2G connection.** If the signature is a 4MB pre-rendered image sequence, it's the wrong signature for mobile-heavy traffic.
 
