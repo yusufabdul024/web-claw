@@ -16,7 +16,8 @@
     "verify": "scripts/verify-install.py"
   },
   "host_destinations": {
-    "codex": ".agents/skills/web-claw",
+    "codex": "~/.codex/skills/web-claw",
+    "codex_project": ".agents/skills/web-claw",
     "claude": ".claude/skills/web-claw",
     "claude_user": "~/.claude/skills/web-claw",
     "cursor": ".cursor/skills/web-claw",

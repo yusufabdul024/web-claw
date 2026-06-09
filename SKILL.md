@@ -1,6 +1,10 @@
 ---
 name: web-claw
-description: Use this skill whenever the user wants to plan, design, or build a scroll-stopping, premium website and expects real taste work before implementation. Triggers on phrases like "build a website", "design a landing page", "scroll-stopping site", "award-winning website", "premium site", "high-end web design", "animated website", "site planning", "moodboard", "design inspiration", "wireframes", "style guide", "motion design", or any request to turn web-design inspiration into a shipped site. Web Claw v2 is research-first: it gathers user-provided inspiration, performs open-web moodboard research, consults available companion design skills, calibrates taste with the user, and only then creates sitemap, style guide, wireframes, motion spec, implementation plan, and QA-gated code.
+description: |
+  Research-first web design workflow for planning, designing, and building
+  scroll-stopping premium websites with AI coding agents. Use when the user
+  asks for website design, landing pages, moodboards, inspiration research,
+  wireframes, motion design, or implementation with visual QA.
 ---
 
 # Web Claw v2 - Research-First Websites With Taste

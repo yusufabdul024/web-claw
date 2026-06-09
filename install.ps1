@@ -9,7 +9,7 @@
 #   -Host    codex | claude | cursor | gemini | opencode | all       (required)
 #   -Project Path to the target project (default: current directory)
 #   -User    Install to the user/global skill directory where supported
-#            (currently: claude only). Ignored otherwise with a warning.
+#            (currently: codex, claude). Ignored otherwise with a warning.
 #   -Force   Overwrite an existing web-claw skill directory at the target.
 #   -DryRun  Print what would happen without copying anything.
 #
@@ -66,7 +66,9 @@ function Resolve-Destination {
     )
     switch ($HostName) {
         "codex" {
-            if ($Mode -eq "user") { return $null }
+            if ($Mode -eq "user") {
+                return (Join-Path $env:USERPROFILE ".codex\skills\web-claw")
+            }
             return (Join-Path $Project ".agents\skills\web-claw")
         }
         "claude" {
@@ -99,7 +101,12 @@ function Get-AgentReadPath {
         [string]$Destination
     )
     switch ($HostName) {
-        "codex"    { return ".agents/skills/web-claw/SKILL.md" }
+        "codex" {
+            if ($User.IsPresent) {
+                return (Join-Path $Destination "SKILL.md").Replace('\','/')
+            }
+            return ".agents/skills/web-claw/SKILL.md"
+        }
         "claude" {
             if ($User.IsPresent) {
                 # User-global install — return absolute path.
@@ -212,10 +219,12 @@ function Install-OneHost {
 
     if (Test-Path -LiteralPath $dest) {
         if ($Force.IsPresent) {
-            if (-not $DryRun.IsPresent) {
+            if ($DryRun.IsPresent) {
+                Say "Would remove existing destination (-Force)."
+            } else {
                 Remove-Item -LiteralPath $dest -Recurse -Force
+                Say "Removed existing destination (-Force)."
             }
-            Say "Removed existing destination (-Force)."
         } else {
             Die "Destination exists: $dest. Re-run with -Force to overwrite."
         }
@@ -249,10 +258,10 @@ Read .cursor/skills/web-claw/SKILL.md before any web-design task and follow the 
         Say "Wrote $rulePath"
     }
 
-    # Codex convenience: ensure AGENTS.md points at the skill. Codex reads
-    # AGENTS.md from the project root for activation. If the file exists we
-    # leave it alone and tell the user what line to add.
-    if ($HostName -eq "codex" -and -not $DryRun.IsPresent) {
+    # Codex project-install convenience: ensure AGENTS.md points at the
+    # project-local skill. User-global Codex installs are discovered from
+    # ~/.codex/skills/web-claw/SKILL.md and do not need a project pointer.
+    if ($HostName -eq "codex" -and -not $User.IsPresent -and -not $DryRun.IsPresent) {
         $agentsFile = Join-Path $Project "AGENTS.md"
         $pointerLine = "Read .agents/skills/web-claw/SKILL.md and follow the Web Claw pipeline for any web design task. Begin each session by reading memory.md if it exists."
         if (-not (Test-Path -LiteralPath $agentsFile)) {

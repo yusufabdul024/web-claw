@@ -27,17 +27,22 @@ Web Claw is designed to run on any AI coding agent platform. This reference cove
 
 ## Codex (OpenAI)
 
-OpenAI Codex — both the open-source CLI and the ChatGPT cloud environment — does not auto-discover skills via `agents/openai.yaml`. Its actual repo-instruction convention is **`AGENTS.md`**. Use one of these invocation paths instead:
+OpenAI Codex does not auto-discover skills via `agents/openai.yaml`. For current Codex skill roster discovery, install Web Claw globally at `~/.codex/skills/web-claw/` so Codex can read `SKILL.md` frontmatter. For project-scoped activation, use **`AGENTS.md`**. Use one of these invocation paths:
 
-**Option A — Use the installer (recommended).**
+**Option A — User-global skill roster install (recommended for personal use).**
+- Run `./install.sh --host codex --user --force` (or `.\install.ps1 -HostName codex -User -Force`). The installer copies the skill to `~/.codex/skills/web-claw/` and runs `scripts/verify-install.py`.
+- Restart Codex after installing so the skill roster is rebuilt.
+- Web Claw v2 intentionally uses short YAML-safe block frontmatter in `SKILL.md`; the verifier rejects long single-line descriptions because Codex can silently skip those.
+
+**Option B — Project-scoped install.**
 - Run `./install.sh --host codex --project <project>` (or `.\install.ps1 -HostName codex -Project <project>`). The installer copies the skill to `<project>/.agents/skills/web-claw/` and auto-creates `AGENTS.md` with the activation line: `Read .agents/skills/web-claw/SKILL.md and follow the Web Claw pipeline for any web design task.`
-- Codex loads `AGENTS.md` automatically; the skill is now active.
+- Codex loads `AGENTS.md` automatically when the project is opened; the project-local skill is now active.
 
-**Option B — Invoke explicitly per session (if AGENTS.md was clobbered):**
+**Option C — Invoke explicitly per session (if AGENTS.md was clobbered):**
 - `Read .agents/skills/web-claw/SKILL.md and run Web Claw for this project.`
 - Works on any Codex session that has the host-native install present.
 
-**Option C — Manual Mode (any Codex tier, any plan):**
+**Option D — Manual Mode (any Codex tier, any plan):**
 - See the "Any Other Agent / Manual Mode" section below. Paste `memory.md` + the current agent file + the inputs that agent requires into a fresh chat. Quality depends on the model; in particular, Manual Mode cannot run the QA scripts (Lighthouse, axe-core, contrast, Playwright) — those checks must be run locally and pasted back. See the bottom of this doc for the full caveats.
 
 **Spawning / delegation:**

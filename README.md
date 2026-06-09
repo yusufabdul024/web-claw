@@ -67,16 +67,52 @@ Clone or install this branch into your agent's skills folder.
 git clone --branch v2 https://github.com/yusufabdul024/web-claw.git web-claw
 ```
 
+For Codex global skill discovery, install into the Codex skill roster folder:
+
+```bash
+git clone --branch v2 https://github.com/yusufabdul024/web-claw.git ~/.codex/skills/web-claw
+python ~/.codex/skills/web-claw/scripts/verify-install.py --skill-root ~/.codex/skills/web-claw
+```
+
+On Windows PowerShell:
+
+```powershell
+git clone --branch v2 https://github.com/yusufabdul024/web-claw.git "$env:USERPROFILE\.codex\skills\web-claw"
+python "$env:USERPROFILE\.codex\skills\web-claw\scripts\verify-install.py" --skill-root "$env:USERPROFILE\.codex\skills\web-claw"
+```
+
+If you already cloned the repo elsewhere, the installer can copy it:
+
+```bash
+./install.sh --host codex --user --force
+```
+
+```powershell
+.\install.ps1 -HostName codex -User -Force
+```
+
+Restart Codex after a global install so the skill roster is rebuilt.
+
 For Claude-style skill folders:
 
 ```bash
 git clone --branch v2 https://github.com/yusufabdul024/web-claw.git ~/.claude/skills/web-claw
 ```
 
-For Codex, add an `AGENTS.md` in your project:
+For project-scoped Codex activation, use the installer:
+
+```bash
+./install.sh --host codex --project <project> --force
+```
+
+```powershell
+.\install.ps1 -HostName codex -Project <project> -Force
+```
+
+This copies Web Claw to `<project>/.agents/skills/web-claw/` and writes an `AGENTS.md` pointer. You can also add the pointer manually:
 
 ```text
-When this project is opened, read web-claw/SKILL.md and follow the Web Claw v2 pipeline. Begin by reading <project>/memory.md.
+When this project is opened, read .agents/skills/web-claw/SKILL.md and follow the Web Claw v2 pipeline. Begin by reading <project>/memory.md.
 ```
 
 See `references/platform-compat.md` for broader platform guidance.

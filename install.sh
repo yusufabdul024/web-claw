@@ -10,7 +10,7 @@
 #   --host    codex | claude | cursor | gemini | opencode | all       (required)
 #   --project Path to the target project (default: current directory)
 #   --user    Install to the user/global skill directory where supported
-#             (currently: claude only). Ignored otherwise with a warning.
+#             (currently: codex, claude). Ignored otherwise with a warning.
 #   --force   Overwrite an existing web-claw skill directory at the target.
 #   --dry-run Print what would happen without copying anything.
 #
@@ -71,7 +71,10 @@ resolve_dest() {
     local mode="$2"   # "project" or "user"
     case "$host" in
         codex)
-            [[ "$mode" == "user" ]] && return 1
+            if [[ "$mode" == "user" ]]; then
+                printf '%s\n' "$HOME/.codex/skills/web-claw"
+                return 0
+            fi
             printf '%s\n' "$PROJECT/.agents/skills/web-claw"
             ;;
         claude)
@@ -107,7 +110,13 @@ agent_read_path_for() {
     local host="$1"
     local dest="$2"
     case "$host" in
-        codex)    printf '%s\n' ".agents/skills/web-claw/SKILL.md" ;;
+        codex)
+            if (( USER_INSTALL )); then
+                printf '%s\n' "$dest/SKILL.md"
+            else
+                printf '%s\n' ".agents/skills/web-claw/SKILL.md"
+            fi
+            ;;
         claude)
             if (( USER_INSTALL )); then
                 printf '%s\n' "$dest/SKILL.md"
@@ -234,8 +243,12 @@ EOF
 
     if [[ -d "$dest" ]]; then
         if (( FORCE )); then
-            (( DRY_RUN )) || rm -rf "$dest"
-            say "Removed existing destination (--force)."
+            if (( DRY_RUN )); then
+                say "Would remove existing destination (--force)."
+            else
+                rm -rf "$dest"
+                say "Removed existing destination (--force)."
+            fi
         else
             die "Destination exists: $dest. Re-run with --force to overwrite."
         fi
@@ -265,11 +278,10 @@ EOF
         say "Wrote $rule_dir/web-claw.mdc"
     fi
 
-    # Codex convenience: ensure AGENTS.md points at the skill. Codex reads
-    # AGENTS.md from the project root for activation. If the file already
-    # exists we leave it alone (do not clobber the user's content) but tell
-    # them what line to add. Otherwise we create it.
-    if [[ "$host" == "codex" && $DRY_RUN -eq 0 ]]; then
+    # Codex project-install convenience: ensure AGENTS.md points at the
+    # project-local skill. User-global Codex installs are discovered from
+    # ~/.codex/skills/web-claw/SKILL.md and do not need a project pointer.
+    if [[ "$host" == "codex" && $USER_INSTALL -eq 0 && $DRY_RUN -eq 0 ]]; then
         local agents_file="$PROJECT/AGENTS.md"
         local pointer_line="Read .agents/skills/web-claw/SKILL.md and follow the Web Claw pipeline for any web design task. Begin each session by reading memory.md if it exists."
         if [[ ! -f "$agents_file" ]]; then
