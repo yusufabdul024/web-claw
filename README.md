@@ -201,20 +201,24 @@ Key scripts:
 
 ---
 
-## Companion Skills
+## Companion Skills & MCP Servers
 
-If sibling skills are present, Web Claw v3 discovers them during `RESEARCH:SKILL-DISCOVERY`.
+Web Claw v3 discovers companions during `RESEARCH:SKILL-DISCOVERY` and routes them per the Known Companion Registry in `references/extension-orchestration.md`:
 
-Expected useful neighbors include:
+| Companion | Kind | Source | Used for |
+|---|---|---|---|
+| [UI-UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Skill | nextlevelbuilder | Styles, palettes, font pairings, UX guidelines |
+| [Taste Skill](https://github.com/Leonxlnx/taste-skill) | Skill | Leonxlnx | Anti-slop critique, design direction |
+| [shadcn/ui MCP](https://github.com/Jpisnice/shadcn-ui-mcp-server) | MCP server | Jpisnice | Component source-of-truth on React/Tailwind stacks |
+| [21st.dev Magic MCP](https://github.com/21st-dev/magic-mcp) | MCP server | 21st-dev | UI component candidates (restyled to project tokens) |
+| [Vercel React Best Practices](https://github.com/vercel-labs/agent-skills) | Skill | vercel-labs | React/Next.js performance idioms |
+| [GSAP Master](https://github.com/greensock/gsap-skills) | Skill | greensock | GSAP/ScrollTrigger implementation |
+| [Motion / Framer](https://github.com/freshtechbro/claudedesignskills) | Skill | freshtechbro | Framer Motion implementation |
+| [Convex Create Component](https://github.com/get-convex/agent-skills) | Skill | get-convex | Backend/data components — only when the brief needs one |
+| [Vercel React Native Skills](https://github.com/vercel-labs/agent-skills) | Skill | vercel-labs | Native companion apps — only when in scope |
+| Impeccable / Stitch | Skill | local | Polish, critique, visual ideation |
 
-- `taste-skill`
-- `ui-ux-pro-max-skill`
-- `impeccable`
-- Stitch tooling
-- motion/framer/animation skills
-- accessibility/frontend polish skills
-
-Unavailable skills do not block the pipeline. Their absence is recorded only when it changes quality or fallback behavior.
+Companions are advisory: their advice is distilled into Web Claw artifacts, and Web Claw's budgets and QA gates stay authoritative. Unavailable companions do not block the pipeline — their absence is recorded only when it changes quality, and nothing is installed or configured without your consent.
 
 ---
 

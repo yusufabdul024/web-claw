@@ -73,6 +73,8 @@ Each phase file is **self-contained** and **sequential**. A reader who has only 
 
 3. **Match to deploy target.** Vercel pairs natively with Next.js. Cloudflare Pages pairs with Astro and Next.js (with adapter). Netlify is fine for both.
 
+3b. **Check the companion roster** (`research/skill-discovery.md`): on React stacks, consult Vercel React Best Practices for architecture idioms and prefer shadcn/ui MCP as the component source when it's connected; route GSAP Master or Motion-Framer to match the chosen motion library; route Convex only if the brief demands live data.
+
 4. **Pin everything.** Output the `package.json` `dependencies` and `devDependencies` blocks. Comment why each one is there.
 
 5. **Output `<project>/research/tech-stack.md`** — see template format below.

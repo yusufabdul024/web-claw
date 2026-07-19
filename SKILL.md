@@ -31,7 +31,7 @@ Evidence hierarchy for every taste decision:
 1. **User-provided inspiration** - links, screenshots, reels, carousels, portfolios, products, designers, brands, and "I like this part" notes.
 2. **Real shipped websites** - award-winning sites (Awwwards and similar), international studio/agency portfolios and their client work, strong product and brand sites.
 3. **Open-web galleries and social design posts** - Dribbble, Pinterest, Behance, Land-book, Godly, Siteinspire, Mobbin, and similar pattern references.
-4. **Companion design skills** - local or discoverable skills such as Taste Skill, UI-UX Pro Max, Impeccable, Stitch.
+4. **Companion skills and MCP servers** - UI-UX Pro Max, Taste Skill, GSAP Master, Motion/Framer, Vercel React Best Practices, shadcn/ui MCP, 21st.dev Magic MCP, Convex, Impeccable, Stitch — per the registry in `references/extension-orchestration.md`.
 5. **Web Claw built-in references** - fallback structure, never a substitute for taste evidence.
 
 ---

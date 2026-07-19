@@ -87,11 +87,12 @@ PART 4 - BUILD
 
 **What happens:**
 
-1. Load `references/extension-orchestration.md`.
-2. Inspect sibling skill folders around Web Claw's own directory.
-3. Detect known companion skills: Taste Skill, Impeccable, UI-UX Pro Max, Stitch, motion tooling, and any other design/UX/frontend skill folders with a readable `SKILL.md`, manifest, or README.
-4. If a requested or useful skill is missing locally, search the open web or GitHub for public documentation/repo references when tools allow it. Do not install without user consent.
-5. Produce `research/skill-discovery.md`: available local skills, unavailable but relevant skills, how each will be consulted, fallback if unavailable, any install/request guidance for the user.
+1. Load `references/extension-orchestration.md` (the Known Companion Registry).
+2. Inspect sibling skill folders around Web Claw's own directory and the host's readable skill roots.
+3. Detect known companion skills per the registry: UI-UX Pro Max, Taste Skill, GSAP Master, Motion/Framer, Vercel React Best Practices, Convex Create Component, Vercel React Native, Impeccable, Stitch — and any other design/UX/frontend skill folders with a readable `SKILL.md`, manifest, or README.
+4. Detect MCP companions (shadcn/ui MCP, 21st.dev Magic MCP) by checking the host's available tool list — never assume an unconnected server's tools exist.
+5. If a requested or useful companion is missing locally, search the open web or GitHub for public documentation/repo references when tools allow it. Do not install or configure without user consent.
+6. Produce `research/skill-discovery.md`: available local skills and MCP servers, unavailable but relevant ones, how each will be consulted, conditional entries (backend/native) left unrouted unless the brief activates them, fallback if unavailable, and install/request guidance for the user.
 
 **Exit condition:** `research/skill-discovery.md` exists.
 

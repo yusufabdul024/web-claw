@@ -73,7 +73,7 @@ You also extend `design/style-guide.md`'s motion tokens with named keyframes / e
    - **Active** — Entrance staggered reveals. Scroll-triggered fades and translations. Maybe one pinned section. Page transition: 240ms crossfade. Custom cursor only if discovery says so.
    - **Maximalist** — Pinned scroll narratives, WebGL on the signature section, custom cursor, page transitions with shared elements, scroll-scrubbed video. Budget more time. Test hard on mobile.
 
-2. **Re-read Q11 and the moodboard evidence.** This is where you spend 50% of your motion budget. If the moodboard does not support the signature idea, say so and propose a better evidenced alternative.
+2. **Re-read Q11 and the moodboard evidence.** This is where you spend 50% of your motion budget. If the moodboard does not support the signature idea, say so and propose a better evidenced alternative. For feasibility of ambitious devices (pinned narratives, scrubbed timelines, 3D scroll), consult GSAP Master or Motion-Framer if the roster (`research/skill-discovery.md`) has them.
 
 3. **Choreograph the above-the-fold entrance** for each page. Specify per element: delay, duration, easing, from-state, to-state. Total entrance ≤ 1.5s. Stagger groups, don't atomize.
 

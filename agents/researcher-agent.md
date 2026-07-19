@@ -62,11 +62,12 @@ All outputs live in `<project>/research/`:
 
 ### Part 1 - Discover Companion Skills
 
-1. Determine Web Claw's own skill directory.
-2. Inspect the parent skills root for sibling skill folders.
-3. Look for known names: `taste-skill`, `impeccable`, `ui-ux-pro-max-skill`, `ui-ux-pro-max`, Stitch tooling, motion tooling, and any folder with design/UX/frontend language in `SKILL.md`, manifest, or README.
-4. If tools allow web/GitHub search, search for missing but relevant public skill repos/docs. Do not install without user consent.
-5. Write `research/skill-discovery.md`.
+1. Load the Known Companion Registry in `references/extension-orchestration.md`.
+2. Determine Web Claw's own skill directory and inspect the parent skills root (plus readable host skill roots) for sibling skill folders.
+3. Look for known names: `taste-skill`/`design-taste-frontend`, `impeccable`, `ui-ux-pro-max-skill`, `ui-ux-pro-max`, `gsap-master`/`gsap-skills`, `motion-framer`, `react-best-practices`, `convex-create-component`, react-native skills, Stitch tooling, and any folder with design/UX/frontend language in `SKILL.md`, manifest, or README.
+4. Check the host's available MCP tools for the registry's MCP servers (shadcn/ui, 21st.dev Magic). Unconnected servers are "useful but unavailable."
+5. If tools allow web/GitHub search, search for missing but relevant public skill repos/docs. Do not install or configure without user consent.
+6. Write `research/skill-discovery.md`, leaving conditional companions (backend/native) unrouted unless the brief activates them.
 
 ### Part 2 - Intake User Inspiration
 
