@@ -59,23 +59,23 @@ Research prioritizes real shipped websites — award-winning sites, internationa
 
 ## Install
 
-Clone or install this branch into your agent's skills folder.
+Clone or install Web Claw into your agent's skills folder. The default branch (`main`) is the current release.
 
 ```bash
-git clone --branch v3 https://github.com/yusufabdul024/web-claw.git web-claw
+git clone https://github.com/yusufabdul024/web-claw.git web-claw
 ```
 
 For Codex global skill discovery, install into the Codex skill roster folder:
 
 ```bash
-git clone --branch v3 https://github.com/yusufabdul024/web-claw.git ~/.codex/skills/web-claw
+git clone https://github.com/yusufabdul024/web-claw.git ~/.codex/skills/web-claw
 python ~/.codex/skills/web-claw/scripts/verify-install.py --skill-root ~/.codex/skills/web-claw
 ```
 
 On Windows PowerShell:
 
 ```powershell
-git clone --branch v3 https://github.com/yusufabdul024/web-claw.git "$env:USERPROFILE\.codex\skills\web-claw"
+git clone https://github.com/yusufabdul024/web-claw.git "$env:USERPROFILE\.codex\skills\web-claw"
 python "$env:USERPROFILE\.codex\skills\web-claw\scripts\verify-install.py" --skill-root "$env:USERPROFILE\.codex\skills\web-claw"
 ```
 
@@ -94,7 +94,7 @@ Restart Codex after a global install so the skill roster is rebuilt.
 For Claude-style skill folders:
 
 ```bash
-git clone --branch v3 https://github.com/yusufabdul024/web-claw.git ~/.claude/skills/web-claw
+git clone https://github.com/yusufabdul024/web-claw.git ~/.claude/skills/web-claw
 ```
 
 For project-scoped Codex activation, use the installer:

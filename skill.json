@@ -26,7 +26,7 @@
   "host_native": {
     "gemini": {
       "kind": "gemini-cli-extension",
-      "install_command": "gemini extensions install https://github.com/yusufabdul024/web-claw --ref v3",
+      "install_command": "gemini extensions install https://github.com/yusufabdul024/web-claw --ref v3.0.0",
       "manifest_file": "gemini-extension.json",
       "managed_by": "Gemini CLI"
     }
