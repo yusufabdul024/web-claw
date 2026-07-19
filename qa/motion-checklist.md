@@ -1,6 +1,6 @@
 # Motion Checklist
 
-Run after Phase 2. Verifies every animation matches `blueprint/animations.md` and behaves correctly across user preferences and devices.
+Run after Phase 2. Verifies every animation matches `design/animations.md` and behaves correctly across user preferences and devices.
 
 ## Per page
 

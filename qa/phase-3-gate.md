@@ -85,7 +85,7 @@ Run `scripts/run-playwright.py <production-url>` for each browser. Each invocati
 
 ## 8. Analytics and production
 
-- [ ] Analytics wired (if discovery.md specified one)
+- [ ] Analytics wired (if client-brief.md specified one)
 - [ ] Production domain configured and pointing to deploy
 - [ ] SSL certificate active
 
@@ -124,7 +124,7 @@ Run the rubric in `qa/visual-critique-rubric.md`. Write result to `qa/visual-cri
 
 ## Gate Result
 
-If all items pass: advance to QA:FINAL. Update `memory.md → Phase: QA:FINAL`. (Phase = DONE is set only when QA:FINAL itself exits — see `references/state-machine.md`.)
+If all items pass: advance to BUILD:QA-FINAL. Update `memory.md → Phase: BUILD:QA-FINAL`. (Phase = DONE is set only when BUILD:QA-FINAL itself exits — see `references/state-machine.md`.)
 
 If any item fails: hand to Implementer Agent with this report. Fix all ❌. Re-run only the failed checks.
 

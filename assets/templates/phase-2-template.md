@@ -4,7 +4,7 @@
 **Phase:** 2 of 3
 **Goal:** Animations live, signature sections shipped, micro-interactions polished. Site still deployed and still meets perf budget.
 **Estimated effort:** <hours / days>
-**Inputs:** Phase 1 deployed preview, `blueprint/animations.md`, `research/*`
+**Inputs:** Phase 1 deployed preview, `design/animations.md`, `research/*`
 **Output:** Deployed preview with full motion + signed-off QA.
 
 ---
@@ -12,9 +12,26 @@
 ## Pre-flight
 
 - [ ] Phase 1 sign-off complete.
-- [ ] `blueprint/animations.md` signed off.
+- [ ] `design/animations.md` signed off.
 - [ ] Research dossier (`research/inspiration-sources.md`, `research/moodboard.md`, `research/taste-calibration.md`) reviewed.
 - [ ] Repo on a fresh branch: `phase-2-interactions`.
+
+---
+
+## Test assertions (write these FIRST)
+
+Extend the Phase 1 assertions (`scripts/run-playwright.py`):
+
+- [ ] Signature interactions fire (scroll reveal triggers, pinned sections release, sliders advance).
+- [ ] `prefers-reduced-motion: reduce` renders the replacement experience, not a broken page.
+- [ ] Console stays clean during a full-page scroll on every route.
+
+Build until green before presenting.
+
+## Client checkpoints (mid-phase)
+
+- [ ] The moment the signature section motion first works, show the client that section on the preview and ask about it specifically — before applying the motion language elsewhere.
+- [ ] Same for the focal storytelling element and any custom cursor, if specified.
 
 ---
 

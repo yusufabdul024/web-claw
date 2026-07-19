@@ -23,7 +23,7 @@ Requires Node.js + Playwright. The script will prompt to run
 Usage:
   python run-playwright.py <url>
   python run-playwright.py <url> --extra-urls <u1> <u2>
-  python run-playwright.py --sitemap <project>/blueprint/sitemap.md
+  python run-playwright.py --sitemap <project>/design/sitemap.md
   python run-playwright.py <url> --browser webkit
 """
 
@@ -202,7 +202,7 @@ def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("url", nargs="?", help="Base URL (e.g. https://preview.example).")
     parser.add_argument("--extra-urls", nargs="*", default=[], help="Additional fully-qualified URLs to smoke.")
-    parser.add_argument("--sitemap", default=None, help="Path to <project>/blueprint/sitemap.md (optional).")
+    parser.add_argument("--sitemap", default=None, help="Path to <project>/design/sitemap.md (optional).")
     parser.add_argument("--browser", default="chromium", choices=["chromium", "firefox", "webkit"])
     parser.add_argument("--timeout", type=int, default=180, help="Per-run timeout in seconds (default 180).")
     parser.add_argument("--out", default=None, help="Optional path to write the JSON summary.")

@@ -57,14 +57,14 @@ dependencies.json
 qa/qa-plan.md
 ```
 
-### Tier 2 — Blueprint (required if Phase 1 was started)
+### Tier 2 — Design (required if Phase 1 was started)
 
 ```
-blueprint/discovery.md
-blueprint/sitemap.md
-blueprint/style-guide.md
-blueprint/wireframes.md
-blueprint/animations.md
+brief/client-brief.md
+design/sitemap.md
+design/style-guide.md
+design/wireframes.md
+design/animations.md
 ```
 
 ### Tier 3 — Research (required if Phase 2 was started)
@@ -93,7 +93,7 @@ prompts/sequential-prompts.md
 qa/phase-1-report.md
 qa/phase-2-report.md
 qa/phase-3-report.md
-qa/final-report.md          (if QA:FINAL passed)
+qa/final-report.md          (if BUILD:QA-FINAL passed)
 ```
 
 ### Tier 6 — Skill copy (always required for a true cold-start)
@@ -124,7 +124,7 @@ Every export carries a top-level `handoff-manifest.json` that names every includ
   "project": {
     "name": "Meridian",
     "slug": "meridian-site",
-    "current_phase": "EXECUTION:PHASE-2",
+    "current_phase": "BUILD:PHASE-2",
     "user_signoff": "YES",
     "next_action": "Run scripts/audit-perf.py against the phase-2 preview URL.",
     "motion_intensity": "active",
@@ -133,8 +133,8 @@ Every export carries a top-level `handoff-manifest.json` that names every includ
   },
   "deliverables": [
     { "path": "memory.md", "tier": 1, "status": "present", "size_bytes": 1842 },
-    { "path": "blueprint/discovery.md", "tier": 2, "status": "present", "size_bytes": 4123 },
-    { "path": "blueprint/sitemap.md", "tier": 2, "status": "present", "size_bytes": 2980 },
+    { "path": "brief/client-brief.md", "tier": 2, "status": "present", "size_bytes": 4123 },
+    { "path": "design/sitemap.md", "tier": 2, "status": "present", "size_bytes": 2980 },
     { "path": "research/moodboard.md", "tier": 2, "status": "n/a", "reason": "Moodboard research deferred to receiver" }
   ],
   "decisions": [
@@ -206,7 +206,7 @@ The minimum prompt for any agent to resume cold:
 Read web-claw/SKILL.md.
 Read memory.md.
 Read every file listed in Pinned Decisions.
-Continue Web Claw from the recorded state. Do not re-ask questions answered in memory.md or discovery.md.
+Continue Web Claw from the recorded state. Do not re-ask questions answered in memory.md or client-brief.md.
 ```
 
 ---

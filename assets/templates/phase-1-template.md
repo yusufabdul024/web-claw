@@ -4,7 +4,7 @@
 **Phase:** 1 of 3
 **Goal:** Static, deployable site. Every page from the sitemap exists with real copy. No animations yet.
 **Estimated effort:** <hours / days>
-**Inputs:** `plan.md`, `blueprint/*`, `research/tech-stack.md`
+**Inputs:** `plan.md`, `design/*`, `research/tech-stack.md`
 **Output:** Deployed preview URL + sign-off from user.
 
 ---
@@ -17,6 +17,24 @@ Before starting:
 - [ ] `research/tech-stack.md` signed off.
 - [ ] Repo exists; chosen deployment target is linked.
 - [ ] You have write access to the working directory.
+
+---
+
+## Test assertions (write these FIRST)
+
+Before building, write or update the phase's smoke assertions (`scripts/run-playwright.py` config):
+
+- [ ] Every sitemap route returns 200 and renders its H1.
+- [ ] Console is clean on every route.
+- [ ] Primary CTA is present and reachable by keyboard on every page.
+- [ ] The designed loading state appears on first load and hands off without layout shift (once implemented this phase).
+
+Build until these are green. A phase with red tests does not present.
+
+## Client checkpoints (mid-phase)
+
+- [ ] When the hero and the loading state first render on the preview, show the client *that element* and ask about it specifically — before rolling the pattern across remaining pages.
+- [ ] Log checkpoint outcomes in `memory.md -> Step`; log direction changes in `decisions/`.
 
 ---
 
@@ -40,7 +58,7 @@ Each step is an executable instruction. Run them in order. Verify the success co
 
 ### Step 2 — Wire design tokens
 
-2.1  Open `blueprint/style-guide.md`. Extract color, type, spacing, radius, motion tokens.
+2.1  Open `design/style-guide.md`. Extract color, type, spacing, radius, motion tokens.
 
 2.2  Create design token wiring for the chosen stack. If Tailwind is selected, extend `theme.extend`:
 
@@ -94,7 +112,7 @@ const display = /* … */ ;
 
 ### Step 3 — Build the component library
 
-For each component in `blueprint/wireframes.md` "Component inventory":
+For each component in `design/wireframes.md` "Component inventory":
 
 3.1  Create `src/components/<ComponentName>.tsx`.
 3.2  Implement the variants and props exactly as wireframed.
@@ -127,7 +145,7 @@ Order to build (least dependent → most dependent):
 
 ### Step 4 — Assemble pages
 
-For each page in `blueprint/sitemap.md`:
+For each page in `design/sitemap.md`:
 
 4.1  Create the page file using the selected framework (`src/app/<route>/page.tsx` for Next App Router, `src/pages/<route>.astro` for Astro, router entry for Vite/SvelteKit).
 4.2  Import and compose the components per the sitemap's section order.
@@ -137,7 +155,7 @@ For each page in `blueprint/sitemap.md`:
 ```ts
 export const metadata: Metadata = {
   title: '<from sitemap.md>',
-  description: '<from sitemap.md / discovery.md>',
+  description: '<from sitemap.md / client-brief.md>',
   openGraph: { title, description, images: [{ url: '/og/<page>.png' }] },
 };
 ```

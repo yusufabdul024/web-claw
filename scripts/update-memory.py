@@ -10,8 +10,8 @@ Usage:
     python update-memory.py <memory-file> [options]
 
 Examples:
-    python update-memory.py ./meridian/memory.md --phase BLUEPRINT:SITEMAP --sign-off PENDING
-    python update-memory.py ./meridian/memory.md --artifact blueprint/sitemap.md --sign-off YES
+    python update-memory.py ./meridian/memory.md --phase DESIGN:SITEMAP --sign-off PENDING
+    python update-memory.py ./meridian/memory.md --artifact design/sitemap.md --sign-off YES
     python update-memory.py ./meridian/memory.md --next "Spawn Designer Agent to produce style-guide.md"
     python update-memory.py ./meridian/memory.md --blocker "User must confirm which pages to include"
     python update-memory.py ./meridian/memory.md --stack "Next.js 15 + Tailwind 4 + GSAP 3.12"
@@ -32,22 +32,22 @@ from pathlib import Path
 
 
 VALID_PHASES = [
-    "IGNITION",
+    "BRIEF:INTERVIEW",
     "RESEARCH:SKILL-DISCOVERY",
     "RESEARCH:INSPIRATION-INTAKE",
     "RESEARCH:OPEN-WEB",
     "RESEARCH:MOODBOARD",
-    "TASTE:CALIBRATION",
-    "BLUEPRINT:SITEMAP",
-    "BLUEPRINT:STYLE-GUIDE",
-    "BLUEPRINT:WIREFRAMES",
-    "BLUEPRINT:ANIMATIONS",
-    "EXECUTION:STACK",
-    "EXECUTION:PLAN",
-    "EXECUTION:PHASE-1",
-    "EXECUTION:PHASE-2",
-    "EXECUTION:PHASE-3",
-    "QA:FINAL",
+    "RESEARCH:TASTE-CALIBRATION",
+    "DESIGN:SITEMAP",
+    "DESIGN:STYLE-GUIDE",
+    "DESIGN:WIREFRAMES",
+    "DESIGN:ANIMATIONS",
+    "BUILD:STACK",
+    "BUILD:PLAN",
+    "BUILD:PHASE-1",
+    "BUILD:PHASE-2",
+    "BUILD:PHASE-3",
+    "BUILD:QA-FINAL",
     "DONE",
 ]
 

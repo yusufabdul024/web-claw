@@ -3,8 +3,8 @@
 Web Claw Project Initializer
 
 Creates a complete Web Claw project workspace including memory.md,
-decisions/ folder, all blueprint/research/qa directories, and blank
-starter files. Run once per project at IGNITION.
+decisions/ folder, all design/research/qa directories, and blank
+starter files. Run once per project at BRIEF:INTERVIEW.
 
 Usage:
     python init-project.py "<project-name>" --path <workspace-dir>
@@ -70,8 +70,9 @@ def main() -> int:
 
     # Create directory structure
     dirs = [
-        "blueprint",
+        "brief",
         "research",
+        "design",
         "decisions",
         "qa",
         "assets",
@@ -81,9 +82,9 @@ def main() -> int:
 
     # -- memory.md ----------------------------------------------------------
     next_action_initial = (
-        "Pick defensible discovery defaults; write blueprint/discovery.md without user prompts. Then advance Phase to RESEARCH:SKILL-DISCOVERY and begin companion skill discovery. Log judgment calls to decisions/NNN-auto-*.md."
+        "Pick defensible discovery defaults; write brief/client-brief.md without user prompts. Then advance Phase to RESEARCH:SKILL-DISCOVERY and begin companion skill discovery. Log judgment calls to decisions/NNN-auto-*.md."
         if args.mode == "fast"
-        else "Load references/ignition-quick.md (or ignition-full.md for complex projects). Ask discovery and inspiration-intake questions. Write blueprint/discovery.md. Then advance Phase to RESEARCH:SKILL-DISCOVERY."
+        else "Load references/ignition-quick.md (or ignition-full.md for complex projects). Ask discovery and inspiration-intake questions. Write brief/client-brief.md. Then advance Phase to RESEARCH:SKILL-DISCOVERY."
     )
     memory_content = dedent(f"""\
         # Project Memory -- {args.project_name}
@@ -91,15 +92,16 @@ def main() -> int:
 
         ## Identity
         - Name: {args.project_name}
-        - Goal: [PENDING -- fill from discovery Q3]
-        - Audience: [PENDING -- fill from discovery Q4]
+        - Goal: [PENDING -- fill from brief Q3]
+        - Value proposition: [PENDING -- fill from brief Q6; becomes the hero headline]
+        - Audience: [PENDING -- fill from brief Q7]
         - Motion: [PENDING -- restrained | active | maximalist]
         - Stack: PENDING
         - Deploy: PENDING
 
         ## State
         - Mode: {args.mode}
-        - Phase: IGNITION
+        - Phase: BRIEF:INTERVIEW
         - Step: gathering discovery answers
         - Last artifact: (none yet)
         - User sign-off: PENDING
@@ -116,61 +118,84 @@ def main() -> int:
         <!-- Populated when context nears its limit. Read this section first on resume after compaction. -->
     """)
 
-    # ── discovery.md starter ─────────────────────────────────────────────────
+    # ── brief/client-brief.md starter ───────────────────────────────────────────
     discovery_content = dedent(f"""\
-        # Discovery — {args.project_name}
+        # Client Brief — {args.project_name}
         Created: {today}
 
-        ## Q1 — Brand name
+        ## Part 1 — Understand the client
+
+        ### Q1 — Brand name
         {args.project_name}
 
-        ## Q2 — One-sentence description
+        ### Q2 — What is the brand / company / business about?
+        [PENDING — story, offer, what it does, why it exists]
+
+        ### Q3 — What must the website achieve? (the single measurable business outcome)
         [PENDING]
 
-        ## Q3 — Business outcome (the single measurable action)
+        ### Q4 — What must a visitor DO on the site? (the one action)
         [PENDING]
 
-        ## Q4 — Primary visitor
+        ### Q5 — The ONE objective the site is judged by
         [PENDING]
 
-        ## Q5 — Three adjectives / feel
+        ### Q6 — Value proposition (becomes the hero headline)
+        [PENDING — one sentence a stranger understands in 3 seconds]
+
+        ### Q7 — Primary visitor / target audience
         [PENDING]
 
-        ## Q6 — Pages
+        ## Part 2 — Taste and feel
+
+        ### Q8 — Three adjectives / feel
         [PENDING]
 
-        ## Q7 — Primary CTA
+        ### Q9 — Inspiration sources
         [PENDING]
 
-        ## Q8 — Existing assets
+        ### Q10 — Known competitors (direct / aspirational)
+        [PENDING — verified in RESEARCH:COMPETITORS]
+
+        ### Q11 — Signature moment ("holy shit" moment)
         [PENDING]
 
-        ## Q9 — Inspiration sources
+        ### Q12 — Motion intensity
         [PENDING]
 
-        ## Q10 — Tech stack preference
+        ### Q13 — Off-limits / what not to copy
+        [PENDING]
+
+        ## Part 3 — Practical
+
+        ### Q14 — Pages
+        [PENDING]
+
+        ### Q15 — Primary CTA(s)
+        [PENDING]
+
+        ### Q16 — Existing assets
+        [PENDING]
+
+        ### Q17 — Tech stack preference
         [ASSUMED: You choose — agent will infer from motion spec and deploy target]
 
-        ## Q11 — Deployment target
+        ### Q18 — Deployment target
         [ASSUMED: Vercel]
 
-        ## Q12 — CMS
+        ### Q19 — CMS
         [ASSUMED: None — static content]
 
-        ## Q13 — Performance budget
+        ### Q20 — Performance budget
         [ASSUMED: defaults per web-claw/references/budgets.yaml (lighthouse.* + core_web_vitals.*)]
 
-        ## Q14 — Accessibility floor
+        ### Q21 — Accessibility floor
         [ASSUMED: defaults per web-claw/references/budgets.yaml (accessibility.*)]
 
-        ## Q15 — Motion intensity
-        [PENDING]
-
-        ## Q16 — Signature moment ("holy shit" moment)
-        [PENDING]
-
-        ## Q17 — Off-limits / what not to copy
-        [PENDING]
+        ## The 3-Second Test
+        When the hero loads, a stranger must be able to answer within 3 seconds:
+        1. What is this? 2. Who is it for? 3. What do I do next?
+        The brief is not complete until Q6 passes this test.
     """)
 
     # ── site-brief.json ───────────────────────────────────────────────────────
@@ -236,7 +261,7 @@ def main() -> int:
 
     files: dict[Path, str | None] = {
         root / "memory.md": memory_content,
-        root / "blueprint" / "discovery.md": discovery_content,
+        root / "brief" / "client-brief.md": discovery_content,
         root / "qa" / "qa-plan.md": qa_plan,
         root / "assets" / ".gitkeep": "",
         root / "decisions" / ".gitkeep": "",
@@ -273,7 +298,7 @@ def main() -> int:
     print("Next steps:")
     print("  1. Load SKILL.md -> read memory.md (just initialized)")
     print("  2. Load references/ignition-quick.md or ignition-full.md")
-    print("  3. Ask discovery and inspiration-intake questions. Write blueprint/discovery.md.")
+    print("  3. Ask discovery and inspiration-intake questions. Write brief/client-brief.md.")
     print("  4. Update memory.md: fill Identity fields, advance Phase to RESEARCH:SKILL-DISCOVERY.")
 
     return 0

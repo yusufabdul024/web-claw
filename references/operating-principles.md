@@ -1,6 +1,24 @@
-# Operating Principles - Web Claw v2
+# Operating Principles - Web Claw v3
 
-These principles govern every decision made by every agent in the pipeline.
+These principles govern every decision made by every agent in the pipeline. The Chief Designer (`agents/chief-designer.md`) enforces them.
+
+---
+
+## The Brief Is the Foundation
+
+No research and no design until the client interview has produced: what the brand is about, what the site must achieve, what the visitor must do, the one objective, and a value proposition that a stranger understands in 3 seconds. A designer does not start researching from nowhere.
+
+---
+
+## The Client Stays in the Loop
+
+Research is a back-and-forth: findings are verified with the client before being built on. Builds show signature elements the moment they first work, not at the end. Big-bang reveals are how whole builds get rejected. See `references/client-collaboration.md`.
+
+---
+
+## The Arrival Is Designed
+
+The loading state is the opening scene, not a technical apology. Never a generic skeleton loader. Content is revealed smoothly, with zero layout shift, into an emotional journey that ends amazed. The full bar: `references/premium-experience-standard.md`.
 
 ---
 
@@ -38,7 +56,7 @@ Do not copy exact layouts, assets, code, copy, color palettes, or animation chor
 
 ## Open-Web Research Is Source-Agnostic
 
-Web Claw v2 does not require Awwwards, YouTube, Dribbble, Pinterest, Behance, Instagram, Mobbin, Land-book, Godly, Lapa Ninja, Siteinspire, Codrops, or any other source.
+Web Claw v3 does not require Awwwards, YouTube, Dribbble, Pinterest, Behance, Instagram, Mobbin, Land-book, Godly, Lapa Ninja, Siteinspire, Codrops, or any other source.
 
 Use the source that fits the project. A B2B SaaS site may benefit from Mobbin and real product pages. A fashion brand may benefit from Pinterest, Are.na, Instagram, and portfolio/editorial references. A motion-heavy agency site may benefit from award galleries and interaction case studies.
 
@@ -46,7 +64,7 @@ The source is less important than the distillation.
 
 ---
 
-## Moodboard Before Blueprint
+## Moodboard Before Design
 
 Do not create sitemap, style guide, wireframes, or motion spec before the moodboard and taste calibration exist.
 
@@ -61,7 +79,7 @@ The moodboard is not decoration. It is the design contract:
 - copy voice,
 - anti-style.
 
-Blueprint artifacts must explicitly trace back to the moodboard.
+Design artifacts must explicitly trace back to the moodboard.
 
 ---
 
@@ -152,7 +170,7 @@ Artifacts must contain concrete copy, concrete file paths, concrete tokens, conc
 
 ## The Filesystem Remembers
 
-Project state lives in `memory.md`, `decisions/`, `blueprint/`, `research/`, and `qa/`.
+Project state lives in `memory.md`, `decisions/`, `design/`, `research/`, and `qa/`.
 
 Do not rely on chat history. Do not re-litigate signed-off decisions. Do not regenerate from scratch when an approved artifact exists.
 
@@ -161,7 +179,7 @@ Do not rely on chat history. Do not re-litigate signed-off decisions. Do not reg
 ## Anti-Patterns Across Agents
 
 - Accepting "modern" or "clean" as enough taste direction.
-- Building blueprints before moodboard and taste calibration.
+- Building designs before moodboard and taste calibration.
 - Treating Awwwards/YouTube or any single source as mandatory.
 - Citing inspiration without saying what not to copy.
 - Using Dribbble/Pinterest/Instagram as implementation proof. They can inform mood, not technical feasibility.

@@ -2,7 +2,7 @@
 
 **Phase:** 1.3 (Web Claw)
 **Authored by:** Designer Agent
-**Based on:** `blueprint/discovery.md`, `research/moodboard.md`, `research/taste-calibration.md`, `blueprint/sitemap.md`
+**Based on:** `brief/client-brief.md`, `research/moodboard.md`, `research/taste-calibration.md`, `design/sitemap.md`
 **Date:** <YYYY-MM-DD>
 
 ---

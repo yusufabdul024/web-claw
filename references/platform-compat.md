@@ -32,7 +32,7 @@ OpenAI Codex does not auto-discover skills via `agents/openai.yaml`. For current
 **Option A — User-global skill roster install (recommended for personal use).**
 - Run `./install.sh --host codex --user --force` (or `.\install.ps1 -HostName codex -User -Force`). The installer copies the skill to `~/.codex/skills/web-claw/` and runs `scripts/verify-install.py`.
 - Restart Codex after installing so the skill roster is rebuilt.
-- Web Claw v2 intentionally uses short YAML-safe block frontmatter in `SKILL.md`; the verifier rejects long single-line descriptions because Codex can silently skip those.
+- Web Claw v3 intentionally uses short YAML-safe block frontmatter in `SKILL.md`; the verifier rejects long single-line descriptions because Codex can silently skip those.
 
 **Option B — Project-scoped install.**
 - Run `./install.sh --host codex --project <project>` (or `.\install.ps1 -HostName codex -Project <project>`). The installer copies the skill to `<project>/.agents/skills/web-claw/` and auto-creates `AGENTS.md` with the activation line: `Read .agents/skills/web-claw/SKILL.md and follow the Web Claw pipeline for any web design task.`

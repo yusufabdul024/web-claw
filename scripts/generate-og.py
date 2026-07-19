@@ -3,7 +3,7 @@
 generate-og.py
 
 Generate Open Graph (1200x630) images for every page of a Web Claw project.
-Reads pages from <project>/blueprint/sitemap.md, design tokens from
+Reads pages from <project>/design/sitemap.md, design tokens from
 <project>/design/tokens.json (or runs extract-tokens.py on the project's
 style-guide.md if tokens.json is missing), and produces one PNG per page
 in <project>/assets/og/.
@@ -41,12 +41,12 @@ def resolve_npx() -> str | None:
 
 def load_tokens(project_dir: Path) -> dict:
     """Load tokens.json, or fall back to running extract-tokens.py on
-    blueprint/style-guide.md. Returns a partial token dict on best-effort.
+    design/style-guide.md. Returns a partial token dict on best-effort.
     """
     tokens_json = project_dir / "design" / "tokens.json"
     if tokens_json.is_file():
         return json.loads(tokens_json.read_text(encoding="utf-8"))
-    style_guide = project_dir / "blueprint" / "style-guide.md"
+    style_guide = project_dir / "design" / "style-guide.md"
     if style_guide.is_file():
         extract = Path(__file__).resolve().parent / "extract-tokens.py"
         result = subprocess.run(
@@ -194,7 +194,7 @@ def main(argv: list[str]) -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     tokens = load_tokens(project_dir)
-    pages = parse_sitemap_pages(project_dir / "blueprint" / "sitemap.md")
+    pages = parse_sitemap_pages(project_dir / "design" / "sitemap.md")
     if args.titles:
         overrides = dict(part.split("=", 1) for part in args.titles.split(",") if "=" in part)
         pages = [(p, overrides.get(p, t)) for p, t in pages]

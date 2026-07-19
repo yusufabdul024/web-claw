@@ -187,7 +187,7 @@ function Install-OneHost {
         Say "Host: gemini"
         Write-Host "[web-claw] Gemini CLI manages its own extensions. Install Web Claw with:"
         Write-Host ""
-        Write-Host "  gemini extensions install https://github.com/yusufabdul024/web-claw --ref v2"
+        Write-Host "  gemini extensions install https://github.com/yusufabdul024/web-claw --ref v3"
         Write-Host ""
         Write-Host "Or for the mainline version:"
         Write-Host ""

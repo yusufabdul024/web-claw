@@ -26,9 +26,9 @@ Last updated: <YYYY-MM-DD HH:MM>
 
 ## State
 - Mode: <interactive | fast>
-- Phase: <IGNITION | RESEARCH:SKILL-DISCOVERY | RESEARCH:INSPIRATION-INTAKE | RESEARCH:OPEN-WEB | RESEARCH:MOODBOARD | TASTE:CALIBRATION | BLUEPRINT:SITEMAP | BLUEPRINT:STYLE-GUIDE | BLUEPRINT:WIREFRAMES | BLUEPRINT:ANIMATIONS | EXECUTION:STACK | EXECUTION:PLAN | EXECUTION:PHASE-1 | EXECUTION:PHASE-2 | EXECUTION:PHASE-3 | QA:FINAL | DONE>
+- Phase: <BRIEF:INTERVIEW | RESEARCH:SKILL-DISCOVERY | RESEARCH:INSPIRATION-INTAKE | RESEARCH:OPEN-WEB | RESEARCH:MOODBOARD | RESEARCH:TASTE-CALIBRATION | DESIGN:SITEMAP | DESIGN:STYLE-GUIDE | DESIGN:WIREFRAMES | DESIGN:ANIMATIONS | BUILD:STACK | BUILD:PLAN | BUILD:PHASE-1 | BUILD:PHASE-2 | BUILD:PHASE-3 | BUILD:QA-FINAL | DONE>
 - Step: <short label, e.g. "sitemap — awaiting user sign-off" or "phase-1 — step 3 of 8">
-- Last artifact: <relative path to last produced file, e.g. "blueprint/sitemap.md">
+- Last artifact: <relative path to last produced file, e.g. "design/sitemap.md">
 - User sign-off: <YES | NO | PENDING | AUTO>
 - Next action: <one imperative sentence — exactly what the resuming agent must do first>
 
@@ -56,8 +56,8 @@ Last updated: <YYYY-MM-DD HH:MM>
 | `Goal` | Primary business outcome | Measurable verb: "convert", "sign up", "purchase". Not "awareness". |
 | `Audience` | Primary visitor description | From discovery Q4, max 20 words |
 | `Motion` | Motion intensity level | Must match discovery Q15 exactly |
-| `Stack` | Chosen tech stack | PENDING until EXECUTION:STACK phase is complete |
-| `Deploy` | Deploy target | PENDING until EXECUTION:STACK phase is complete |
+| `Stack` | Chosen tech stack | PENDING until BUILD:STACK phase is complete |
+| `Deploy` | Deploy target | PENDING until BUILD:STACK phase is complete |
 | `Mode` | Run mode | `interactive` (default, user signs off each state) or `fast` (auto-approve states, QA gates still hard) |
 | `Phase` | Current pipeline state | Must use the exact state label from the state machine |
 | `Step` | Sub-step within phase | Free text, short, descriptive |
@@ -170,7 +170,7 @@ When the context window is near its limit — or before ending a long session �
 Captured: <YYYY-MM-DD HH:MM>
 
 ### Artifact summaries (all produced artifacts)
-- discovery.md: Project is [Name], goal is [goal], audience is [audience], motion is [level].
+- client-brief.md: Project is [Name], goal is [goal], audience is [audience], motion is [level].
 - sitemap.md: [N] pages: Home (goal: X), [other pages]. Signed off YES.
 - style-guide.md: Colors: [primary token + hex]. Type: [heading font / body font]. Signed off YES.
 - wireframes.md: [N] pages wireframed. Signature section: [section name]. Signed off YES.
@@ -207,7 +207,7 @@ Last updated: 2025-11-15 14:32
 
 ## State
 - Mode: interactive
-- Phase: EXECUTION:PHASE-1
+- Phase: BUILD:PHASE-1
 - Step: phase-1 — step 4 of 9 (implementing TokenProvider and global CSS variables)
 - Last artifact: phase-1.md
 - User sign-off: YES (phase-1.md approved on 2025-11-15)

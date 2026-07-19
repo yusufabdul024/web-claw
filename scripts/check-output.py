@@ -4,12 +4,12 @@ Web Claw Output Structure Validator
 
 Checks that a Web Claw project workspace contains all required deliverables
 and that no required file is empty. Adapted from the Version A check_output_structure.py,
-updated for the v3 folder layout (blueprint/, research/, decisions/, memory.md).
+updated for the v3 folder layout (design/, research/, decisions/, memory.md).
 
 Usage:
     python check-output.py --workspace <project-dir>
     python check-output.py --workspace ./meridian --json
-    python check-output.py --workspace ./meridian --phase blueprint
+    python check-output.py --workspace ./meridian --phase design
     python check-output.py --workspace ./meridian --phase all
 
 Exit code: 0 = all required files present and non-empty. 1 = failures found.
@@ -33,24 +33,25 @@ from pathlib import Path
 PHASE_REQUIREMENTS: dict[str, list[str]] = {
     "bootstrap": [
         "memory.md",
-        "blueprint/discovery.md",
+        "brief/client-brief.md",
         "site-brief.json",
         "dependencies.json",
         "sources.json",
         "qa/qa-plan.md",
     ],
-    "blueprint": [
+    "design": [
         "memory.md",
-        "blueprint/discovery.md",
-        "blueprint/sitemap.md",
-        "blueprint/style-guide.md",
-        "blueprint/wireframes.md",
-        "blueprint/animations.md",
+        "brief/client-brief.md",
+        "design/sitemap.md",
+        "design/style-guide.md",
+        "design/wireframes.md",
+        "design/animations.md",
     ],
     "research": [
         "memory.md",
         "research/skill-discovery.md",
         "research/inspiration-sources.md",
+        "research/competitor-analysis.md",
         "research/moodboard.md",
         "research/taste-calibration.md",
         "sources.json",
@@ -60,7 +61,7 @@ PHASE_REQUIREMENTS: dict[str, list[str]] = {
         "research/tech-stack.md",
         "dependencies.json",
     ],
-    "execution": [
+    "build": [
         "memory.md",
         "plan.md",
         "phase-1.md",

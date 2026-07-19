@@ -73,7 +73,7 @@ Run: `scripts/audit-perf.py <preview-url>` on mobile preset (the script reads bu
 
 ## Gate Result
 
-If all items pass: advance to EXECUTION:PHASE-2. Update `memory.md`.
+If all items pass: advance to BUILD:PHASE-2. Update `memory.md`.
 
 If any item fails: hand to Implementer Agent with this report. Fix all ❌. Re-run gate. Do not advance until pass.
 

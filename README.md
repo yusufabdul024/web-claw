@@ -1,59 +1,57 @@
-# Web Claw v2
+# Web Claw v3
 
-**A research-first skill for designing and shipping scroll-stopping websites through AI coding agents.**
+**A studio-workflow skill for designing and shipping scroll-stopping websites through AI coding agents.**
 
-Web Claw v2 turns "build me a beautiful website" into a collaborative design process:
+Web Claw v3 turns "build me a beautiful website" into the workflow a real design studio runs, in four parts:
 
-1. gather user inspiration,
-2. discover companion design skills,
-3. research open-web references,
-4. build a moodboard,
-5. calibrate taste with the user,
-6. create sitemap, style guide, wireframes, and motion spec,
-7. implement through QA-gated phases.
+1. **Brief** — interview the client: what the brand is about, what the site must achieve, what the visitor must do, the one objective, and a value proposition a stranger understands in 3 seconds.
+2. **Research** — competitor analysis, inspiration intake, open-web research, moodboard, taste calibration — verified with the client in a back-and-forth loop until the way forward is clear.
+3. **Design** — sitemap, branding/style guide, wireframes, motion spec, each signed off.
+4. **Build** — phased, test-driven implementation with client checkpoints, a designed loading experience, and hard QA gates.
+
+The agent runs it as the **Chief Designer** (`agents/chief-designer.md`) — an award-winning, animated-storytelling web developer identity that directs Web Claw's specialist agents as a studio team.
 
 It is designed for Claude Code, Codex, Cursor, Windsurf, Continue, Aider, Antigravity, or any agent that can read files and run tools. Tool-using agents get the full benefit; manual-mode agents can still use the methodology with local QA run separately.
 
 ---
 
-## What Changed In v2
+## What Changed In v3
 
-v1 had a structural flaw: the pipeline created blueprint artifacts before doing deep inspiration research. v2 fixes that.
+v2 fixed v1's ordering flaw (research now precedes design). v3 makes the workflow *human*:
 
-The v2 pipeline is:
+- **Identity primer.** Every session starts by adopting the Chief Designer identity — an expert in 3D scroll animations, micro-interactions, and UI/UX who leads the agent team.
+- **The Brief comes first.** A real client interview with a 3-second value-proposition test, before any research.
+- **Competitor analysis** is a dedicated state (`RESEARCH:COMPETITORS`) producing positioning gaps, experience gaps, and ranked audience USPs.
+- **The client stays in the loop.** Research findings are verified before being built on; builds show signature elements the moment they first work — no big-bang reveals.
+- **Test-driven build.** Each phase writes its Playwright assertions first and builds until green.
+- **The premium experience standard** (`references/premium-experience-standard.md`) defines the feel bar: designed loading states (never generic skeletons), smooth reveals, parallax, depth and z-layering, big playful typography, mask reveals, a focal storytelling element, and an emotional journey that ends amazed.
+
+The v3 pipeline:
 
 ```text
-IGNITION
--> RESEARCH:SKILL-DISCOVERY
--> RESEARCH:INSPIRATION-INTAKE
--> RESEARCH:OPEN-WEB
--> RESEARCH:MOODBOARD
--> TASTE:CALIBRATION
--> BLUEPRINT:SITEMAP
--> BLUEPRINT:STYLE-GUIDE
--> BLUEPRINT:WIREFRAMES
--> BLUEPRINT:ANIMATIONS
--> EXECUTION:STACK
--> EXECUTION:PLAN
--> EXECUTION:PHASE-1
--> EXECUTION:PHASE-2
--> EXECUTION:PHASE-3
--> QA:FINAL
--> DONE
+PART 1 - BRIEF      BRIEF:INTERVIEW
+PART 2 - RESEARCH   RESEARCH:SKILL-DISCOVERY -> RESEARCH:INSPIRATION-INTAKE ->
+                    RESEARCH:COMPETITORS -> RESEARCH:OPEN-WEB ->
+                    RESEARCH:MOODBOARD -> RESEARCH:TASTE-CALIBRATION
+PART 3 - DESIGN     DESIGN:SITEMAP -> DESIGN:STYLE-GUIDE ->
+                    DESIGN:WIREFRAMES -> DESIGN:ANIMATIONS
+PART 4 - BUILD      BUILD:STACK -> BUILD:PLAN -> BUILD:PHASE-1 ->
+                    BUILD:PHASE-2 -> BUILD:PHASE-3 -> BUILD:QA-FINAL -> DONE
 ```
 
-Web Claw v2 no longer requires Awwwards or YouTube. It can use them when they fit, but it can also use user screenshots, Dribbble, Pinterest, Behance, Instagram, product pages, Mobbin, Land-book, Godly, Siteinspire, Codrops, portfolios, brand guidelines, and direct user notes.
+Research prioritizes real shipped websites — award-winning sites, international studio/agency portfolios and their client work, strong product sites — supported by Dribbble, Pinterest, Behance, Instagram, Mobbin, Land-book, Godly, Siteinspire, Codrops, screenshots, and direct user notes. No single source is mandatory.
 
 ---
 
 ## Design Philosophy
 
-- **Taste evidence before taste claims.** No moodboard, no blueprint.
+- **The brief is the foundation.** No research from nowhere; interview the client first.
+- **Taste evidence before taste claims.** No moodboard, no design.
 - **User inspiration is primary.** The user's links and screenshots outrank famous galleries.
-- **Open-web research is source-agnostic.** Use the right source for the project.
+- **The client stays in the loop.** Verify research; show signature elements early; never big-bang reveal.
+- **The arrival is designed.** The loading state is the opening scene, not a technical apology.
 - **Companion skills are teammates.** Discover Taste Skill, UI-UX Pro Max, Impeccable, Stitch, motion tools, or any useful local design skill.
-- **One page, one job.**
-- **One signature device per page.**
+- **One page, one job. One signature device per page.**
 - **Reduced motion is design.**
 - **Numbers, not vibes.** Lighthouse, contrast, bundle, accessibility, and motion budgets still gate execution.
 
@@ -64,20 +62,20 @@ Web Claw v2 no longer requires Awwwards or YouTube. It can use them when they fi
 Clone or install this branch into your agent's skills folder.
 
 ```bash
-git clone --branch v2 https://github.com/yusufabdul024/web-claw.git web-claw
+git clone --branch v3 https://github.com/yusufabdul024/web-claw.git web-claw
 ```
 
 For Codex global skill discovery, install into the Codex skill roster folder:
 
 ```bash
-git clone --branch v2 https://github.com/yusufabdul024/web-claw.git ~/.codex/skills/web-claw
+git clone --branch v3 https://github.com/yusufabdul024/web-claw.git ~/.codex/skills/web-claw
 python ~/.codex/skills/web-claw/scripts/verify-install.py --skill-root ~/.codex/skills/web-claw
 ```
 
 On Windows PowerShell:
 
 ```powershell
-git clone --branch v2 https://github.com/yusufabdul024/web-claw.git "$env:USERPROFILE\.codex\skills\web-claw"
+git clone --branch v3 https://github.com/yusufabdul024/web-claw.git "$env:USERPROFILE\.codex\skills\web-claw"
 python "$env:USERPROFILE\.codex\skills\web-claw\scripts\verify-install.py" --skill-root "$env:USERPROFILE\.codex\skills\web-claw"
 ```
 
@@ -96,7 +94,7 @@ Restart Codex after a global install so the skill roster is rebuilt.
 For Claude-style skill folders:
 
 ```bash
-git clone --branch v2 https://github.com/yusufabdul024/web-claw.git ~/.claude/skills/web-claw
+git clone --branch v3 https://github.com/yusufabdul024/web-claw.git ~/.claude/skills/web-claw
 ```
 
 For project-scoped Codex activation, use the installer:
@@ -112,7 +110,7 @@ For project-scoped Codex activation, use the installer:
 This copies Web Claw to `<project>/.agents/skills/web-claw/` and writes an `AGENTS.md` pointer. You can also add the pointer manually:
 
 ```text
-When this project is opened, read .agents/skills/web-claw/SKILL.md and follow the Web Claw v2 pipeline. Begin by reading <project>/memory.md.
+When this project is opened, read .agents/skills/web-claw/SKILL.md, adopt the Chief Designer identity from agents/chief-designer.md, and follow the Web Claw v3 pipeline. Begin by reading <project>/memory.md.
 ```
 
 See `references/platform-compat.md` for broader platform guidance.
@@ -122,52 +120,54 @@ See `references/platform-compat.md` for broader platform guidance.
 ## Run It
 
 ```text
-Run Web Claw v2 to build a scroll-stopping website for <project>.
+Run Web Claw v3 to build a scroll-stopping website for <project>.
 ```
 
 Better:
 
 ```text
-Run Web Claw v2 for my studio site. Goal: book discovery calls. Audience: founders. I like these references:
+Run Web Claw v3 for my studio site. Goal: book discovery calls. Audience: founders. I like these references:
 1. <link> - borrow the typography, not the colors.
 2. <link> - borrow the motion pacing.
 3. <screenshot> - borrow the editorial spacing.
 ```
 
-If you do not have references, Web Claw v2 will ask for them or research open-web defaults, depending on mode.
+If you do not have references, Web Claw v3 will ask for them or research open-web defaults, depending on mode. Either way it starts with the brief interview — expect questions before artifacts.
 
 ---
 
 ## Project Outputs
 
+Brief:
+
+- `brief/client-brief.md` — including the 3-second-test value proposition.
+
 Research:
 
 - `research/skill-discovery.md`
 - `research/inspiration-sources.md`
+- `research/competitor-analysis.md`
 - `research/research-matrix.md`
 - `research/moodboard.md`
-- `research/taste-calibration.md`
+- `research/taste-calibration.md` — the signed-off way forward.
 
-Blueprint:
+Design:
 
-- `blueprint/discovery.md`
-- `blueprint/sitemap.md`
-- `blueprint/style-guide.md`
-- `blueprint/wireframes.md`
-- `blueprint/animations.md`
+- `design/sitemap.md`
+- `design/style-guide.md`
+- `design/wireframes.md`
+- `design/animations.md` — including the loading state and focal storytelling element.
 
-Execution:
+Build:
 
 - `research/tech-stack.md`
 - `plan.md`
-- `phase-1.md`
-- `phase-2.md`
-- `phase-3.md`
+- `phase-1.md` / `phase-2.md` / `phase-3.md` — each with test assertions and client checkpoints.
 
 QA:
 
 - phase QA reports,
-- visual critique reports,
+- visual critique reports (12 axes, including arrival and depth/journey),
 - performance/accessibility/bundle/reduced-motion/playwright evidence,
 - final report.
 
@@ -197,13 +197,13 @@ Key scripts:
 - `scripts/run-playwright.py`
 - `scripts/visual-regression.py`
 
-`scripts/scrape-awwwards.py` remains as an optional legacy helper. It is not required in v2.
+`scripts/scrape-awwwards.py` is an optional helper for award-gallery evidence during `RESEARCH:OPEN-WEB`.
 
 ---
 
 ## Companion Skills
 
-If sibling skills are present, Web Claw v2 discovers them during `RESEARCH:SKILL-DISCOVERY`.
+If sibling skills are present, Web Claw v3 discovers them during `RESEARCH:SKILL-DISCOVERY`.
 
 Expected useful neighbors include:
 
@@ -220,9 +220,11 @@ Unavailable skills do not block the pipeline. Their absence is recorded only whe
 
 ## Done Means
 
-- Moodboard and taste calibration are complete before blueprint.
-- Blueprint artifacts trace back to research evidence.
+- The brief exists and its value proposition passes the 3-second test.
+- Competitor analysis, moodboard, and taste calibration are complete before design.
+- Design artifacts trace back to research evidence.
 - Stack and phases are project-specific, not template defaults.
-- The site is deployed through each phase.
-- QA gates pass.
-- The final site is beautiful, usable, accessible, performant, and specific enough that the user is proud to share it.
+- Phases are built test-first, with signature elements approved by the client mid-phase.
+- The arrival is designed: intentional loader, smooth reveal, zero layout shift.
+- QA gates pass — including the 12-axis visual critique.
+- The final site is beautiful, usable, accessible, performant, and specific enough that the visitor leaves amazed — and the client is proud to share it.

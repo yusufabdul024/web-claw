@@ -19,6 +19,21 @@
 
 ---
 
+## Test assertions (write these FIRST)
+
+Final gate assertions before polish work begins:
+
+- [ ] Full Playwright suite green across breakpoints (375 / 768 / 1280).
+- [ ] Visual regression against the approved Phase 2 baseline shows only intended diffs.
+- [ ] Reduced-motion, keyboard-only, and JS-disabled passes still hold.
+
+## Client checkpoints (mid-phase)
+
+- [ ] Show the client the real-content swap on one signature page before swapping all pages.
+- [ ] Walk the client through the arrival experience (loader -> reveal) on a real device at least once before launch sign-off.
+
+---
+
 ## Sequential prompts
 
 ### Step 1 — Replace placeholders with real content

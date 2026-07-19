@@ -23,7 +23,7 @@ How quickly does the brand vibe communicate? Read the H1 + hero. Look at the col
 
 ## Axis 2 — Signature moment and source fit
 
-There is exactly one "holy shit" moment per page (discovery.md Q16). Does it land?
+There is exactly one "holy shit" moment per page (client-brief.md Q11). Does it land?
 
 - **1 — Missing**: No signature device. Every section looks the same weight.
 - **3 — Present but tame**: The signature exists (e.g., a pinned scroll narrative) but reads as derivative or under-tuned.
@@ -93,6 +93,22 @@ Does it feel like a real, considered product or a template demo?
 - **3 — Believable**: Real testimonials, real logos, claims that have backing.
 - **5 — Confident**: Specific numbers, named customers, concrete proof, no hyperbole.
 
+## Axis 11 — The arrival
+
+Score the first moments against `references/premium-experience-standard.md`: the loading state and the reveal.
+
+- **1 — Undesigned**: White flash, generic skeleton loader, or content popping in with layout shift. Video backgrounds stutter in.
+- **3 — Clean**: No loader needed or a simple branded one; content appears without jank; entrance is deliberate but unremarkable.
+- **5 — An opening scene**: The loader is a designed brand moment that hands off into a staggered, parallax-touched reveal. Heavy assets arrive invisibly. The first 3 seconds already feel premium.
+
+## Axis 12 — Depth and emotional journey
+
+Does the page use depth as a material, and does scrolling feel like a story?
+
+- **1 — Flat and listy**: No layering, no shadow logic, sections read as stacked blocks in arbitrary order.
+- **3 — Structured**: Consistent shadow/elevation system; sections follow a sensible order; some overlap or layering intent.
+- **5 — A journey**: Deliberate z-depth (text passing behind elements, cross-section overlaps) that never clutters; a focal element or motif carries the narrative; the visitor exits the scroll wanting the CTA. Arrival → intrigue → understanding → desire → action is legible.
+
 ---
 
 ## Score sheet (copy into `<project>/qa/visual-critique-<phase>.md`)
@@ -109,6 +125,8 @@ Does it feel like a real, considered product or a template demo?
 | 8. Copy taste                 |             |       |
 | 9. Asset quality              |             |       |
 | 10. Trust signal              |             |       |
+| 11. The arrival               |             |       |
+| 12. Depth and journey         |             |       |
 | **Median**                    |             |       |
 | **Minimum**                   |             |       |
 
@@ -119,5 +137,5 @@ If any axis is at 1 or 2, list the specific changes that would lift it to 3 in t
 ## Why these axes (and not others)
 
 - **Lighthouse / axe** already cover technical performance and access. This rubric covers what they can't measure.
-- **Why 10 axes, not 20**: more axes split attention and let real problems hide in averages. Ten is the smallest number that covers the four pillars (vibe, system, motion, content) without overlap.
-- **Why median + minimum, not weighted sum**: a 5+5+5+5+5+5+5+5+5+1 score is *not* a pass. The minimum floor catches "one thing is broken."
+- **Why 12 axes, not 20**: more axes split attention and let real problems hide in averages. Twelve is the smallest number that covers the five pillars (vibe, system, motion, content, experience) without overlap — axes 11–12 score the premium-experience standard directly.
+- **Why median + minimum, not weighted sum**: a straight-5s-plus-one-1 score is *not* a pass. The minimum floor catches "one thing is broken."

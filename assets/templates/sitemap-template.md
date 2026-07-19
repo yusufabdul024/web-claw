@@ -2,7 +2,7 @@
 
 **Phase:** 1.2 (Web Claw)
 **Authored by:** UX Strategy Agent
-**Based on:** `blueprint/discovery.md`
+**Based on:** `brief/client-brief.md`
 **Date:** <YYYY-MM-DD>
 
 ---

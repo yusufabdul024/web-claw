@@ -8,7 +8,7 @@ its limit to preserve enough state for a fresh agent session to resume
 without losing progress.
 
 The snapshot contains:
-  - Summaries of all produced artifacts (from blueprint/, research/)
+  - Summaries of all produced artifacts (from design/, research/)
   - The last artifact verbatim (if under 2000 tokens / ~8000 chars)
   - The current work-in-progress description
 
@@ -63,11 +63,11 @@ def one_line_summary(content: str, max_chars: int = 200) -> str:
 
 def build_artifact_summaries(project_root: Path) -> list[str]:
     artifacts = [
-        ("blueprint/discovery.md", "Discovery"),
-        ("blueprint/sitemap.md", "Sitemap"),
-        ("blueprint/style-guide.md", "Style guide"),
-        ("blueprint/wireframes.md", "Wireframes"),
-        ("blueprint/animations.md", "Motion spec"),
+        ("brief/client-brief.md", "Discovery"),
+        ("design/sitemap.md", "Sitemap"),
+        ("design/style-guide.md", "Style guide"),
+        ("design/wireframes.md", "Wireframes"),
+        ("design/animations.md", "Motion spec"),
         ("research/skill-discovery.md", "Skill discovery"),
         ("research/inspiration-sources.md", "Inspiration sources"),
         ("research/moodboard.md", "Moodboard"),

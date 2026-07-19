@@ -1,4 +1,4 @@
-# Inspiration Research - Web Claw v2
+# Inspiration Research - Web Claw v3
 
 ## Purpose
 
@@ -10,8 +10,8 @@ The goal is not to collect pretty links. The goal is to produce design evidence 
 
 1. User-provided sources.
 2. Sources that match the user's sources.
-3. Shipped websites and product experiences.
-4. Moodboard/social/design-gallery references.
+3. Real, trusted shipped websites: award-winning sites (Awwwards, CSS Design Awards), international studio/agency portfolios and the client work inside them, strong product and brand experiences.
+4. Moodboard/social/design-gallery references (Dribbble, Pinterest, Behance, Instagram, and similar) — mood and pattern evidence, not feasibility proof.
 5. Technical references and library examples.
 6. Built-in Web Claw references.
 

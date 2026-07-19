@@ -41,14 +41,14 @@ FALLBACK_PHASES = [
         ),
         "tasks": [
             "Confirm stack and package manager. Run `scripts/install-deps.py research/tech-stack.md --dry-run`.",
-            "Translate `blueprint/style-guide.md` tokens into CSS custom properties or Tailwind config.",
-            "Build all static components from `blueprint/wireframes.md` component inventory with exact prop shapes.",
-            "Assemble all pages with real copy from `blueprint/sitemap.md`. Zero lorem ipsum.",
+            "Translate `design/style-guide.md` tokens into CSS custom properties or Tailwind config.",
+            "Build all static components from `design/wireframes.md` component inventory with exact prop shapes.",
+            "Assemble all pages with real copy from `design/sitemap.md`. Zero lorem ipsum.",
             "Add SEO meta tags (title, description, og:) to all pages.",
             "Wire accessibility basics: skip-to-content, heading hierarchy, alt text, focus-visible styles.",
             "Deploy to preview URL. Verify all pages load without 404 or console errors.",
             "Run `qa/phase-1-gate.md`. Fix all failures before presenting preview.",
-            "Update `memory.md`: Phase = EXECUTION:PHASE-2, sign-off = PENDING.",
+            "Update `memory.md`: Phase = BUILD:PHASE-2, sign-off = PENDING.",
         ],
         "acceptance": [
             "All pages in sitemap.md reachable at preview URL with no 404s.",
@@ -71,19 +71,19 @@ FALLBACK_PHASES = [
     {
         "name": "Animations, Signature Moments, and Polish",
         "mission": (
-            "Install motion libraries. Implement all animations from `blueprint/animations.md`. "
+            "Install motion libraries. Implement all animations from `design/animations.md`. "
             "Add prefers-reduced-motion fallbacks for every animation. Deploy to preview."
         ),
         "tasks": [
             "Run `scripts/install-deps.py research/tech-stack.md` to install motion libraries.",
             "Implement above-the-fold entrance choreography per animations.md (total ≤ 1.5s).",
             "Implement scroll-triggered section reveals (opacity 0→1, y 24→0, 800ms ease-out-quart).",
-            "Implement SIGNATURE section per `blueprint/animations.md §signature`. Reserve ~50% of phase effort here.",
+            "Implement SIGNATURE section per `design/animations.md §signature`. Reserve ~50% of phase effort here.",
             "Implement micro-interactions: button hover, link hover, input focus, card hover.",
             "Add prefers-reduced-motion fallback for every animation (replace, not remove).",
             "Deploy to preview URL.",
             "Run `qa/phase-2-gate.md`. Fix all failures before presenting preview.",
-            "Update `memory.md`: Phase = EXECUTION:PHASE-3, sign-off = PENDING.",
+            "Update `memory.md`: Phase = BUILD:PHASE-3, sign-off = PENDING.",
         ],
         "acceptance": [
             "Entrance animations match animations.md timing and easing exactly.",
@@ -115,11 +115,11 @@ FALLBACK_PHASES = [
             "Finalize SEO: sitemap.xml, robots.txt, og: tags per page, canonical URLs, JSON-LD on home.",
             "Wire all form endpoints. Test each form — submit → delivery confirmed.",
             "Run cross-browser smoke: Chrome, Safari, Firefox, Chrome Android, Safari iOS.",
-            "Wire analytics if specified in discovery.md.",
+            "Wire analytics if specified in client-brief.md.",
             "Deploy to production domain. Verify SSL, canonical, and redirects.",
             "Run `qa/phase-3-gate.md`. Fix all failures.",
             "Run `python scripts/check-output.py --workspace <project> --phase all`. Must exit 0.",
-            "Update `memory.md`: Phase = QA:FINAL, sign-off = PENDING. (DONE is set only when QA:FINAL exits per references/state-machine.md.)",
+            "Update `memory.md`: Phase = BUILD:QA-FINAL, sign-off = PENDING. (DONE is set only when BUILD:QA-FINAL exits per references/state-machine.md.)",
         ],
         "acceptance": [
             "Lighthouse mobile meets all four floors in `references/budgets.yaml -> lighthouse.mobile.*`.",
@@ -129,7 +129,7 @@ FALLBACK_PHASES = [
             "Production domain live with SSL.",
             "All qa/phase-3-gate.md items pass.",
             "`check-output.py --phase all` exits 0.",
-            "memory.md → Phase: QA:FINAL (advances to DONE only after qa/pre-launch-checklist.md passes per references/state-machine.md).",
+            "memory.md → Phase: BUILD:QA-FINAL (advances to DONE only after qa/pre-launch-checklist.md passes per references/state-machine.md).",
         ],
         "verification": [
             "Run: `python scripts/audit-perf.py <production-url>` — paste median of 3 runs.",
@@ -137,7 +137,7 @@ FALLBACK_PHASES = [
             "Open production URL in Chrome, Safari, Firefox — scroll, click CTA, check console.",
             "Submit each form. Confirm delivery.",
         ],
-        "handoff": "Phase 3 build complete. Advances to QA:FINAL for the pre-launch checklist; QA:FINAL advances to DONE on user sign-off. See references/state-machine.md.",
+        "handoff": "Phase 3 build complete. Advances to BUILD:QA-FINAL for the pre-launch checklist; BUILD:QA-FINAL advances to DONE on user sign-off. See references/state-machine.md.",
     },
 ]
 
@@ -267,11 +267,11 @@ def phase_markdown(index: int, phase: dict) -> str:
         ## Read First
 
         - memory.md  ← MANDATORY first
-        - blueprint/discovery.md
-        - blueprint/sitemap.md
-        - blueprint/style-guide.md
-        - blueprint/wireframes.md
-        - blueprint/animations.md
+        - brief/client-brief.md
+        - design/sitemap.md
+        - design/style-guide.md
+        - design/wireframes.md
+        - design/animations.md
         - research/tech-stack.md
         - web-claw/references/agent-handoff-protocol.md
 
@@ -283,7 +283,7 @@ def phase_markdown(index: int, phase: dict) -> str:
         ## Inputs
 
         - memory.md (current project state and pinned decisions)
-        - All blueprint artifacts (signed off by user)
+        - All design artifacts (signed off by user)
         - research/tech-stack.md (signed off by user)
         - Phase {index - 1} handoff notes (if applicable)
 

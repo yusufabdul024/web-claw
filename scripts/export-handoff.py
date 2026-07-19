@@ -42,7 +42,7 @@ from pathlib import Path
 # Files and directories under the project workspace that always go in the bundle.
 ALWAYS_INCLUDE = [
     "memory.md",
-    "blueprint/",
+    "design/",
     "research/",
     "qa/",
     "decisions/",
@@ -141,12 +141,12 @@ MANIFEST_TIERS: list[tuple[int, str, list[str]]] = [
         "dependencies.json",
         "qa/qa-plan.md",
     ]),
-    (2, "Blueprint", [
-        "blueprint/discovery.md",
-        "blueprint/sitemap.md",
-        "blueprint/style-guide.md",
-        "blueprint/wireframes.md",
-        "blueprint/animations.md",
+    (2, "Design", [
+        "brief/client-brief.md",
+        "design/sitemap.md",
+        "design/style-guide.md",
+        "design/wireframes.md",
+        "design/animations.md",
     ]),
     (3, "Research", [
         "research/skill-discovery.md",

@@ -2,7 +2,7 @@
 
 **Phase:** 1.4 (Web Claw)
 **Authored by:** UI Strategy Agent
-**Based on:** `blueprint/discovery.md`, `blueprint/sitemap.md`, `blueprint/style-guide.md`
+**Based on:** `brief/client-brief.md`, `design/sitemap.md`, `design/style-guide.md`
 **Date:** <YYYY-MM-DD>
 
 ---

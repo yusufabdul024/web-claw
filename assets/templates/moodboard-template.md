@@ -1,7 +1,7 @@
 # Moodboard - <Project Name>
 
 **Phase:** RESEARCH:MOODBOARD  
-**Based on:** `blueprint/discovery.md`, `research/inspiration-sources.md`, `research/research-matrix.md`  
+**Based on:** `brief/client-brief.md`, `research/inspiration-sources.md`, `research/research-matrix.md`  
 **Date:** <YYYY-MM-DD>
 
 ---

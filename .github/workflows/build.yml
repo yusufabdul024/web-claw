@@ -46,7 +46,8 @@ jobs:
           mkdir -p /tmp/wc-init-smoke
           python -B scripts/init-project.py "CI Smoke" --path /tmp/wc-init-smoke --slug web-claw-ci-smoke --mode fast
           test -f /tmp/wc-init-smoke/web-claw-ci-smoke/memory.md
-          test -d /tmp/wc-init-smoke/web-claw-ci-smoke/blueprint
+          test -d /tmp/wc-init-smoke/web-claw-ci-smoke/design
+          test -f /tmp/wc-init-smoke/web-claw-ci-smoke/brief/client-brief.md
           test -d /tmp/wc-init-smoke/web-claw-ci-smoke/qa
 
       - name: Install into temp Codex project

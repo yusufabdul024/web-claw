@@ -35,7 +35,8 @@ webclaw-lighthouse-*/
 *-handoff.md
 
 # User project workspaces accidentally created next to the skill
-/blueprint/
+/brief/
+/design/
 /research/
 /decisions/
 /qa/phase-*-report.md

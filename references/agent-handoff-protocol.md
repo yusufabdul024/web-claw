@@ -43,14 +43,14 @@ When done: update memory.md → Last artifact, User sign-off (PENDING), Next act
 Read memory.md at: ./meridian/memory.md
 Read your agent brief at: ./web-claw/agents/designer-agent.md
 Read these input files:
-  - ./meridian/blueprint/discovery.md
-  - ./meridian/blueprint/sitemap.md
+  - ./meridian/brief/client-brief.md
+  - ./meridian/design/sitemap.md
   - ./web-claw/references/color-theory.md
   - ./web-claw/references/typography-systems.md
   - ./web-claw/references/design-systems.md
-Your task: Produce blueprint/style-guide.md using assets/templates/style-guide-template.md. Present it to the user. Stop before moving to wireframes.
-Output goes to: ./meridian/blueprint/style-guide.md
-When done: update memory.md -> Last artifact = blueprint/style-guide.md, User sign-off = PENDING, Next action = "Spawn UI Strategy Agent to produce wireframes.md".
+Your task: Produce design/style-guide.md using assets/templates/style-guide-template.md. Present it to the user. Stop before moving to wireframes.
+Output goes to: ./meridian/design/style-guide.md
+When done: update memory.md -> Last artifact = design/style-guide.md, User sign-off = PENDING, Next action = "Spawn UI Strategy Agent to produce wireframes.md".
 ```
 
 **Example — spawning in fast mode:**
@@ -59,9 +59,9 @@ When done: update memory.md -> Last artifact = blueprint/style-guide.md, User si
 Read memory.md at: ./meridian/memory.md  (Mode: fast)
 Read your agent brief at: ./web-claw/agents/designer-agent.md
 Read these input files: [as above]
-Your task: Produce blueprint/style-guide.md. Make any judgment calls per operating principles; do NOT pause for user approval. For each judgment call (palette pick, type pairing), produce decisions/NNN-auto-<topic>.md with the rationale.
-Output goes to: ./meridian/blueprint/style-guide.md
-When done: update memory.md -> Last artifact = blueprint/style-guide.md, User sign-off = AUTO, Next action = "Spawn UI Strategy Agent to produce wireframes.md".
+Your task: Produce design/style-guide.md. Make any judgment calls per operating principles; do NOT pause for user approval. For each judgment call (palette pick, type pairing), produce decisions/NNN-auto-<topic>.md with the rationale.
+Output goes to: ./meridian/design/style-guide.md
+When done: update memory.md -> Last artifact = design/style-guide.md, User sign-off = AUTO, Next action = "Spawn UI Strategy Agent to produce wireframes.md".
 ```
 
 ---
@@ -72,21 +72,21 @@ A rough token budget guide for each phase. Stay within it. If you're over, remov
 
 | Phase | Load in context |
 |-------|----------------|
-| IGNITION | SKILL.md + ignition-quick.md or ignition-full.md |
+| BRIEF:INTERVIEW | SKILL.md + ignition-quick.md or ignition-full.md |
 | RESEARCH:SKILL-DISCOVERY | researcher-agent.md + extension-orchestration.md |
-| RESEARCH:INSPIRATION-INTAKE | researcher-agent.md + discovery.md + inspiration-research.md |
-| RESEARCH:OPEN-WEB | researcher-agent.md + discovery.md + sources.json + inspiration-research.md |
+| RESEARCH:INSPIRATION-INTAKE | researcher-agent.md + client-brief.md + inspiration-research.md |
+| RESEARCH:OPEN-WEB | researcher-agent.md + client-brief.md + sources.json + inspiration-research.md |
 | RESEARCH:MOODBOARD | researcher-agent.md + inspiration-sources.md + research-matrix.md + moodboard-library.md |
-| TASTE:CALIBRATION | designer-agent.md + moodboard.md + skill-discovery.md + extension-orchestration.md |
-| BLUEPRINT:SITEMAP | ux-strategy-agent.md + discovery.md + taste-calibration.md + relume-methodology.md |
-| BLUEPRINT:STYLE-GUIDE | designer-agent.md + discovery.md + moodboard.md + taste-calibration.md + sitemap.md + color-theory.md + typography-systems.md |
-| BLUEPRINT:WIREFRAMES | ui-strategy-agent.md + discovery.md + sitemap.md + style-guide.md + taste-calibration.md + pattern-library.md (Layer 2) |
-| BLUEPRINT:ANIMATIONS | animator-agent.md + discovery.md + wireframes.md + style-guide.md + inspiration-sources.md + taste-calibration.md + animation-libraries.md + pattern-library.md (all layers) |
-| EXECUTION:STACK | implementer-agent.md + tech-stack.md + animations.md + discovery.md + performance-budgets.md |
-| EXECUTION:PLAN | implementer-agent.md + all blueprint + research moodboard/taste/tech-stack |
-| EXECUTION:PHASE-N | implementer-agent.md + phase-N.md + memory.md |
+| RESEARCH:TASTE-CALIBRATION | designer-agent.md + moodboard.md + skill-discovery.md + extension-orchestration.md |
+| DESIGN:SITEMAP | ux-strategy-agent.md + client-brief.md + taste-calibration.md + relume-methodology.md |
+| DESIGN:STYLE-GUIDE | designer-agent.md + client-brief.md + moodboard.md + taste-calibration.md + sitemap.md + color-theory.md + typography-systems.md |
+| DESIGN:WIREFRAMES | ui-strategy-agent.md + client-brief.md + sitemap.md + style-guide.md + taste-calibration.md + pattern-library.md (Layer 2) |
+| DESIGN:ANIMATIONS | animator-agent.md + client-brief.md + wireframes.md + style-guide.md + inspiration-sources.md + taste-calibration.md + animation-libraries.md + pattern-library.md (all layers) |
+| BUILD:STACK | implementer-agent.md + tech-stack.md + animations.md + client-brief.md + performance-budgets.md |
+| BUILD:PLAN | implementer-agent.md + all design + research moodboard/taste/tech-stack |
+| BUILD:PHASE-N | implementer-agent.md + phase-N.md + memory.md |
 | QA:GATE | qa-agent.md + phase-N-gate.md + preview URL |
-| QA:FINAL | qa-agent.md + pre-launch-checklist.md + all qa reports |
+| BUILD:QA-FINAL | qa-agent.md + pre-launch-checklist.md + all qa reports |
 
 **Never load all references simultaneously.** Load only what the current agent file's "Inputs you require" section lists.
 

@@ -1,8 +1,8 @@
 {
   "$schema": "https://schemas.anthropic.com/skill/v1.json",
   "name": "web-claw",
-  "version": "2.0.0",
-  "description": "Research-first methodology for designing and shipping scroll-stopping websites through AI coding agents. Web Claw v2 gathers user inspiration, performs open-web moodboarding, consults companion design skills, calibrates taste, then builds through blueprint, implementation, and QA gates.",
+  "version": "3.0.0",
+  "description": "Studio-workflow methodology for designing and shipping scroll-stopping, award-winning websites through AI coding agents. Web Claw v3 runs Brief -> Research -> Design -> Build as an expert Chief Designer: client interview to a 3-second value proposition, competitor analysis, inspiration research and moodboarding, taste calibration, then designed artifacts and a test-driven phased build with client checkpoints, a designed loading experience, and hard QA gates.",
   "entry": "SKILL.md",
   "license": "MIT",
   "homepage": "https://github.com/yusufabdul024/web-claw",
@@ -26,12 +26,13 @@
   "host_native": {
     "gemini": {
       "kind": "gemini-cli-extension",
-      "install_command": "gemini extensions install https://github.com/yusufabdul024/web-claw --ref v2",
+      "install_command": "gemini extensions install https://github.com/yusufabdul024/web-claw --ref v3",
       "manifest_file": "gemini-extension.json",
       "managed_by": "Gemini CLI"
     }
   },
   "entry_points": {
+    "identity": "agents/chief-designer.md",
     "pipeline": "SKILL.md",
     "state_machine": "references/state-machine.md",
     "memory_format": "references/memory-format.md",
@@ -43,12 +44,17 @@
     "design a landing page",
     "scroll-stopping site",
     "award-winning website",
+    "client brief",
+    "competitor analysis",
     "moodboard",
     "design inspiration",
     "Awwwards-quality",
     "premium site",
     "high-end web design",
     "animated website",
+    "storytelling website",
+    "3D scroll animations",
+    "micro-interactions",
     "Relume-style sitemap",
     "site planning",
     "wireframes",

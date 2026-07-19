@@ -49,7 +49,7 @@ This is the master checklist. It composes the others.
 
 - [ ] Pass `qa/accessibility-checklist.md`.
 - [ ] `scripts/check-a11y.py <url>` exits 0 every page.
-- [ ] `scripts/check-contrast.py --style-guide blueprint/style-guide.md` exits 0.
+- [ ] `scripts/check-contrast.py --style-guide design/style-guide.md` exits 0.
 - [ ] Keyboard golden path tested.
 - [ ] Screen reader spot-check passed (home minimum).
 

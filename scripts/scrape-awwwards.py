@@ -2,7 +2,7 @@
 """
 scrape-awwwards.py
 
-Optional legacy helper for user-requested award-gallery research. Web Claw v2
+Optional legacy helper for user-requested award-gallery research. Web Claw v3
 does not require Awwwards or any other award source; use this only when the
 user explicitly wants that source included in the inspiration pool.
 

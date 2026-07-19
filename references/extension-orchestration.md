@@ -1,8 +1,8 @@
-# Extension Orchestration - Web Claw v2
+# Extension Orchestration - Web Claw v3
 
 ## Purpose
 
-Web Claw v2 treats companion skills as teammates. It proactively discovers local design/UX/frontend skills, consults them when they can improve taste or craft, and distills their advice into Web Claw artifacts.
+Web Claw v3 treats companion skills as teammates. It proactively discovers local design/UX/frontend skills, consults them when they can improve taste or craft, and distills their advice into Web Claw artifacts.
 
 Companion skills are advisory. Web Claw memory, decisions, signed-off artifacts, budgets, and QA gates stay authoritative.
 
@@ -10,7 +10,7 @@ Companion skills are advisory. Web Claw memory, decisions, signed-off artifacts,
 
 1. User hard constraints.
 2. Web Claw memory, decisions, state, and budgets.
-3. Signed-off research and blueprint artifacts.
+3. Signed-off research and design artifacts.
 4. Project code and pinned package versions.
 5. Companion skill advice.
 6. Web Claw built-in preferences.
@@ -58,9 +58,9 @@ Run this during `RESEARCH:SKILL-DISCOVERY`.
 ## Routing Plan
 
 - RESEARCH:MOODBOARD -> <skill> for <purpose>
-- TASTE:CALIBRATION -> <skill> for <purpose>
-- BLUEPRINT:STYLE-GUIDE -> <skill> for <purpose>
-- EXECUTION:PHASE-N -> <skill> for <purpose>
+- RESEARCH:TASTE-CALIBRATION -> <skill> for <purpose>
+- DESIGN:STYLE-GUIDE -> <skill> for <purpose>
+- BUILD:PHASE-N -> <skill> for <purpose>
 
 ## Fallbacks
 
@@ -100,14 +100,14 @@ If a sibling skill clearly helps with brand, visual critique, accessibility, mot
 | RESEARCH:SKILL-DISCOVERY | Detect and document available skills. |
 | RESEARCH:OPEN-WEB | Use UI-UX/design research skills to broaden source discovery. |
 | RESEARCH:MOODBOARD | Use Taste/UI-UX/design skills to sharpen directions and anti-style. |
-| TASTE:CALIBRATION | Use Taste/Impeccable/UI-UX Pro Max for critique before user sign-off. |
-| BLUEPRINT:STYLE-GUIDE | Use palette/type/design-system skills for candidate systems. |
-| BLUEPRINT:WIREFRAMES | Use UX/UI skills for structure and originality critique. |
-| BLUEPRINT:ANIMATIONS | Use motion skills for feasibility and API patterns. |
-| EXECUTION:PHASE-1 | Use Impeccable/frontend skills for static UI polish. |
-| EXECUTION:PHASE-2 | Use Impeccable/motion skills for animation polish and reduced-motion checks. |
-| EXECUTION:PHASE-3 | Use Impeccable/accessibility/perf skills for launch hardening. |
-| QA:FINAL | Companion skills may critique, but QA scripts and checklists decide pass/fail. |
+| RESEARCH:TASTE-CALIBRATION | Use Taste/Impeccable/UI-UX Pro Max for critique before user sign-off. |
+| DESIGN:STYLE-GUIDE | Use palette/type/design-system skills for candidate systems. |
+| DESIGN:WIREFRAMES | Use UX/UI skills for structure and originality critique. |
+| DESIGN:ANIMATIONS | Use motion skills for feasibility and API patterns. |
+| BUILD:PHASE-1 | Use Impeccable/frontend skills for static UI polish. |
+| BUILD:PHASE-2 | Use Impeccable/motion skills for animation polish and reduced-motion checks. |
+| BUILD:PHASE-3 | Use Impeccable/accessibility/perf skills for launch hardening. |
+| BUILD:QA-FINAL | Companion skills may critique, but QA scripts and checklists decide pass/fail. |
 
 ## Distillation Rule
 
@@ -116,7 +116,7 @@ Raw companion output is never canonical. Every useful finding must be distilled 
 - `research/skill-discovery.md`
 - `research/moodboard.md`
 - `research/taste-calibration.md`
-- a blueprint artifact
+- a design artifact
 - a decision file
 - `qa/phase-N-report.md`
 

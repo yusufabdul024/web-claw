@@ -15,7 +15,7 @@ Web Claw does NOT gate on a single subscriber number. Subscriber count is a stal
 | **Recency**          | Posted at least one video in the last 90 days that's relevant to web design.     | Channel's Videos tab sorted by date.         |
 | **Library currency** | The relevant video demonstrates against a current major-version library.         | Check the runtime references / shown code.   |
 | **Track record**     | Channel has shipped at least 18 months of relevant content.                      | Check the "Joined" date on the About tab.    |
-| **Reach (signal)**   | Subscriber count is high *enough* to suggest the technique was vetted by an audience. In v2 this is contextual, not a canonical budget. Weight it against the other three signals. | About tab. |
+| **Reach (signal)**   | Subscriber count is high *enough* to suggest the technique was vetted by an audience. In v3 this is contextual, not a canonical budget. Weight it against the other three signals. | About tab. |
 
 **Picking the *video*, not just the channel.** A great channel is necessary, not sufficient. The video itself must:
 

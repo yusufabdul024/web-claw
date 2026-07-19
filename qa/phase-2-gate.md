@@ -86,7 +86,7 @@ Run the `qa/visual-critique-rubric.md` rubric against the deployed preview. Writ
 
 ## Gate Result
 
-If all items pass: advance to EXECUTION:PHASE-3. Update `memory.md`.
+If all items pass: advance to BUILD:PHASE-3. Update `memory.md`.
 
 If any item fails: hand to Implementer Agent with this report. Fix all ❌. Re-run gate.
 

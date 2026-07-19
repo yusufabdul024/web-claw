@@ -2,7 +2,7 @@
 
 **Phase:** 1.5 (Web Claw)
 **Authored by:** Animator Agent
-**Based on:** `blueprint/discovery.md`, `research/inspiration-sources.md`, `research/moodboard.md`, `research/taste-calibration.md`, `blueprint/sitemap.md`, `blueprint/style-guide.md`, `blueprint/wireframes.md`
+**Based on:** `brief/client-brief.md`, `research/inspiration-sources.md`, `research/moodboard.md`, `research/taste-calibration.md`, `design/sitemap.md`, `design/style-guide.md`, `design/wireframes.md`
 **Date:** <YYYY-MM-DD>
 
 ---
@@ -42,6 +42,23 @@ export const motion = {
 ```
 
 ---
+
+## The arrival (site-wide)
+
+Per `references/premium-experience-standard.md` — the loading state is the opening scene, never a generic skeleton.
+
+- **Loader concept:** <wordmark / progress counter / curtain / style-guide motif — one sentence>
+- **What it covers:** <which assets it buys time for: fonts, hero video, WebGL scene>
+- **Hand-off:** <how the loader exits into the reveal — e.g., curtain lifts into staggered hero entrance; zero layout shift>
+- **Skip condition:** <when assets are cached/light, loader shows ≤ <300ms> or is skipped entirely>
+- **Reduced-motion version:** <calm alternative — e.g., simple fade, no curtain>
+
+## Focal storytelling element (site-wide)
+
+- **Element:** <product / 3D object / motif that travels with the scroll — or "none: concept doesn't need one">
+- **Role per section:** <how it carries the narrative between sections>
+- **Evidence:** <moodboard/source it adapts from>
+- **Reduced-motion version:** <static placement per section>
 
 ## Per-page choreography
 

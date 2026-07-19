@@ -3,7 +3,7 @@
 Web Claw Research Matrix Generator
 
 Converts the project's sources.json into a structured, source-agnostic
-markdown matrix suitable for agent review. Web Claw v2 accepts user-provided
+markdown matrix suitable for agent review. Web Claw v3 accepts user-provided
 links, screenshots, moodboard boards, social posts, shipped websites, product
 pages, articles, videos, and galleries. No source type is mandatory and no
 single popularity metric is a hard gate.

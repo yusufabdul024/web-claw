@@ -1,4 +1,4 @@
-# Ignition — Quick Mode (7 Questions)
+# Brief Interview — Quick Mode (8 Questions)
 
 Use this when:
 - The project is a single landing page or a small site (1–4 pages).
@@ -11,23 +11,25 @@ Pre-fill any answers already given by the user in their request. Do not re-ask w
 
 ## Greeting
 
-> I'm running **Web Claw** — a structured pipeline for designing and building award-caliber websites. Before I start, I need 7 quick answers. Skip anything you don't know — I'll fill in a default and flag it.
+> I'm running **Web Claw** — a structured pipeline for designing and building award-caliber websites. Before I start, I need 8 quick answers. Skip anything you don't know — I'll fill in a default and flag it.
 
 ---
 
-## The 7 Questions
+## The 8 Questions
 
-**1. What is it and who is it for?**
-One sentence: the product or brand name and what it does for whom.
-*(This becomes the H1 seed and og:description.)*
+**1. What is your brand / company / business about, and who is it for?**
+One or two sentences: the name, what it does, for whom, and why it exists.
 
-**2. What is the single action visitors should take?**
+**2. What is your value proposition?**
+The one sentence that will be your hero headline. A stranger must understand it in 3 seconds: what is this, who is it for, what do I do next. Push back on insider slogans until it passes.
+
+**3. What is the single action visitors should take — and the one objective the site is judged by?**
 Be specific: demo booking, email signup, purchase, contact form submit. "Brand awareness" is not an action.
 
-**3. How many pages at launch?**
+**4. How many pages at launch?**
 If you're unsure, say "one page" and I'll propose a single-page structure.
 
-**4. What's the feel? Pick one or describe your own:**
+**5. What's the feel? Pick one or describe your own:**
 - **Editorial** — refined, slow, typographic
 - **Brutalist** — loud, raw, blocky
 - **Organic** — warm, hand-drawn, soft
@@ -35,13 +37,13 @@ If you're unsure, say "one page" and I'll propose a single-page structure.
 - **Corporate-pop** — clean, bright, friendly
 - **Mono-minimal** — monochrome, restrained, white-space-rich
 
-**5. Do you have any existing assets?** (check all that apply)
+**6. Do you have any existing assets?** (check all that apply)
 Logo / Brand colors / Brand fonts / Copy / Photography / Product screenshots / None
 
-**6. Tech preference?** (or say "you choose")
+**7. Tech preference?** (or say "you choose")
 Next.js + Tailwind / Astro + Tailwind / Vite + Vanilla / SvelteKit / You choose
 
-**7. How bold should the animations be?**
+**8. How bold should the animations be?**
 - **Restrained** — fades, subtle shifts. No scroll-jacking.
 - **Active** — scroll reveals, pinned sections, parallax.
 - **Maximalist** — scroll-jacking, WebGL, custom cursor.
@@ -51,9 +53,10 @@ Next.js + Tailwind / Astro + Tailwind / Vite + Vanilla / SvelteKit / You choose
 ## After Answers
 
 1. Pre-fill any remaining fields from defaults. Flag each as `[ASSUMED: …]`.
-2. Write `blueprint/discovery.md` using `assets/templates/discovery-template.md`.
-3. Reflect back in 3–4 lines: brand vibe, primary action, motion intensity. Take corrections.
-4. Advance to BLUEPRINT:SITEMAP. Update `memory.md`.
+2. Test the value proposition against the 3-second test. If it fails, keep interviewing.
+3. Write `brief/client-brief.md` using `assets/templates/client-brief-template.md`.
+4. Reflect back in 3–4 lines: brand vibe, value proposition, primary action, motion intensity. Take corrections.
+5. Advance to RESEARCH:SKILL-DISCOVERY. Update `memory.md`.
 
 ---
 
@@ -73,9 +76,10 @@ Next.js + Tailwind / Astro + Tailwind / Vite + Vanilla / SvelteKit / You choose
 
 ## Anti-patterns
 
-- ❌ Don't ask all 7 questions in a wall of text. Present them grouped. Pause for answers.
+- ❌ Don't ask all 8 questions in a wall of text. Present them grouped. Pause for answers.
 - ❌ Don't accept "modern" as a feel answer. Push for one of the six palettes or three adjectives.
-- ❌ Don't begin generating artifacts until `discovery.md` is written.
+- ❌ Don't accept a value proposition that only makes sense to insiders. It must pass the 3-second test.
+- ❌ Don't begin generating artifacts until `client-brief.md` is written.
 - ❌ Don't re-ask a question the user already answered in their initial message.
 
 ---

@@ -21,7 +21,7 @@ WCAG AA contrast requirements applied:
 
 Usage:
   python check-contrast.py --tokens <project>/design/tokens.json
-  python check-contrast.py --style-guide <project>/blueprint/style-guide.md
+  python check-contrast.py --style-guide <project>/design/style-guide.md
   python check-contrast.py --pair "#FF0000" "#FFFFFF"
 """
 

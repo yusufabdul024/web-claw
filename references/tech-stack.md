@@ -5,7 +5,7 @@ How the Implementer Agent picks a stack. The matrix is opinionated by purpose �
 ## The decision axes
 
 1. **Content shape** — is this a marketing site (low routing, low state), a content site (many pages, structured content), or an app-marketing hybrid?
-2. **Motion intensity** — restrained / active / maximalist (from `discovery.md`).
+2. **Motion intensity** — restrained / active / maximalist (from `client-brief.md`).
 3. **Deploy target** — Vercel, Cloudflare Pages, Netlify, static export, self-hosted.
 4. **CMS** — none, MDX files, headless (Sanity / Contentful / Hygraph / Storyblok), or a backend product like Notion-as-CMS.
 5. **Team competence** — React-first vs HTML-first vs Svelte-first.

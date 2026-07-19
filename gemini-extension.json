@@ -1,6 +1,6 @@
 {
   "name": "web-claw",
-  "version": "2.0.0",
-  "description": "Research-first methodology for scroll-stopping websites. Gathers user inspiration, creates moodboards, consults companion design skills, calibrates taste, then builds through QA-gated phases.",
+  "version": "3.0.0",
+  "description": "Studio workflow for scroll-stopping websites. A Chief Designer identity runs Brief -> Research -> Design -> Build: client interview, competitor analysis, moodboards, taste calibration, then a test-driven phased build with client checkpoints and hard QA gates.",
   "contextFileName": "SKILL.md"
 }
