@@ -73,5 +73,7 @@ skills-lock.json
 
 # Not shipped: present locally as source material, but not needed for the skill
 # to function for anyone who clones it.
-/agents/openai.yaml   # inert manifest; consumed by no real tool
-/assets/svg/          # unreferenced decorative assets
+# inert manifest; consumed by no real tool
+/agents/openai.yaml
+# unreferenced decorative assets
+/assets/svg/
