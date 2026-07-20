@@ -49,3 +49,11 @@ webclaw-lighthouse-*/
 /plan.md
 /phase-*.md
 /prompts/
+
+# Skill install artifacts — `npx skills add` run from inside this repo drops
+# project-scoped copies here. They are install output, never source.
+/agent/
+/.agents/
+/.claude/skills/
+/.cursor/skills/
+/.opencode/skills/
