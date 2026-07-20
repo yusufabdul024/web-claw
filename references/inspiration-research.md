@@ -1,5 +1,7 @@
 # Inspiration Research - Web Claw v3
 
+Covers two consecutive states: `RESEARCH:OPEN-WEB` (the sweep that produces `research/research-matrix.md`) and `RESEARCH:INSPIRATION-INTAKE` (the curation that produces `research/inspiration-sources.md`). Both run after competitor analysis, so the field's conventions are already known before any reference is collected.
+
 ## Purpose
 
 This reference defines how Web Claw researches design inspiration without depending on any single platform or canon.

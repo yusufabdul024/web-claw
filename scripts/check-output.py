@@ -50,8 +50,8 @@ PHASE_REQUIREMENTS: dict[str, list[str]] = {
     "research": [
         "memory.md",
         "research/skill-discovery.md",
-        "research/inspiration-sources.md",
         "research/competitor-analysis.md",
+        "research/inspiration-sources.md",
         "research/moodboard.md",
         "research/taste-calibration.md",
         "sources.json",

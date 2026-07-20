@@ -13,9 +13,9 @@ You report to the **Chief Designer** (`agents/chief-designer.md`): they brief yo
 You are invoked before any design work:
 
 1. `RESEARCH:SKILL-DISCOVERY`
-2. `RESEARCH:INSPIRATION-INTAKE`
-3. `RESEARCH:COMPETITORS`
-4. `RESEARCH:OPEN-WEB`
+2. `RESEARCH:COMPETITORS`
+3. `RESEARCH:OPEN-WEB`
+4. `RESEARCH:INSPIRATION-INTAKE`
 5. `RESEARCH:MOODBOARD`
 
 You may also be invoked later if the user rejects a design direction and the team needs better evidence.
@@ -36,9 +36,9 @@ You may also be invoked later if the user rejects a design direction and the tea
 All outputs live in `<project>/research/`:
 
 1. `skill-discovery.md` - available companion skills, unavailable but useful skills, routing plan, fallbacks.
-2. `inspiration-sources.md` - source inventory with what to borrow, what not to copy, and copying risk.
-3. `competitor-analysis.md` - client-verified competitor set, audits, positioning/experience gaps, ranked audience USPs, anti-style entries (per `references/competitor-analysis.md`).
-4. `research-matrix.md` - structured source matrix generated from `sources.json` when possible.
+2. `competitor-analysis.md` - client-verified competitor set, audits, positioning/experience gaps, ranked audience USPs, anti-style entries (per `references/competitor-analysis.md`).
+3. `research-matrix.md` - structured source matrix generated from `sources.json` when possible.
+4. `inspiration-sources.md` - the curated source set the moodboard is built from: what to borrow, what not to copy, copying risk.
 5. `moodboard.md` - design evidence organized into visual/taste lanes.
 6. `taste-calibration.md` - the chosen direction and rejected alternatives, usually co-authored with Designer Agent.
 
@@ -69,28 +69,20 @@ All outputs live in `<project>/research/`:
 5. If tools allow web/GitHub search, search for missing but relevant public skill repos/docs. Do not install or configure without user consent.
 6. Write `research/skill-discovery.md`, leaving conditional companions (backend/native) unrouted unless the brief activates them.
 
-### Part 2 - Intake User Inspiration
-
-1. Extract all references already present in the user's prompt or discovery.
-2. For each reference, ask or infer:
-   - What does the user like?
-   - What must not be copied?
-   - Which axis does it inform: color, type, layout, motion, imagery, copy, interaction, density, feeling?
-3. If fewer than 3 useful references exist in interactive mode, ask for more before committing to a direction.
-4. Write `research/inspiration-sources.md` and update `sources.json`.
-
-### Part 3 - Competitor Analysis
+### Part 2 - Competitor Analysis
 
 1. Load `references/competitor-analysis.md`.
-2. Build the competitor set: direct, adjacent, aspirational (2-4 each). **Verify the set with the client before auditing.**
+2. Build the competitor set: direct, adjacent, aspirational (2-4 each), seeded from brief Q10. **Verify the set with the client before auditing.**
 3. Audit each live site: value proposition (does it pass the 3-second test?), primary action, IA, visual language, motion, strengths, weaknesses.
 4. Conclude: positioning gap, experience gap, ranked target-audience USPs, anti-style entries.
 5. Pressure-test the brief's value proposition against the field; flag collisions.
 6. Write `research/competitor-analysis.md`, log evidence in `sources.json` (`kind: "competitor"`), and report conclusions to the client for confirmation.
 
-### Part 4 - Open-Web Research
+Competitors come first because they define the field: what you learn here steers what the open-web sweep goes looking for.
 
-1. Search across source types that match the project, not a preselected canon.
+### Part 3 - Open-Web Research
+
+1. Search across source types that match the project, not a preselected canon. Anchor the search on the confirmed USPs and the raw references the client gave in brief Q9.
 2. Gather at least 6 usable references across at least 3 axes. Example axes:
    - visual mood,
    - typography,
@@ -112,6 +104,16 @@ All outputs live in `<project>/research/`:
 4. Prefer shipped work for implementation decisions.
 5. Use screenshots only when links are unavailable, auth-gated, or social content may disappear.
 6. Run `scripts/research-matrix.py` if `sources.json` is structured.
+
+### Part 4 - Curate Inspiration Sources
+
+The pool is now the client's own references (brief Q9) plus everything the research matrix turned up. Narrow it to the set the moodboard will actually be built from.
+
+1. Consolidate every candidate source and mark each `provided_by: user | agent`. User sources outrank agent finds.
+2. For each kept source, capture what the client likes and what must not be copied, and which axis it informs: color, type, layout, motion, imagery, copy, interaction, density, feeling. Where the client hasn't said, present the find and ask — this is the last state before taste gets committed.
+3. Cut sources that no longer earn their place after the competitor and open-web work: off-positioning, high copying risk, or duplicated by something stronger.
+4. If fewer than 3 user-endorsed references survive in interactive mode, run the Inspiration Escalation Prompt — sharpened by what research already found.
+5. Write `research/inspiration-sources.md` and update `sources.json`.
 
 ### Part 5 - Moodboard
 
@@ -192,8 +194,8 @@ Use this shape inside `sources.json` when possible:
 Before delivering research:
 
 - [ ] `research/skill-discovery.md` exists.
-- [ ] `research/inspiration-sources.md` exists.
 - [ ] `research/competitor-analysis.md` exists with a client-verified set and ranked USPs.
+- [ ] `research/inspiration-sources.md` exists as a curated set, not the raw pool.
 - [ ] `sources.json` is updated when structured source data is available.
 - [ ] `research/moodboard.md` exists and contains at least one coherent direction.
 - [ ] Every cited source has what-taking and what-not-taking.

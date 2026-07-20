@@ -25,9 +25,9 @@ PART 1 - BRIEF
 
 PART 2 - RESEARCH
   -> RESEARCH:SKILL-DISCOVERY
-  -> RESEARCH:INSPIRATION-INTAKE
   -> RESEARCH:COMPETITORS
   -> RESEARCH:OPEN-WEB
+  -> RESEARCH:INSPIRATION-INTAKE
   -> RESEARCH:MOODBOARD
   -> RESEARCH:TASTE-CALIBRATION
 
@@ -100,38 +100,17 @@ PART 4 - BUILD
 
 ---
 
-### RESEARCH:INSPIRATION-INTAKE
+### RESEARCH:COMPETITORS
 
 **Entry condition:** Skill discovery complete.
 
 **What happens:**
 
-1. Extract every user-provided inspiration source from the prompt and the brief.
-2. Ask for missing sources if the project has weak taste evidence and mode is interactive.
-3. Accept broad source types: real shipped websites, award-winning sites, agency portfolio pieces, competitor-adjacent sites, Dribbble shots, Pinterest boards, Behance projects, Instagram posts/reels/carousels, TikTok videos, YouTube videos, screenshots, PDFs, Figma links, product pages, brand guidelines, and moodboard links.
-4. For each source, capture what the user likes: color, typography, layout, motion, density, imagery, tone, one section, one interaction, or one feeling.
-5. Write or update `sources.json`. Produce `research/inspiration-sources.md`.
-
-**Exit condition:** `research/inspiration-sources.md` exists with either:
-
-- at least 3 user-provided sources, or
-- a clear note that the user has no sources yet plus the open-web research plan.
-
-**Rejection path:** User says a source is wrong -> remove or reclassify it; document what not to copy.
-
----
-
-### RESEARCH:COMPETITORS
-
-**Entry condition:** Inspiration intake complete.
-
-**What happens:**
-
 1. Load `agents/researcher-agent.md` + `references/competitor-analysis.md`.
-2. Build the competitor set (direct / adjacent / aspirational) and **verify it with the client** before auditing.
+2. Build the competitor set (direct / adjacent / aspirational), seeded from brief Q10, and **verify it with the client** before auditing.
 3. Audit each competitor: value proposition, primary action, IA, visual language, motion, strengths, weaknesses. Log evidence in `sources.json`.
 4. Conclude: positioning gap, experience gap, ranked target-audience USPs, anti-style entries.
-5. Pressure-test the brief's value proposition against the field; flag collisions to the client.
+5. Pressure-test the brief's value proposition (Q6) against the field; flag collisions to the client.
 6. Produce `research/competitor-analysis.md`. Report findings to the client and get confirmation of the conclusions.
 
 **Exit condition:** `research/competitor-analysis.md` exists with a client-verified competitor set and USP conclusions (fast mode: assumptions logged in `decisions/`).
@@ -147,20 +126,42 @@ PART 4 - BUILD
 **What happens:**
 
 1. Load `agents/researcher-agent.md` + `references/inspiration-research.md`.
-2. Research references that match the brief, the confirmed USPs, and the user-provided inspiration. Prioritize **real shipped websites**: award-winning sites (Awwwards and similar), international studio/agency portfolios and the client work inside them, and strong product/brand sites — supported by galleries (Dribbble, Behance, Pinterest, Are.na, Cosmos, Land-book, Lapa Ninja, Godly, Siteinspire, Mobbin, Codrops) for pattern evidence.
+2. Research references that match the brief, the confirmed USPs, and the raw inspiration the client already gave in brief Q9. Prioritize **real shipped websites**: award-winning sites (Awwwards and similar), international studio/agency portfolios and the client work inside them, and strong product/brand sites — supported by galleries (Dribbble, Behance, Pinterest, Are.na, Cosmos, Land-book, Lapa Ninja, Godly, Siteinspire, Mobbin, Codrops) for pattern evidence.
 3. Do not make any source mandatory. Do not cite inaccessible/auth-gated content unless the user provided it.
 4. For every source, record: URL or user-provided artifact path, why it fits, what to take, what not to take, copying risk, applicable page/section, practical build implications.
 5. Update `sources.json`. Run `scripts/research-matrix.py --sources <project>/sources.json --output <project>/research/research-matrix.md` when sources are structured.
 
-**Exit condition:** `research/research-matrix.md` exists OR `research/inspiration-sources.md` has a manually written research table with at least 6 usable references across visual/layout/motion/content.
+**Exit condition:** `research/research-matrix.md` exists OR a manually written research table in `research/` with at least 6 usable references across visual/layout/motion/content.
 
 **Rejection path:** If research is thin, ask the user for more links using the Inspiration Escalation Protocol in `references/inspiration-research.md`.
 
 ---
 
+### RESEARCH:INSPIRATION-INTAKE
+
+**Entry condition:** Open-web research complete (`research/research-matrix.md` or its manual equivalent exists).
+
+This is the **curation** state: the raw pool is now the client's own references (brief Q9) plus everything the research matrix turned up. Here that pool is narrowed to the sources the moodboard will actually be built from, with the client's likes attached to each one.
+
+**What happens:**
+
+1. Load `references/inspiration-research.md` and the research matrix.
+2. Consolidate every candidate source: user-provided references from the prompt and brief Q9, plus agent-discovered references from `RESEARCH:OPEN-WEB`. Mark each `provided_by: user | agent` — user sources outrank agent finds.
+3. Accept broad source types: real shipped websites, award-winning sites, agency portfolio pieces, competitor-adjacent sites, Dribbble shots, Pinterest boards, Behance projects, Instagram posts/reels/carousels, TikTok videos, YouTube videos, screenshots, PDFs, Figma links, product pages, brand guidelines, and moodboard links.
+4. For each kept source, capture what the client likes: color, typography, layout, motion, density, imagery, tone, one section, one interaction, or one feeling. Where the client has not said, present the agent's find and ask — this is the last state before taste gets committed.
+5. Cut sources that no longer earn their place after the competitor and open-web work: off-positioning, high copying risk, or duplicated by a stronger reference.
+6. If taste evidence is still weak, run the Inspiration Escalation Protocol now, sharpened by what research already found ("the field all looks like X — do any of these three directions feel like you?").
+7. Write or update `sources.json`. Produce `research/inspiration-sources.md`.
+
+**Exit condition:** `research/inspiration-sources.md` exists with a curated set — at least 3 user-endorsed sources, or a clear note that the client has none plus the agent-selected sources that will stand in for them.
+
+**Rejection path:** User says a source is wrong -> remove or reclassify it; document what not to copy.
+
+---
+
 ### RESEARCH:MOODBOARD
 
-**Entry condition:** Open-web research complete.
+**Entry condition:** Inspiration intake complete.
 
 **What happens:**
 

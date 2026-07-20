@@ -33,8 +33,8 @@ Web Claw's preferred companions. Two kinds:
 | Motion / Framer | Skill | `github.com/freshtechbro/claudedesignskills` (`motion-framer`) | Framer Motion / Motion One implementation idioms: variants, layout animations, gestures, exit transitions | DESIGN:ANIMATIONS (feasibility), BUILD:PHASE-2 |
 | Convex Create Component | Skill | `github.com/get-convex/agent-skills` (`convex-create-component`) | Backend/data components when the site needs live data: forms that persist, auth, realtime, waitlists | BUILD:STACK, BUILD:PHASE-1/3 — only when the brief demands a backend |
 | Vercel React Native Skills | Skill | `github.com/vercel-labs/agent-skills` (react-native) | Native/Expo implementation guidance | Only when the project explicitly targets a native app companion — out of scope for pure websites |
-| Impeccable | Skill | (local) | Critique, polish, UI hardening, browser iteration, responsive/a11y refinement | RESEARCH:TASTE-CALIBRATION, BUILD:PHASE-1..3 |
-| Stitch | Skill | (local) | Visual ideation, screen exploration | RESEARCH:MOODBOARD — output is never production code |
+| Impeccable | Skill | `github.com/pbakaus/impeccable` | Critique, polish, UI hardening, browser iteration, responsive/a11y refinement | RESEARCH:TASTE-CALIBRATION, BUILD:PHASE-1..3 |
+| Stitch | Skill | `github.com/google-labs-code/stitch-skills` | Visual ideation, screen exploration | RESEARCH:MOODBOARD — output is never production code |
 
 Conditional entries (Convex, React Native) are recorded in `research/skill-discovery.md` as "available, not routed" unless the brief activates them. Routing a backend or native-app skill into a static marketing site is scope creep — flag it to the client instead.
 
@@ -156,7 +156,9 @@ If a sibling skill clearly helps with brand, visual critique, accessibility, mot
 | Web Claw state | Companion use |
 |----------------|---------------|
 | RESEARCH:SKILL-DISCOVERY | Detect and document available skills and MCP servers per the registry. |
+| RESEARCH:COMPETITORS | Use UI-UX Pro Max product-type patterns to read the field's conventions. |
 | RESEARCH:OPEN-WEB | Use UI-UX Pro Max / design research skills to broaden source discovery. |
+| RESEARCH:INSPIRATION-INTAKE | Use Taste Skill to pressure-test which sources actually earn a place. |
 | RESEARCH:MOODBOARD | Use Taste Skill / UI-UX Pro Max to sharpen directions and anti-style. |
 | RESEARCH:TASTE-CALIBRATION | Use Taste Skill / Impeccable / UI-UX Pro Max for critique before user sign-off. |
 | DESIGN:STYLE-GUIDE | Use UI-UX Pro Max palette/type/design-system catalogs for candidate systems. |

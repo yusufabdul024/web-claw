@@ -65,8 +65,8 @@ See `references/memory-format.md` for schema, decision records, and compaction p
 
 ```text
 PART 1 - BRIEF      BRIEF:INTERVIEW
-PART 2 - RESEARCH   RESEARCH:SKILL-DISCOVERY -> RESEARCH:INSPIRATION-INTAKE ->
-                    RESEARCH:COMPETITORS -> RESEARCH:OPEN-WEB ->
+PART 2 - RESEARCH   RESEARCH:SKILL-DISCOVERY -> RESEARCH:COMPETITORS ->
+                    RESEARCH:OPEN-WEB -> RESEARCH:INSPIRATION-INTAKE ->
                     RESEARCH:MOODBOARD -> RESEARCH:TASTE-CALIBRATION
 PART 3 - DESIGN     DESIGN:SITEMAP -> DESIGN:STYLE-GUIDE ->
                     DESIGN:WIREFRAMES -> DESIGN:ANIMATIONS
@@ -87,7 +87,8 @@ User: Build a scroll-stopping site for my studio. I like these three links.
 Agent: adopts Chief Designer identity -> initializes memory -> interviews for the brief
 Agent: value proposition passes the 3-second test -> client confirms brief
 Agent: discovers companion skills -> competitor analysis (verified with client) ->
-       open-web research -> moodboard -> taste calibration -> client picks direction
+       open-web research matrix -> curates inspiration sources -> moodboard ->
+       taste calibration -> client picks direction
 Agent: sitemap -> style guide -> wireframes -> motion design, sign-off after each
 Agent: picks stack -> plan + phase files -> builds test-first through QA gates,
        showing signature sections the moment they work
@@ -138,7 +139,8 @@ Load only what the current phase needs. Never load every reference at once.
 | Platform usage (Claude Code / Codex / Gemini / Cursor) | `references/platform-compat.md` |
 | BRIEF:INTERVIEW | `references/ignition-quick.md` or `references/ignition-full.md` + `assets/templates/client-brief-template.md` |
 | RESEARCH:COMPETITORS | `agents/researcher-agent.md` + `references/competitor-analysis.md` |
-| Inspiration research | `agents/researcher-agent.md` + `references/inspiration-research.md` |
+| RESEARCH:OPEN-WEB (research matrix) | `agents/researcher-agent.md` + `references/inspiration-research.md` |
+| RESEARCH:INSPIRATION-INTAKE (curation) | `agents/researcher-agent.md` + `references/inspiration-research.md` + `research/research-matrix.md` |
 | Video technique research (optional) | `references/youtube-channels.md` |
 | Moodboard creation | `agents/researcher-agent.md` + `references/moodboard-library.md` + `assets/templates/moodboard-template.md` |
 | Taste calibration | `agents/designer-agent.md` + `research/moodboard.md` + `research/skill-discovery.md` + `assets/templates/taste-calibration-template.md` |
@@ -195,7 +197,8 @@ Load only what the current phase needs. Never load every reference at once.
 - [ ] `brief/client-brief.md` exists and the value proposition passes the 3-second test.
 - [ ] `research/skill-discovery.md` records available companion skills or fallbacks.
 - [ ] `research/competitor-analysis.md` has a client-verified competitor set and ranked audience USPs.
-- [ ] `research/inspiration-sources.md` exists with user-provided and/or open-web sources.
+- [ ] `research/research-matrix.md` exists with the open-web reference sweep.
+- [ ] `research/inspiration-sources.md` exists as the curated set the moodboard was built from.
 - [ ] `research/moodboard.md` has visual, typography, layout, motion, and anti-style evidence.
 - [ ] `research/taste-calibration.md` is signed off or auto-approved with decision logs.
 - [ ] Design artifacts exist and follow the calibrated taste direction.

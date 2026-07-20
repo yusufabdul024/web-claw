@@ -5,7 +5,7 @@
 Web Claw v3 turns "build me a beautiful website" into the workflow a real design studio runs, in four parts:
 
 1. **Brief** — interview the client: what the brand is about, what the site must achieve, what the visitor must do, the one objective, and a value proposition a stranger understands in 3 seconds.
-2. **Research** — competitor analysis, inspiration intake, open-web research, moodboard, taste calibration — verified with the client in a back-and-forth loop until the way forward is clear.
+2. **Research** — competitor analysis, open-web research matrix, curated inspiration sources, moodboard, taste calibration — verified with the client in a back-and-forth loop until the way forward is clear.
 3. **Design** — sitemap, branding/style guide, wireframes, motion spec, each signed off.
 4. **Build** — phased, test-driven implementation with client checkpoints, a designed loading experience, and hard QA gates.
 
@@ -30,8 +30,8 @@ The v3 pipeline:
 
 ```text
 PART 1 - BRIEF      BRIEF:INTERVIEW
-PART 2 - RESEARCH   RESEARCH:SKILL-DISCOVERY -> RESEARCH:INSPIRATION-INTAKE ->
-                    RESEARCH:COMPETITORS -> RESEARCH:OPEN-WEB ->
+PART 2 - RESEARCH   RESEARCH:SKILL-DISCOVERY -> RESEARCH:COMPETITORS ->
+                    RESEARCH:OPEN-WEB -> RESEARCH:INSPIRATION-INTAKE ->
                     RESEARCH:MOODBOARD -> RESEARCH:TASTE-CALIBRATION
 PART 3 - DESIGN     DESIGN:SITEMAP -> DESIGN:STYLE-GUIDE ->
                     DESIGN:WIREFRAMES -> DESIGN:ANIMATIONS
@@ -59,7 +59,44 @@ Research prioritizes real shipped websites — award-winning sites, internationa
 
 ## Install
 
-Clone or install Web Claw into your agent's skills folder. The default branch (`main`) is the current release.
+### Option 1 — `npx skills` (recommended)
+
+Installs Web Claw into **every AI agent detected on your machine** in one command, using the open [skills CLI](https://github.com/vercel-labs/skills):
+
+```bash
+npx skills add yusufabdul024/web-claw --all
+```
+
+`--all` is shorthand for `--skill '*' --agent '*' -y`: it installs to every supported agent it finds — Claude Code, Codex, Cursor, opencode, Windsurf, Cline, Continue, Roo, and 69+ others — without prompting.
+
+Prefer to choose? Drop `--all` to get an interactive picker, or name the agents yourself:
+
+```bash
+npx skills add yusufabdul024/web-claw                          # interactive: pick agents
+npx skills add yusufabdul024/web-claw -a claude-code -a codex  # specific agents
+npx skills add yusufabdul024/web-claw --list                   # inspect before installing
+```
+
+Then verify and restart your agent so its skill roster is rebuilt:
+
+```bash
+python ~/.claude/skills/web-claw/scripts/verify-install.py --skill-root ~/.claude/skills/web-claw
+```
+
+> Requires Node.js 18+. The path above is Claude Code's; substitute the destination your agent uses (see the table under Option 2).
+
+### Option 2 — git clone into a specific agent
+
+Clone Web Claw directly into one agent's skills folder. The default branch (`main`) is the current release.
+
+| Agent | Destination |
+|---|---|
+| Claude Code (user) | `~/.claude/skills/web-claw` |
+| Claude Code (project) | `.claude/skills/web-claw` |
+| Codex (user) | `~/.codex/skills/web-claw` |
+| Codex (project) | `.agents/skills/web-claw` |
+| Cursor | `.cursor/skills/web-claw` |
+| opencode | `.opencode/skills/web-claw` |
 
 ```bash
 git clone https://github.com/yusufabdul024/web-claw.git web-claw
@@ -79,7 +116,15 @@ git clone https://github.com/yusufabdul024/web-claw.git "$env:USERPROFILE\.codex
 python "$env:USERPROFILE\.codex\skills\web-claw\scripts\verify-install.py" --skill-root "$env:USERPROFILE\.codex\skills\web-claw"
 ```
 
-If you already cloned the repo elsewhere, the installer can copy it:
+For Claude-style skill folders:
+
+```bash
+git clone https://github.com/yusufabdul024/web-claw.git ~/.claude/skills/web-claw
+```
+
+### Option 3 — bundled installer
+
+If you already cloned the repo elsewhere, the installer can copy it into place:
 
 ```bash
 ./install.sh --host codex --user --force
@@ -91,13 +136,7 @@ If you already cloned the repo elsewhere, the installer can copy it:
 
 Restart Codex after a global install so the skill roster is rebuilt.
 
-For Claude-style skill folders:
-
-```bash
-git clone https://github.com/yusufabdul024/web-claw.git ~/.claude/skills/web-claw
-```
-
-For project-scoped Codex activation, use the installer:
+For project-scoped Codex activation:
 
 ```bash
 ./install.sh --host codex --project <project> --force
@@ -145,9 +184,9 @@ Brief:
 Research:
 
 - `research/skill-discovery.md`
-- `research/inspiration-sources.md`
 - `research/competitor-analysis.md`
 - `research/research-matrix.md`
+- `research/inspiration-sources.md` — the curated set, not the raw pool.
 - `research/moodboard.md`
 - `research/taste-calibration.md` — the signed-off way forward.
 
@@ -216,7 +255,8 @@ Web Claw v3 discovers companions during `RESEARCH:SKILL-DISCOVERY` and routes th
 | [Motion / Framer](https://github.com/freshtechbro/claudedesignskills) | Skill | freshtechbro | Framer Motion implementation |
 | [Convex Create Component](https://github.com/get-convex/agent-skills) | Skill | get-convex | Backend/data components — only when the brief needs one |
 | [Vercel React Native Skills](https://github.com/vercel-labs/agent-skills) | Skill | vercel-labs | Native companion apps — only when in scope |
-| Impeccable / Stitch | Skill | local | Polish, critique, visual ideation |
+| [Impeccable](https://github.com/pbakaus/impeccable) | Skill | pbakaus | Critique, polish, UI hardening, responsive/a11y refinement |
+| [Stitch](https://github.com/google-labs-code/stitch-skills) | Skill | google-labs-code | Visual ideation, screen exploration |
 
 Companions are advisory: their advice is distilled into Web Claw artifacts, and Web Claw's budgets and QA gates stay authoritative. Unavailable companions do not block the pipeline — their absence is recorded only when it changes quality, and nothing is installed or configured without your consent.
 

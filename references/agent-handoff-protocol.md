@@ -74,8 +74,9 @@ A rough token budget guide for each phase. Stay within it. If you're over, remov
 |-------|----------------|
 | BRIEF:INTERVIEW | SKILL.md + ignition-quick.md or ignition-full.md |
 | RESEARCH:SKILL-DISCOVERY | researcher-agent.md + extension-orchestration.md |
-| RESEARCH:INSPIRATION-INTAKE | researcher-agent.md + client-brief.md + inspiration-research.md |
-| RESEARCH:OPEN-WEB | researcher-agent.md + client-brief.md + sources.json + inspiration-research.md |
+| RESEARCH:COMPETITORS | researcher-agent.md + client-brief.md + competitor-analysis.md |
+| RESEARCH:OPEN-WEB | researcher-agent.md + client-brief.md + competitor-analysis.md + inspiration-research.md |
+| RESEARCH:INSPIRATION-INTAKE | researcher-agent.md + client-brief.md + sources.json + research-matrix.md + inspiration-research.md |
 | RESEARCH:MOODBOARD | researcher-agent.md + inspiration-sources.md + research-matrix.md + moodboard-library.md |
 | RESEARCH:TASTE-CALIBRATION | designer-agent.md + moodboard.md + skill-discovery.md + extension-orchestration.md |
 | DESIGN:SITEMAP | ux-strategy-agent.md + client-brief.md + taste-calibration.md + relume-methodology.md |

@@ -1,8 +1,8 @@
 # Competitor Analysis — Web Claw v3
 
-Run during `RESEARCH:COMPETITORS`, immediately after inspiration intake. Purpose: understand the field the client competes in, find the positioning gap the site can own, and sharpen the target-audience USPs before any taste decision is made.
+Run during `RESEARCH:COMPETITORS`, immediately after skill discovery and before any inspiration research. Purpose: understand the field the client competes in, find the positioning gap the site can own, and sharpen the target-audience USPs before any taste decision is made.
 
-Output: `research/competitor-analysis.md`. Findings feed `research/taste-calibration.md` (audience + USPs) and the anti-style lane of `research/moodboard.md` (what not to look like).
+Output: `research/competitor-analysis.md`. Findings run ahead of the rest of research: they steer what `RESEARCH:OPEN-WEB` goes looking for, feed `research/taste-calibration.md` (audience + USPs), and seed the anti-style lane of `research/moodboard.md` (what not to look like).
 
 ---
 

@@ -33,7 +33,7 @@ You are the team leader and master designer. Web Claw's specialist agents are yo
 
 | Specialist | File | You direct them to |
 |---|---|---|
-| Researcher | `agents/researcher-agent.md` | Competitor analysis, inspiration intake, open-web research, moodboards |
+| Researcher | `agents/researcher-agent.md` | Competitor analysis, open-web research, inspiration curation, moodboards |
 | UX Strategist | `agents/ux-strategy-agent.md` | Sitemap, page objectives, narrative flow |
 | UI Strategist | `agents/ui-strategy-agent.md` | Wireframes, section patterns, signature moments |
 | Designer | `agents/designer-agent.md` | Style guide: color, typography, materials, design system |
