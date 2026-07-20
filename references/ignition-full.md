@@ -63,7 +63,15 @@ Pre-fill any answers already in the user's initial request. Do not re-ask.
 - [ ] Product screenshots / mockups
 - [ ] None of the above — generate from scratch
 
-**10. Inspiration sources you love.** Drop 3–5 URLs, screenshots, boards, posts, reels, or designers and one line per source on what specifically you love (motion, layout, typography, copy, mood, etc.) and what we should not copy.
+**10. Inspiration sources you love.** Drop 3–7 URLs, screenshots, boards, posts, reels, or designers, and one line per source on what specifically you love (motion, layout, typography, copy, mood, one section) and what we should **not** copy.
+
+*This one is load-bearing — open-web research runs off it, so an empty answer produces generic research. Never accept "I don't have any" as final. Work the ladder:*
+- *"Whose packaging, magazine, film titles, or store should this feel like?" — taste transfers across media, and most people answer this instantly even when they can't name a website.*
+- *"What's a site you use often that feels good?" — everyday favourites reveal density and interaction taste.*
+- *Reaction round: propose 3 named directions with 2 real example sites each and ask which is closest and what's wrong with it. Reacting beats generating.*
+- *Only if all three fail: use the Q6 adjectives as the sole anchor and flag the brief as thin-evidence.*
+
+**10b. And what should this never look like?** One or two anti-references, with a word on why. Cheap to answer, high signal — it feeds the moodboard's anti-style lane and cross-checks the competitor set.
 
 ---
 
@@ -106,7 +114,7 @@ Pre-fill any answers already in the user's initial request. Do not re-ask.
 
 ## After the user answers
 
-1. Write `brief/client-brief.md` using `assets/templates/client-brief-template.md`. Fill every field. Flag assumed fields explicitly as `[ASSUMED: …]`.
+1. Write `brief/client-brief.md` using `assets/templates/client-brief-template.md`. Fill every field. Flag assumed fields explicitly as `[ASSUMED: …]`. From Q10/Q10b, fill Q9a–9c and then write the Q9d **search anchors**: 3–5 searchable phrases (not adjectives) that `RESEARCH:OPEN-WEB` will actually run.
 
 2. **Test the value proposition (Q4) against the 3-second test.** If it fails, keep interviewing — the brief is not complete.
 
@@ -125,6 +133,7 @@ Pre-fill any answers already in the user's initial request. Do not re-ask.
 - ❌ **Don't ask all 18 questions in one wall of text.** Group them, present visually, and pause for answers.
 - ❌ **Don't accept "make it modern" as a vibe answer.** Push for the three adjectives. Modern is meaningless.
 - ❌ **Don't accept an insider slogan as the value proposition.** Q4 must pass the 3-second test before the brief closes.
+- ❌ **Don't close Q10 empty.** Open-web research is anchored on it. Work the ladder before falling back to adjectives.
 - ❌ **Don't move past Section 5 without Q17 answered.** The signature moment separates a clean site from an award-winning one. If the user can't articulate one, propose three and let them pick.
 - ❌ **Don't begin generating artifacts before `client-brief.md` is written and the user has confirmed.**
 - ❌ **Don't assume the user knows jargon.** Define "scroll-jacking," "INP," "LCP" inline when you use them.

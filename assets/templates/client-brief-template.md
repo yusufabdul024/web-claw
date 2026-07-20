@@ -39,11 +39,40 @@
   - Named palette match: <Editorial | Brutalist | Organic | Futurist | Corporate-pop | Mono-minimal | Custom>
 
 **9. Inspiration sources:**
-1. <URL / screenshot / board / post> — <what to borrow; what not to copy>
-2. <URL / screenshot / board / post> — <...>
-3. <URL / screenshot / board / post> — <...>
 
-Accept websites, product pages, Dribbble, Pinterest, Behance, Instagram posts/reels/carousels, TikTok, screenshots, portfolios, brand guidelines, or designers/brands the client admires.
+> This question is load-bearing. `RESEARCH:OPEN-WEB` runs *before* the client has endorsed any specific reference, so what is captured here is the only taste anchor the search has. A thin Q9 produces generic research. Do not settle for "[PENDING]" — work the ladder in 9b until something concrete exists.
+
+**9a. References (aim for 3–7):**
+
+| # | Source (URL / screenshot / board / post) | Axis | Borrow | Do NOT copy |
+|---|---|---|---|---|
+| 1 | <link> | <color / type / layout / motion / density / imagery / tone / one section> | <the transferable idea> | <what is off-limits> |
+| 2 | <link> | | | |
+| 3 | <link> | | | |
+
+Accept websites, product pages, Dribbble, Pinterest, Behance, Instagram posts/reels/carousels, TikTok, screenshots, portfolios, brand guidelines, or designers/brands the client admires. A rough screenshot with a clear note beats a famous link with no note.
+
+For private or auth-gated sources, ask for a screenshot and record `verification_method: user-provided`.
+
+**9b. If the client has no links — work this ladder, in order.** Stop as soon as something concrete lands:
+
+1. **Non-web brands they admire.** "Whose packaging, magazine, film titles, or store would you want this site to feel like?" Taste transfers across media; most people can answer this instantly even when they can't name a website.
+2. **Sites they personally enjoy using.** "What's a site you use often that feels good?" — everyday favourites reveal density and interaction preferences.
+3. **Reaction round.** Propose 3 named directions with 2 real example sites each, and ask which is closest and what's wrong with it. **Reacting is far easier than generating** — this almost always breaks the deadlock.
+4. **Adjectives only, explicitly flagged.** If nothing above lands, record the three adjectives from Q8 as the sole anchor and mark this brief as thin-evidence in `memory.md -> Blockers`.
+
+**9c. Anti-references — what should this never look like?**
+- <site / brand / style the client dislikes> — <why>
+- <...>
+
+Cheap to answer and high-signal. Feeds the anti-style lane of the moodboard and cross-checks the competitor set.
+
+**9d. Search anchors (agent-written, derived from 9a–9c):**
+
+Three to five concrete search directions `RESEARCH:OPEN-WEB` will actually run. Not adjectives — searchable phrases.
+1. <e.g., "editorial agency sites with oversized serif headlines and generous margins">
+2. <e.g., "scroll-scrubbed product reveals on single-page brand sites">
+3. <...>
 
 **10. Known competitors (to verify in RESEARCH:COMPETITORS):**
 - Direct: <who sells the same thing to the same audience>

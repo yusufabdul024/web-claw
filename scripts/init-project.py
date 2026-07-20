@@ -84,7 +84,7 @@ def main() -> int:
     next_action_initial = (
         "Pick defensible discovery defaults; write brief/client-brief.md without user prompts. Then advance Phase to RESEARCH:SKILL-DISCOVERY and begin companion skill discovery. Log judgment calls to decisions/NNN-auto-*.md."
         if args.mode == "fast"
-        else "Load references/ignition-quick.md (or ignition-full.md for complex projects). Ask discovery and inspiration-intake questions. Write brief/client-brief.md. Then advance Phase to RESEARCH:SKILL-DISCOVERY."
+        else "Load references/ignition-quick.md (or ignition-full.md for complex projects). Ask the brief interview questions, including inspiration (Q9) and its fallback ladder. Write brief/client-brief.md. Then advance Phase to RESEARCH:SKILL-DISCOVERY."
     )
     memory_content = dedent(f"""\
         # Project Memory -- {args.project_name}
@@ -152,6 +152,20 @@ def main() -> int:
         [PENDING]
 
         ### Q9 — Inspiration sources
+        <!-- Load-bearing: RESEARCH:OPEN-WEB is anchored on this. Do not leave [PENDING]. -->
+
+        #### Q9a — References (aim for 3-7)
+        | # | Source | Axis | Borrow | Do NOT copy |
+        |---|--------|------|--------|-------------|
+        | 1 | [PENDING] | | | |
+
+        #### Q9b — If no links: ladder used
+        [PENDING — non-web brands / sites they enjoy / reaction round / adjectives-only + thin-evidence flag]
+
+        #### Q9c — Anti-references (what this must never look like)
+        [PENDING]
+
+        #### Q9d — Search anchors (agent-written, 3-5 searchable phrases)
         [PENDING]
 
         ### Q10 — Known competitors (direct / aspirational)
@@ -298,7 +312,7 @@ def main() -> int:
     print("Next steps:")
     print("  1. Load SKILL.md -> read memory.md (just initialized)")
     print("  2. Load references/ignition-quick.md or ignition-full.md")
-    print("  3. Ask discovery and inspiration-intake questions. Write brief/client-brief.md.")
+    print("  3. Ask the brief interview questions, including inspiration (Q9) and its fallback ladder. Write brief/client-brief.md.")
     print("  4. Update memory.md: fill Identity fields, advance Phase to RESEARCH:SKILL-DISCOVERY.")
 
     return 0

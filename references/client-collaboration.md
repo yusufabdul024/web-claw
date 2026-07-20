@@ -18,6 +18,15 @@ Before any research, interview the client. The five core questions, in order:
 
 Push on question 5 until it passes the **3-second test**: when the hero loads, a stranger can answer *what is this, who is it for, what do I do next* — within 3 seconds. Do not accept a slogan that only makes sense to insiders. The aim of the whole interview is to grasp the unique value the client offers so clearly that it can be understood by a website viewer in 3 seconds.
 
+**Then land the inspiration question (Q9) before the interview closes.** Research now runs on it: `RESEARCH:OPEN-WEB` searches from the Q9d anchors before the client has endorsed any specific reference, so a thin Q9 produces generic research. Ask for 3–7 references with a note per source on what to borrow and what not to copy, plus one or two anti-references.
+
+Most clients open with "I don't have any." That is a starting point, not an answer — work the ladder:
+
+1. **Non-web brands.** "Whose packaging, magazine, film titles, or store should this feel like?" Taste transfers across media, and people answer this instantly even when they cannot name a website.
+2. **Sites they already enjoy.** "What's a site you use often that feels good?" Everyday favourites reveal density and interaction preferences.
+3. **Reaction round.** Propose three named directions with two real example sites each, and ask which is closest and what is wrong with it. **Reacting is far easier than generating** — this is what usually breaks the deadlock.
+4. **Adjectives only.** If all three fail, record the adjectives as the sole anchor and flag the brief thin-evidence in `memory.md -> Blockers`, so the moodboard is presented as proposals rather than settled taste.
+
 Full question sets: `references/ignition-quick.md` (simple projects) and `references/ignition-full.md` (complex projects). Output: `brief/client-brief.md`.
 
 ## 2. The Research Verification Loop (RESEARCH:*)

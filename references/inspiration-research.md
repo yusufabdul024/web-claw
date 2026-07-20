@@ -50,6 +50,8 @@ Before `RESEARCH:MOODBOARD`, gather enough evidence to cover:
 
 If this bar cannot be met in interactive mode, use the Inspiration Escalation Prompt.
 
+The open-web sweep is anchored on brief Q9d. If Q9 was closed on adjectives alone (thin-evidence), say so when presenting: the sweep's output is a set of proposals for the client to react to, not settled taste.
+
 ## Inspiration Escalation Prompt
 
 ```text
@@ -59,6 +61,13 @@ For each one, add one sentence:
 - what should we borrow?
 - what should we avoid copying?
 ```
+
+If the answer is "I don't have any", do not stop there. Work the ladder in order and stop as soon as something concrete lands:
+
+1. **Non-web brands** — "whose packaging, magazine, film titles, or store should this feel like?"
+2. **Sites they enjoy using** — everyday favourites reveal density and interaction taste.
+3. **Reaction round** — propose three named directions with two real example sites each; ask which is closest and what is wrong with it. Reacting beats generating.
+4. **Adjectives only** — last resort, flagged as thin-evidence.
 
 ## What To Capture Per Source
 

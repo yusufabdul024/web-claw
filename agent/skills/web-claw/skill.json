@@ -1,0 +1,65 @@
+{
+  "$schema": "https://schemas.anthropic.com/skill/v1.json",
+  "name": "web-claw",
+  "version": "3.0.0",
+  "description": "Studio-workflow methodology for designing and shipping scroll-stopping, award-winning websites through AI coding agents. Web Claw v3 runs Brief -> Research -> Design -> Build as an expert Chief Designer: client interview to a 3-second value proposition, competitor analysis, inspiration research and moodboarding, taste calibration, then designed artifacts and a test-driven phased build with client checkpoints, a designed loading experience, and hard QA gates.",
+  "entry": "SKILL.md",
+  "license": "MIT",
+  "homepage": "https://github.com/yusufabdul024/web-claw",
+  "requirements": {
+    "python": ">=3.8",
+    "node": ">=18 (optional, for Lighthouse / pa11y / Playwright QA scripts)"
+  },
+  "install": {
+    "command": "install.sh",
+    "windows_command": "install.ps1",
+    "verify": "scripts/verify-install.py"
+  },
+  "host_destinations": {
+    "codex": "~/.codex/skills/web-claw",
+    "codex_project": ".agents/skills/web-claw",
+    "claude": ".claude/skills/web-claw",
+    "claude_user": "~/.claude/skills/web-claw",
+    "cursor": ".cursor/skills/web-claw",
+    "opencode": ".opencode/skills/web-claw"
+  },
+  "host_native": {
+    "gemini": {
+      "kind": "gemini-cli-extension",
+      "install_command": "gemini extensions install https://github.com/yusufabdul024/web-claw --ref v3.0.0",
+      "manifest_file": "gemini-extension.json",
+      "managed_by": "Gemini CLI"
+    }
+  },
+  "entry_points": {
+    "identity": "agents/chief-designer.md",
+    "pipeline": "SKILL.md",
+    "state_machine": "references/state-machine.md",
+    "memory_format": "references/memory-format.md",
+    "platform_compat": "references/platform-compat.md",
+    "budgets": "references/budgets.yaml"
+  },
+  "triggers": [
+    "build a website",
+    "design a landing page",
+    "scroll-stopping site",
+    "award-winning website",
+    "client brief",
+    "competitor analysis",
+    "moodboard",
+    "design inspiration",
+    "Awwwards-quality",
+    "premium site",
+    "high-end web design",
+    "animated website",
+    "storytelling website",
+    "3D scroll animations",
+    "micro-interactions",
+    "Relume-style sitemap",
+    "site planning",
+    "wireframes",
+    "style guide",
+    "design system for a site",
+    "motion design for a site"
+  ]
+}

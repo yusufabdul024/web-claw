@@ -68,12 +68,12 @@ PART 4 - BUILD
 2. Run `scripts/init-project.py "<project-name>" --path <workspace> [--mode interactive|fast]`.
 3. Interview the client per `references/client-collaboration.md` — the five core questions: what the brand is about, what the site must achieve, what the visitor must do, the one objective, and the value proposition that becomes the hero headline.
 4. Load `references/ignition-quick.md` (simple) or `references/ignition-full.md` (complex) for the full question set.
-5. Capture any inspiration links, screenshots, designers, brands, posts, reels, boards, or "I like this" notes already provided.
+5. Capture inspiration (Q9). This is load-bearing: `RESEARCH:OPEN-WEB` is anchored on it. Collect 3-7 references with axis + borrow/avoid per source, plus anti-references. If the client has no links, work the Q9b ladder (non-web brands -> sites they enjoy -> reaction round -> adjectives-only) before settling. Then write the Q9d **search anchors**: 3-5 searchable phrases the open-web sweep will run.
 6. Write `brief/client-brief.md` from `assets/templates/client-brief-template.md`.
 7. Test the value proposition against the 3-second test. Push back until it passes.
 8. Update `memory.md`: Phase = `RESEARCH:SKILL-DISCOVERY`.
 
-**Exit condition:** `brief/client-brief.md` exists, the value proposition passes the 3-second test, and the client has confirmed the brief (or fast mode has logged assumptions).
+**Exit condition:** `brief/client-brief.md` exists, the value proposition passes the 3-second test, Q9 carries either references or a worked-ladder result plus search anchors, and the client has confirmed the brief (or fast mode has logged assumptions). A brief that reached Q9d by adjectives alone is recorded in `memory.md -> Blockers` as thin-evidence.
 
 **Rejection path:** Client corrects the brief -> update -> re-present -> advance only when confirmed.
 
@@ -126,7 +126,7 @@ PART 4 - BUILD
 **What happens:**
 
 1. Load `agents/researcher-agent.md` + `references/inspiration-research.md`.
-2. Research references that match the brief, the confirmed USPs, and the raw inspiration the client already gave in brief Q9. Prioritize **real shipped websites**: award-winning sites (Awwwards and similar), international studio/agency portfolios and the client work inside them, and strong product/brand sites — supported by galleries (Dribbble, Behance, Pinterest, Are.na, Cosmos, Land-book, Lapa Ninja, Godly, Siteinspire, Mobbin, Codrops) for pattern evidence.
+2. Run the **search anchors** from brief Q9d, widened by the confirmed USPs and the client's own references in Q9a. If Q9 was flagged thin-evidence, say so up front and treat the sweep's output as proposals for the client to react to, not as settled taste. Prioritize **real shipped websites**: award-winning sites (Awwwards and similar), international studio/agency portfolios and the client work inside them, and strong product/brand sites — supported by galleries (Dribbble, Behance, Pinterest, Are.na, Cosmos, Land-book, Lapa Ninja, Godly, Siteinspire, Mobbin, Codrops) for pattern evidence.
 3. Do not make any source mandatory. Do not cite inaccessible/auth-gated content unless the user provided it.
 4. For every source, record: URL or user-provided artifact path, why it fits, what to take, what not to take, copying risk, applicable page/section, practical build implications.
 5. Update `sources.json`. Run `scripts/research-matrix.py --sources <project>/sources.json --output <project>/research/research-matrix.md` when sources are structured.
@@ -354,3 +354,5 @@ If taste evidence is too weak to produce a moodboard in interactive mode, stop a
 - "For each source, add one sentence: what should we borrow, and what should we avoid?"
 
 Do not fill the gap with generic Web Claw defaults unless the user explicitly chooses fast mode or says "use your judgment."
+
+If the client cannot produce links at all, do not stop at "none" — work the Q9b ladder from `references/client-collaboration.md`: non-web brands they admire, then sites they already enjoy, then a reaction round against three named directions with real examples. Reacting is far easier than generating. Only after all three fail does the project proceed on adjectives alone, flagged thin-evidence in `memory.md -> Blockers`.

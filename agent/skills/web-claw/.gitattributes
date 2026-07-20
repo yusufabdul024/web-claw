@@ -1,0 +1,29 @@
+# Default: auto-detect text, normalize line endings on commit.
+* text=auto
+
+# Shell scripts and Python must use LF -- they run on POSIX hosts.
+*.sh   text eol=lf
+*.py   text eol=lf
+*.yaml text eol=lf
+*.yml  text eol=lf
+*.json text eol=lf
+
+# PowerShell scripts conventionally use CRLF on Windows.
+*.ps1  text eol=crlf
+
+# Markdown stays as auto -- preserved as authored.
+*.md   text
+
+# Treat SVGs as text (they are XML).
+*.svg  text eol=lf
+
+# Binary types -- never normalize.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.webp binary
+*.avif binary
+*.woff binary
+*.woff2 binary
+*.tar.gz binary

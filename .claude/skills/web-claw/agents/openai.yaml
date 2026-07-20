@@ -1,0 +1,11 @@
+# Metadata template for Web Claw. NOT auto-discovered by any standard OpenAI/Codex
+# tool — Codex's actual repo-instruction convention is AGENTS.md, not this file.
+# Keep this as a starting point if you register Web Claw with a custom command,
+# preset, or chip system that supports manifest files of this shape. If your
+# tooling does not consume it, deleting this file does not break anything.
+# See references/platform-compat.md → "Codex (OpenAI)" for invocation paths.
+interface:
+  display_name: "Web Claw"
+  short_description: "Plan & build award-caliber websites"
+  default_prompt: "Use $web-claw to plan and build a scroll-stopping, award-winning website for my project."
+  brand_color: "#0B0F19"
