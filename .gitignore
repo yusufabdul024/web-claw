@@ -50,10 +50,28 @@ webclaw-lighthouse-*/
 /phase-*.md
 /prompts/
 
-# Skill install artifacts — `npx skills add` run from inside this repo drops
-# project-scoped copies here. They are install output, never source.
+# ---------------------------------------------------------------------------
+# Install artifacts and local agent config.
+#
+# Running `npx skills add` (or an installer) from inside this repo drops
+# project-scoped copies of the skill into these directories. They are install
+# OUTPUT, never source. Nothing here is needed to use the skill.
+# ---------------------------------------------------------------------------
 /agent/
 /.agents/
-/.claude/skills/
-/.cursor/skills/
-/.opencode/skills/
+/.claude/
+/.codex/
+/.cursor/
+/.opencode/
+/.windsurf/
+/.gemini/
+skills-lock.json
+
+# Local editor / environment config — dev-machine only, not part of the skill.
+/.vscode/
+/.idea/
+
+# Not shipped: present locally as source material, but not needed for the skill
+# to function for anyone who clones it.
+/agents/openai.yaml   # inert manifest; consumed by no real tool
+/assets/svg/          # unreferenced decorative assets

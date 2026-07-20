@@ -27,7 +27,7 @@ Web Claw is designed to run on any AI coding agent platform. This reference cove
 
 ## Codex (OpenAI)
 
-OpenAI Codex does not auto-discover skills via `agents/openai.yaml`. For current Codex skill roster discovery, install Web Claw globally at `~/.codex/skills/web-claw/` so Codex can read `SKILL.md` frontmatter. For project-scoped activation, use **`AGENTS.md`**. Use one of these invocation paths:
+OpenAI Codex does not auto-discover skills via a manifest file. For current Codex skill roster discovery, install Web Claw globally at `~/.codex/skills/web-claw/` so Codex can read `SKILL.md` frontmatter. For project-scoped activation, use **`AGENTS.md`**. Use one of these invocation paths:
 
 **Option A — User-global skill roster install (recommended for personal use).**
 - Run `./install.sh --host codex --user --force` (or `.\install.ps1 -HostName codex -User -Force`). The installer copies the skill to `~/.codex/skills/web-claw/` and runs `scripts/verify-install.py`.
@@ -52,11 +52,6 @@ OpenAI Codex does not auto-discover skills via `agents/openai.yaml`. For current
 **Memory management:**
 - `memory.md` is written to the project folder. Codex persists file writes across sessions.
 - Codex handles context compaction internally. Trigger a manual Compaction Snapshot write (`scripts/compact-context.py`) before long operations or before ending a session.
-
-**`agents/openai.yaml`:**
-- This is a **metadata template, not an active integration**. Codex itself does not read this file.
-- It is provided as a starting point if you wire Web Claw into a custom tool, command registry, or chip system that supports manifest files in this shape (display name, default prompt, brand color).
-- If you do not have such tooling, leave the file alone or delete it — removing it does not break anything in Web Claw.
 
 ---
 
